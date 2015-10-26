@@ -1,0 +1,68 @@
+@media(max-width: 767px){
+.dv-page-sidebar{
+background-color: #343539;
+height: 100%;
+position: fixed;
+width: 250px;
+left:0px;
+}
+.dv-page-sidebar .navbar-brand img{
+height: 52px;
+}
+.dv-page-sidebar .nav{
+color: #fff;
+overflow:hidden;
+height: 600px;
+max-height: 600px;
+float: left;
+}
+.dv-page-sidebar .nav .category{
+max-width: 100%!important;
+width: 253px!important;
+margin-left: 10px;
+}
+.dv-page-sidebar .nav .category a:hover{
+background-color: #292a2d;
+}
+.dv-page-sidebar .nav .category a:active,
+.dv-page-sidebar .nav .category a:focus{
+background-color: #8eb92a;
+}
+.dv-page-sidebar .nav .category a{
+display: block;
+font-size: 14px;
+font-family: 'titillium_webregular';
+}
+.dv-page-sidebar .nav .category a i{
+max-width: 15px;
+min-width: 15px;
+width: 15px;
+}
+.dv-page-sidebar .nav .category a span{
+margin-left: 5px;
+position: relative;
+}
+.dv-page-sidebar .nav .citem{
+background-color: #464646;
+}
+.dv-page-sidebar .nav .citem li:hover{
+color: #8eb92a;
+cursor: pointer;
+}
+.dv-page-sidebar .nav .citem li{
+font-size: 12px;
+font-family: 'titillium_webregular';
+padding: 8px;
+padding-left: 15px;
+}
+/*Content Default Style*/
+.dv-page-content .title{
+color: #8eb92a;
+font-size: 20px;
+margin: 15px;
+}
+.dv-page-content .content-container{
+margin-left: 15px;
+}
+/*Content Default Style*/
+}

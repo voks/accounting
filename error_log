@@ -1,0 +1,12 @@
+[30-Jun-2015 00:17:56 America/Denver] PHP Fatal error:  Class 'Font' not found in /home3/myregist/public_html/accounting.teamstorm.net/application/helpers/dompdf/include/font_metrics.cls.php on line 346
+[30-Jun-2015 00:22:07 America/Denver] PHP Fatal error:  Class 'Font' not found in /home3/myregist/public_html/accounting.teamstorm.net/application/helpers/dompdf/include/font_metrics.cls.php on line 346
+[30-Jun-2015 00:35:49 America/Denver] PHP Fatal error:  Class 'Font' not found in /home3/myregist/public_html/accounting.teamstorm.net/application/helpers/dompdf/include/font_metrics.cls.php on line 346
+[30-Jun-2015 01:00:31 America/Denver] PHP Fatal error:  Call to undefined method Bank_recon_model::show_supplier() in /home3/myregist/public_html/accounting.teamstorm.net/application/controllers/Site.php on line 93
+[30-Jun-2015 01:01:10 America/Denver] PHP Fatal error:  Call to undefined method Bank_recon_model::show_supplier() in /home3/myregist/public_html/accounting.teamstorm.net/application/controllers/Site.php on line 107
+[30-Jun-2015 01:01:12 America/Denver] PHP Fatal error:  Call to undefined method Bank_recon_model::show_supplier() in /home3/myregist/public_html/accounting.teamstorm.net/application/controllers/Site.php on line 107
+[30-Jun-2015 01:02:05 America/Denver] PHP Fatal error:  Call to a member function show_expense_name() on a non-object in /home3/myregist/public_html/accounting.teamstorm.net/application/controllers/Accounts_payable.php on line 34
+[30-Jun-2015 01:02:09 America/Denver] PHP Fatal error:  Call to a member function show_expense_name() on a non-object in /home3/myregist/public_html/accounting.teamstorm.net/application/controllers/Accounts_payable.php on line 34
+[30-Jun-2015 01:02:28 America/Denver] PHP Fatal error:  Call to a member function show_expense_name() on a non-object in /home3/myregist/public_html/accounting.teamstorm.net/application/controllers/Accounts_payable.php on line 34
+[01-Jul-2015 01:31:31 America/Denver] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home3/myregist/public_html/accounting.teamstorm.net/application/views/parts/header.php on line 22
+[02-Jul-2015 09:45:31 America/Denver] PHP Parse error:  syntax error, unexpected 'table' (T_STRING) in /home3/myregist/public_html/accounting.teamstorm.net/application/controllers/Main_account.php on line 144
+[02-Jul-2015 09:45:35 America/Denver] PHP Parse error:  syntax error, unexpected 'table' (T_STRING) in /home3/myregist/public_html/accounting.teamstorm.net/application/controllers/Main_account.php on line 144

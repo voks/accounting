@@ -1,0 +1,450 @@
+@import url('../fonts/font-icon/icon.css');
+@import url('../fonts/css/font-awesome.css');
+@import url('animations.css');
+@import url('main-custom.css');
+/* 
+Author of base css:	king Aguirre
+Date:	3/23/2015
+Revise all css: MHon Romero;
+Date:	6/01/2015
+*/
+/*
+@font-face {
+  font-family: 'SourceSansPro Regular';
+  src: url('../fonts/fonts/SourceSansPro-Regular.otf') format('truetype'); 
+}*/
+@font-face {
+    font-family: 'titillium_webregular';
+    src: url('../fonts/fonts/titilliumweb-regular-webfont.eot');
+    src: url('../fonts/fonts/titilliumweb-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/fonts/titilliumweb-regular-webfont.woff2') format('woff2'),
+         url('../fonts/fonts/titilliumweb-regular-webfont.woff') format('woff'),
+         url('../fonts/fonts/titilliumweb-regular-webfont.ttf') format('truetype'),
+         url('../fonts/fonts/titilliumweb-regular-webfont.svg#titillium_webregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'titillium_weblight';
+    src: url('../fonts/fonts/titilliumweb-light-webfont.eot');
+    src: url('../fonts/fonts/titilliumweb-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/fonts/titilliumweb-light-webfont.woff2') format('woff2'),
+         url('../fonts/fonts/titilliumweb-light-webfont.woff') format('woff'),
+         url('../fonts/fonts/titilliumweb-light-webfont.ttf') format('truetype'),
+         url('../fonts/fonts/titilliumweb-light-webfont.svg#titillium_webregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* custom style start */
+.animate-10{
+transition:1s;
+-webkit-transition:1s;
+-moz-transition:1s;
+}
+.animate-6{
+transition:0.6s;
+-webkit-transition:0.6s;
+-moz-transition:0.6s;
+}
+.animate-5{
+transition:0.5s;
+-webkit-transition:0.5s;
+-moz-transition:0.5s;
+}
+.animate-4{
+transition:0.4s;
+-webkit-transition:0.4s;
+-moz-transition:0.4s;
+}
+.animate-2{
+transition:0.2s;
+-webkit-transition:0.2s;
+-moz-transition:0.2s;
+}
+
+html,body{
+font-family: 'titillium_webregular';
+font-size:13px;
+margin:0;
+padding:0;
+color:#333;
+height:100%;
+position: relative;
+overflow-x:hidden;
+}
+ul{
+letter-spacing:-4px;
+margin:0px;
+padding:0px;
+list-style:none;
+font-size:0px;
+}
+ul:before,ul:after,.dv-fix:before,.dv-fix:after{
+content:"";
+display:table;
+}
+ul:after,.dv-fix:after{
+clear:both
+}
+ul li{
+letter-spacing:0px;
+}
+ul li,ul li a{
+font-family: 'Myriad Pro', sans-serif;
+font-size:13px;
+font-weight:normal
+}
+ul.ul-block li{
+display:block;
+}
+ul.ul-inline li{
+float:left;
+position:relative;
+}
+a,a:hover, a:focus,a:active, a.active {
+color: inherit;
+text-decoration: none;
+outline: none; 
+}
+.no-padding {
+padding:0!important;
+}
+.col-no-padding {
+padding-left:0;
+padding-right:0; 
+}
+.center-block {
+display: block;
+margin-right: auto;
+margin-left: auto;
+}
+.table-container{
+display: table;
+width:100%;
+}
+.table-container .cell-middle{
+display: table-cell;
+vertical-align: middle;
+}
+.table-container .cell-bottom{
+display: table-cell;
+vertical-align: bottom;
+}
+.table-container.cell-top {
+display: table-cell;
+vertical-align: top;
+}
+.dv-page-conainer{
+min-height:100%;
+height: 100%;
+position:relative;
+}
+.dv-page-header .navbar{
+position: fixed;
+background-color: #8eb92a;
+min-width: 100%;
+height: 50px;
+border-radius: 0;
+}
+.dv-page-header .project-title{
+color: #fff;
+font-size: 30px;
+margin: 10px;
+padding-top: 100px;
+}
+.dv-page-sidebar{
+background-color: #343539;
+height: 100%;
+position: fixed;
+width: 250px;
+left:0px;
+}
+.dv-page-sidebar .navbar-brand img{
+height: 52px;
+margin-top: -15px;
+}
+.dv-page-sidebar .nav{
+color: #fff;
+overflow:hidden;
+height: 600px;
+}
+.dv-page-sidebar .nav .active{
+background-color: #8eb92a!important;
+}
+.dv-page-sidebar .nav .category{
+max-width: 100%;
+width: 100%;
+}
+.dv-page-sidebar .nav .category a:hover{
+background-color: #292a2d;
+}
+.dv-page-sidebar .nav .category a:active,
+.dv-page-sidebar .nav .category a:focus{
+background-color: #8eb92a;
+}
+.dv-page-sidebar .nav .category a{
+display: block;
+font-size: 16px;
+font-family: 'titillium_webregular';
+}
+.dv-page-sidebar .nav .category a i{
+max-width: 20px;
+min-width: 20px;
+width: 20px;
+}
+.dv-page-sidebar .nav .category a span{
+margin-left: 10px;
+position: relative;
+}
+.dv-page-sidebar .nav .citem{
+background-color: #464646;
+}
+.dv-page-sidebar .nav .citem li:hover{
+color: #8eb92a;
+cursor: pointer;
+}
+.dv-page-sidebar .nav .citem .active-link{
+color: #8eb92a;  
+}
+.dv-page-sidebar .nav .citem li{
+font-size: 14px;
+font-family: 'titillium_webregular';
+padding: 8px;
+padding-left: 15px;
+}
+.dv-page-main{
+
+}
+/*Content Default Style*/
+.dv-page-content{
+min-height:100%;
+position:relative;
+margin-top: 50px;
+}
+.dv-page-content .title{
+color: #8eb92a;
+font-size: 28px;
+margin: 20px;
+}
+.dv-page-content .content-container{
+margin-left: 20px;
+padding-left: 20px;
+}
+/*Content Default Style*/
+/*Login*/
+.login-body{
+height: 100%;
+max-height: 100%;
+padding: 0px!important;
+overflow-y: hidden;
+}
+.login-body .login-box:before,
+.login-body .login-box:after{
+content: " ";
+display:table;
+clear: both;
+}
+.login-body .login-box{
+height: auto;
+border: 1px solid #ccc;
+border-radius: .3em;
+-moz-border-radius: .3em;
+-webkit-border-radius: .3em;
+background: #ffffff;
+position: relative;
+
+}
+.dv-login{
+   margin:8% auto;
+width:100%;
+max-width:460px;
+padding:0px 15px; 
+}
+.login-body .login-box .login-header{
+-moz-border-top-radius: .3em;
+-webkit-border-top-radius: .3em;
+width: 100%;
+}
+.login-body .login-box .login-header .left-box{
+/*width: 25%;*/
+background-color: #343539;
+float: left;
+padding: 7px;
+}
+.login-body .login-box .login-header .left-box img{
+width: 42px;
+float: right;
+}
+.login-body .login-box .login-header .right-box{
+/*width: 75%;*/
+background-color: #8eb92a;
+float: left;
+padding: 7px;
+}
+.login-body .login-box .login-header .right-box img{
+width: 88px;
+}
+.login-body .login-box .form-login{
+padding-top: 50px;
+padding-bottom: 30px;
+margin: 30px;
+}
+.login-body .login-box .login-logo-box{
+margin-left:30%;
+margin-top: 5%;
+}
+.login-body .login-box .login-logo-company{
+height: 150px;
+width: auto;
+}
+.login-body .login-box .login-form{
+margin: auto;
+padding: 15px;
+padding-left: 15%;
+}
+.login-body .login-box .login-form .alert{
+width: 75%;
+display: none;
+}
+.login-body .login-box p{
+color: #999;
+font-size: 14px;
+line-height: 14px;
+padding:0px 20px;
+}
+.login-body .login-box .login-form .login-control{
+margin-left: 172px;
+}
+/*login*/
+/*Main Account */
+.dv-page-content .content-container .setup-main{
+width: 100%;
+}
+.dv-page-content .content-container .setup-main .form-group{
+float: left;
+margin-right: 10px;
+/*border: solid 1px #ccc;*/
+}
+.dv-page-content .content-container .setup-main .account-code-type{
+margin-right: 10px;
+}
+.dv-page-content .content-container .setup-main .account-title{
+width: 100%;
+}
+
+/*Login2 CSS*/
+.login-body .login-box2{
+border: 1px solid #ccc;
+border-radius: .3em;
+-moz-border-radius: .3em;
+-webkit-border-radius: .3em;
+background: #ffffff;
+}
+
+.login-body .login-box2 .row .left-box{
+background-color: #343539;
+padding: 7px;
+}
+
+.login-body .login-box2 .row .left-box img{
+width: 42px;
+float: right;
+}
+
+.login-body .login-box2 .row .right-box{
+background-color: #8eb92a;
+padding: 7px;
+}
+.login-body .login-box2 .row .right-box img{
+width: 88px;
+}
+
+/*End*/
+/*System Settings CSS*/
+#table-account-group {
+margin-top: 20px;
+max-height: 250px;
+overflow-y:scroll;
+}
+/*System Settings CSS*/
+/*Main Account */
+.dv-page-footer{
+position:absolute;
+left:0px;
+right:0px;
+bottom:0px;
+width:100%;
+}
+.close-nav .dv-page-main{
+
+}
+
+/*Account Code Style*/
+
+.txt-account-code input.asset-code{
+    width: 35%;
+    display: inline;
+}
+
+.txt-account-code input.sub-code{
+    width: 55%;
+    display: inline;
+}
+.close-nav .dv-page-sidebar{
+transition:0.4s;
+-webkit-transition:0.4s;
+-o-transition:0.4s;
+-ms-transition:0.4s;
+-moz-transition:0.4s;
+transform:translateX(-100%);
+-webkit-transform:translateX(-100%);
+-moz-transform:translateX(-100%);
+-ms-transform:translateX(-100%);
+-o-transform:translateX(-100%);
+}
+.dv-page-sidebar,.dv-page-main{
+transition:0.4s;
+-webkit-transition:0.4s;
+-o-transition:0.4s;
+-ms-transition:0.4s;
+-moz-transition:0.4s;
+}
+.gradient-lightgreen{
+background: #bfd255; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover, #bfd255 0%, #8eb92a 45%, #72aa00 74%, #72aa00 99%, #9ecb2d 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#bfd255), color-stop(45%,#8eb92a), color-stop(74%,#72aa00), color-stop(99%,#72aa00), color-stop(100%,#9ecb2d)); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover, #bfd255 0%,#8eb92a 45%,#72aa00 74%,#72aa00 99%,#9ecb2d 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover, #bfd255 0%,#8eb92a 45%,#72aa00 74%,#72aa00 99%,#9ecb2d 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover, #bfd255 0%,#8eb92a 45%,#72aa00 74%,#72aa00 99%,#9ecb2d 100%); /* IE10+ */
+background: radial-gradient(ellipse at center, #bfd255 0%,#8eb92a 45%,#72aa00 74%,#72aa00 99%,#9ecb2d 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', endColorstr='#9ecb2d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.shadow{
+    -webkit-box-shadow: 0px 1px 10px 0px rgba(50, 50, 50, 0.64);
+    -moz-box-shadow:    0px 1px 10px 0px rgba(50, 50, 50, 0.64);
+    box-shadow:         0px 1px 10px 0px rgba(50, 50, 50, 0.64);
+}
+
+.alert{
+    display: none;
+}
+
+/* custom style end */
+
+.error  {
+  border-color: #b94a48;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.error:focus {
+  border-color: #953b39;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+}
