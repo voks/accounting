@@ -31,5 +31,13 @@ class Main_account_model extends CI_Model {
 		return $query;
 	}
 
+	public function if_used($account_code){
+		return $query = $this->db->query("select * from tb_journal_trans where account_code='".$account_code."'")->num_rows();
+	}
+
+	public function get_accountinfo($account_code){
+		return $this->db->query("select * from tb_account_title where account_code='".$account_code."'")->result();
+	}
+
 }
 	
