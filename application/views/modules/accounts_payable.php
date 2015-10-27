@@ -75,9 +75,9 @@
 				<div class="row">
 					<div class="col-md-12 entry-data">
 						<table class="table fixed-table table-condensed">
-					        <thead>
-					            <tr>
-					                <th class="col-md-1"></th>
+							<thead>
+								<tr>
+									<th class="col-md-1"></th>
 									<th class="col-md-1">Account Code</th>
 									<th class="col-md-3">Account Title</th>
 									<th class="col-md-2">Subsidiary Code</th>
@@ -85,38 +85,115 @@
 									<th class="col-md-2">
 										<button class="btn btn-style-1 pull-right reset"><i class="fa fa-refresh"></i> Reset</button>
 									</th>
-					            </tr>
-					        </thead>
-					    </table>
-					    <div class="div-table-content">
-					    	<table id="tb_show_entries" class="table fixed-table table-condensed chart-table">
+								</tr>
+							</thead>
+						</table>
+						<div class="div-table-content">
+							<table id="tb_show_entries" class="table fixed-table table-condensed chart-table">
 								<tbody class="tran_data">
 									<?php
 									foreach ($all_accounts->result() as $key) {
 										echo "
-											<tr'>
-							    				<td class='col-md-1'><label><input type='checkbox' class='' value='0' id='check' data-subcode='".$key->sub_code."' data-subname='".$key->sub_name."'><label></td>
-							    				<td class='col-md-1'>".$key->account_code."</td>
-							    				<td class='col-md-3'>".$key->account_title."</td>
-							    				<td class='col-md-2'>".$key->sub_code."</td>
-							    				<td class='col-md-4' colspan='2'>".$key->sub_name."</td>
-										    </tr>
-										";
-									}
-									?>
+										<tr'>
+										<td class='col-md-1'><label><input type='checkbox' class='' value='0' id='check' data-subcode='".$key->sub_code."' data-subname='".$key->sub_name."'><label></td>
+										<td class='col-md-1'>".$key->account_code."</td>
+										<td class='col-md-3'>".$key->account_title."</td>
+										<td class='col-md-2'>".$key->sub_code."</td>
+										<td class='col-md-4' colspan='2'>".$key->sub_name."</td>
+									</tr>
+									";
+								}
+								?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-style-1 btn-add-trans" type="button" >Add Transaction</button>
+			<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> Cancel</button>
+		</div>
+	</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div>
+
+<!--Edit Trasaction Modal-->
+<div class="modal fade"  role="dialog" aria-labelledby="" aria-hidden="true" id="editTrans">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header modal-header-bg">
+				<h4 class="modal-title" id="">Edit Transaction</h4>
+			</div>
+			<div class="modal-body">
+				<!-- First Row -->
+				<div class="row">
+					<div class="col-md-3">
+						<span class="txt">Invoice Date:</span>
+						<input type="text" readonly="true" class="form-control invdate" value="">
+					</div>
+					<div class="col-md-3">
+						<span class="txt">Invoice #:</span>
+						<input type="text" readonly="true" class="form-control invno" value="">
+					</div>
+					<div class="col-md-3">
+						<span class="txt">PO #:</span>
+						<input type="text" readonly="true" class="form-control pono" value="">
+					</div>
+					<div class="col-md-1">
+						<span class="txt">Terms:</span>
+						<input type="text" readonly="true" class="form-control terms" value="">
+					</div>
+					<div class="col-md-2">
+						<span class="txt">Invoice Amount:</span>
+						<input type="text" readonly="true" class="form-control invamt" value="">
+					</div>
+				</div>
+				<!-- Second Row -->
+				<div class="row">
+					<div class="col-md-6">
+						<span class="txt">Supplier:</span>
+						<input type="text" readonly="true" class="form-control supp" value="">
+					</div>
+					<div class="col-md-6">
+						<span class="txt">Particulars:</span>
+						<input type="text" readonly="true" class="form-control part" value="">
+					</div>
+				</div>
+
+				<!-- fourth Row: Adding Accounts -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="table">
+							<table class="table" id="tb_entries">
+								<thead>
+									<tr>
+										<th>Account Code</th>
+										<th>Title</th>
+										<th>Debit (DR)</th>
+										<th>Credit (CR)</th>
+									</tr>
+								</thead>
+								<tbody class="entry-list">
+									<tr class="row_total">
+										<td >TOTAL</td><td ></td>
+										<td><input type="text" class="form-control entry-debit-total" readonly="true" value=""></td>
+										<td><input type="text" class="form-control entry-credit-total"  readonly="true" value=""></td>
+										<td></td>
+									</tr>
 								</tbody>
 							</table>
-					    </div>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-style-1 btn-add-trans" type="button" >Add Transaction</button>
-				<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> Cancel</button>
+				<button class="btn btn-style-1"><i class="fa fa-save"></i> Update Transaction</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div>
+
 <form class="ap-form">
 	<!-- Title -->
 	<div class="row">
@@ -224,7 +301,7 @@
 						</tr>
 					</thead>
 					<tbody class="entry-list">
-						
+
 					</tbody>
 					<tfoot>
 						<tr class="row_total">

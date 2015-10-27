@@ -66,7 +66,6 @@ $(".menu-link").click(function(e){
 
     //$(".dv-page-main").html('<img style="margin:0px;" src="http://www.mytreedb.com/uploads/mytreedb/loader/ajax_loader_gray_64.gif"/>');
     $(document).skylo('start');
-
     setTimeout(function(){
     	$(document).skylo('set',50);
     },1000);
