@@ -19,9 +19,10 @@ class Bank_recon_model extends CI_Model {
 		return $this->db->get('tb_user_type');
 	}
 
-	public function bank_recon_get($bank_name,$bank_month,$bank_year,$bank_balance){
-		$sql = "select * from tb_bank_recon where bank_name like ? and bank_month = ? and bank_year = ? and bank_balance like ?";
-		return $this->db->query($sql, array("%$bank_name%",$bank_month,$bank_year,"%$bank_balance%"));
+	public function bank_recon_get($bank_name){
+		$sql = "select * from tb_bank_recon where project_id=".$this->session->userdata('project_id')."
+		and bank_name like ?";
+		return $this->db->query($sql, array("%$bank_name%"));
 	}
 
 	public function show_bank(){

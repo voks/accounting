@@ -6,9 +6,9 @@ class Bank_recon extends CI_Controller {
 		$this->load->model('bank_recon_model');
 		if ($this->session->userdata('islogged')) {
 			$page_info = array(
-								'page_tab' 		=> 'Set Up',
-								'page_title' 	=> 'Bank Recon'
-								);
+				'page_tab' 		=> 'Set Up',
+				'page_title' 	=> 'Bank Recon'
+				);
 			$this->load->view('parts/header',load_data($page_info));
 			$this->load->view('parts/sidebar',load_data($page_info));
 			$bank_recon = array('bank_recon' => $this->bank_recon_model->show_bank());
@@ -41,10 +41,10 @@ class Bank_recon extends CI_Controller {
 
 		if (count($err)) {
 			echo jcode(array(
-								'success' => 3, 
-								'err' 	  => $err
-							)
-					);
+				'success' => 3, 
+				'err' 	  => $err
+				)
+			);
 		} else {
 
 			$bID = isset($bank_recon_data['bank_id']) ? $bank_recon_data['bank_id']: '';
@@ -64,38 +64,39 @@ class Bank_recon extends CI_Controller {
 	public function search_bank(){
 		$this->load->model("bank_recon_model");
 		$account_search = $this->input->post('searchBank');
-		$data = $this->bank_recon_model->bank_recon_get($account_search['searchBank_name'],$account_search['searchBank_month'],$account_search['searchBank_year'],$account_search['searchBank_balance']);
+		$data = $this->bank_recon_model->bank_recon_get($account_search['searchBank_name']);
+		// print_r($this->db->last_query());
 		$html = "";
-
 		$err = validates(array($account_search), array());
 
 		if (count($err)) {
 			if ($err<1) {
 				echo jcode(array(
-									'success' => 3, 
-									'err' 	  => $err
-								)
-						);
-
+					'success' => 3, 
+					'err' 	  => $err
+					)
+				);
+			}else{
+				echo "Fields are Empty";
 			}
-			else {
-				if (!$data->num_rows()) {
-						echo jcode(array('success' => 2));
+			
+		}else{
+			if (!$data->num_rows()) {
+				echo jcode(array('success' => 2));
+			}
+			else{
+				foreach ($data->result() as $key) {
+					$html .="
+					<tr>
+						<td>".$key->bank_name."</td>
+						<td>".$key->bank_month."</td>
+						<td>".$key->bank_year."</td>
+						<td>".$key->bank_balance."</td>
+					</tr>
+					";
 				}
-				else{
-						foreach ($data->result() as $key) {
-						$html .="
-									<tr>
-										<td>".$key->bank_name."</td>
-										<td>".$key->bank_month."</td>
-										<td>".$key->bank_year."</td>
-										<td>".$key->bank_balance."</td>
-									</tr>
-								";
-						}
 
-						echo jcode(array('success' => 1,'response' => $html));
-				}
+				echo jcode(array('success' => 1,'response' => $html));
 			}
 		}
 	}
@@ -147,9 +148,9 @@ class Bank_recon extends CI_Controller {
 		$html.= $this->config->item('report_footer');
 		pdf_create($html, 'Bank-Recon');
 		//echo $html;
-		}
-		else{
-			redirect('login');
-		}
 	}
+	else{
+		redirect('login');
+	}
+}
 }

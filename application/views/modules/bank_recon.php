@@ -81,13 +81,13 @@
 		<div class="col-md-12">
 			<div class="alert alert-warning alert-dismissible fade in  search-alert-warning" role="alert">
 				<button type="button" class="close"  aria-label="Close"><span aria-hidden="true">×</span></button>
-				<strong>Warning!</strong> Main Account is not existing.
+				<strong>Warning!</strong> Bank is not existing.
 			</div>
 		</div>
 	</div>
 	<!-- Search Fields -->
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-5">
 			<span class="txt">Bank:</span>
 			<select class="form-control select2-dropdown" id="searchBank_name" name="searchBank[searchBank_name]">
 				<option> -- Select Bank -- </option>
@@ -97,34 +97,6 @@
 					}
 				?>
 			</select>
-		</div>
-		<div class="col-md-2">
-			<span class="txt">Month:</span>
-			<select class="form-control select2-dropdown" id="searchBank_month" name="searchBank[searchBank_month]">
-				<?php 
-					for ($i = 1; $i <= 12; $i++)
-					{
-						$month = date("F", mktime(0, 0, 0, $i+1, 0, 0, 0));
-						echo '<option value="'.$month.'"';
-						if ($i == date("n")) echo ' selected="selected"';
-						echo '>'.$month.'</option>';
-					};
-				?>
-			</select>
-		</div>
-		<div class="col-md-2">
-			<span class="txt">Year:</span>
-			<select class="form-control select2-dropdown" id="searchBank_year" name="searchBank[searchBank_year]">
-				<?php
-					foreach(range(2005, 2020) as $year) {
-						echo "\t<option value='".$year."'>".$year."</option>\n\r";
-					}
-				?>
-			</select>
-		</div>
-		<div class="col-md-3">
-			<span class="txt">Balance:</span>
-			<input type="text" class="form-control" id="searchBank_balance" name="searchBank[searchBank_balance]">
 		</div>
 		<div class="col-md-2">
 			<button type="submit" class="btn btn-style-1 animate-4 margin-top-35 pull-left"><i class="fa fa-search"></i> Search</button>
