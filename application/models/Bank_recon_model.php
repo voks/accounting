@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Bank_recon_model extends CI_Model {
 
 	public function bank_recon_exist($bID){
-		$sql = "select * from tb_bank_recon where bank_name = ?";
+		$sql = "select * from tb_bank_recon where project_id=".$this->session->userdata('project_id')."
+		and bank_name = ?";
 		$data = array($bID);
 		$query = $this->db->query($sql,$data);
 		return $query->num_rows();
@@ -26,7 +27,8 @@ class Bank_recon_model extends CI_Model {
 	}
 
 	public function show_bank(){
-		$sql = "tb_account_subsidiary where account_title='Cash in Bank' ";
+		$sql = "tb_account_subsidiary where project_id=".$this->session->userdata('project_id')."
+		and account_title='Cash in Bank' ";
 		$query = $this->db->get($sql)->result();
 		return $query;
 	}

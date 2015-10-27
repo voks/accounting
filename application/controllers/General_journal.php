@@ -117,7 +117,12 @@ class General_journal extends CI_Controller {
 					'success' 	=> 3,
 					'err' 		=> $err
 					));
-			} else {
+			}else{
+				echo jcode(array(
+					'success' 	=> 2
+					));
+			}
+		}else {
 				if (!$data->num_rows()) {
 					echo jcode(array(
 						'success' 	=> 2
@@ -137,11 +142,7 @@ class General_journal extends CI_Controller {
 					}
 					echo jcode(array('success' => 1,'response' => $html));
 				}
-				
 			}
-		}else{
-			echo "1";
-		}
 	}
 
 	public function gj_report(){
