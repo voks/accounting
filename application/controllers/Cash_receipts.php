@@ -122,39 +122,33 @@ class Cash_receipts extends CI_Controller {
 		$html = "";
 		$err = validates(array($account_search), array());
 		
-		if (count($err)) {
-			if ($err<1) {
-				echo jcode(array(
-					'success' 	=> 3,
-					'err' 		=> $err
-					));
-			}else{
+		if ($err<1) {
+			echo jcode(array(
+				'success' 	=> 3,
+				'err' 		=> $err
+				));
+		}else {
+			if (!$data->num_rows()) {
 				echo jcode(array(
 					'success' 	=> 2
 					));
-			}
-		}else {
-				if (!$data->num_rows()) {
-					echo jcode(array(
-						'success' 	=> 2
-						));
-				} else {
-					foreach ($data->result() as $key) {
-						$html .="
-						<tr>
-							<td class='col-md-1'>".$key->cr_or_no."</td>
-							<td class='col-md-1'>".$key->cr_or_date."</td>
-							<td class='col-md-3'>".$key->cr_master_name_customer."</td>
-							<td class='col-md-3'>".$key->cr_particulars."</td>
-							<td class='col-md-1'>".cash_value($key->cr_or_amount)."</td>
-							<td class='col-md-1'><a href='#' data-id='$key->cr_id' class='btn-style-1 account-report-print animate-4 pull-right'><i class='fa fa-print'></i></a></td>
-							<td class='col-md-1'><a href='#' data-id='$key->cr_id' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
-						</tr>
-						";
-					}
-					echo jcode(array('success' => 1,'response' => $html));
-				}	
-			}
+			} else {
+				foreach ($data->result() as $key) {
+					$html .="
+					<tr>
+						<td class='col-md-1'>".$key->cr_or_no."</td>
+						<td class='col-md-1'>".$key->cr_or_date."</td>
+						<td class='col-md-3'>".$key->cr_master_name_customer."</td>
+						<td class='col-md-3'>".$key->cr_particulars."</td>
+						<td class='col-md-1'>".cash_value($key->cr_or_amount)."</td>
+						<td class='col-md-1'><a href='#' data-id='$key->cr_id' class='btn-style-1 account-report-print animate-4 pull-right'><i class='fa fa-print'></i></a></td>
+						<td class='col-md-1'><a href='#' data-id='$key->cr_id' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
+					</tr>
+					";
+				}
+				echo jcode(array('success' => 1,'response' => $html));
+			}	
+		}
 	}
 
 	public function cr_report(){
@@ -177,10 +171,11 @@ class Cash_receipts extends CI_Controller {
 		$this->load->model("journal_cr_model");
 		if ($this->session->userdata('islogged')) {
 			$cr_or_no 	= $this->input->get('or');
-			$cr_or_date	= $this->input->get('ord');
+			$cr_or_date_frm	= $this->input->get('ordfrm');
+			$cr_or_date_to	= $this->input->get('ordto');
 			$html = $this->config->item('report_header');
 			$data = array(
-				'accounts' => $this->journal_cr_model->journal_cr_get($cr_or_no,$cr_or_date)->result()
+				'accounts' => $this->journal_cr_model->journal_cr_get($cr_or_no,$cr_or_date_frm,$cr_or_date_to)->result()
 				);
 			$html.= $this->load->view('report/cr_search_report', $data, true);
 			$html.= $this->config->item('report_footer');

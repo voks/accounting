@@ -165,7 +165,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="table">
-							<table class="table" id="tb_entries">
+							<table class="table" id="">
 								<thead>
 									<tr>
 										<th>Account Code</th>

@@ -16,7 +16,7 @@ class Check_dis extends CI_Controller {
 			$viewData = array(
 				'journal_cd' => $this->journal_cd_model->show_bank(),
 				'account_title' => $this->subsidiary_account_model->get_accounts(),
-                'all_accounts' => $this->site_model->load_all_accounts()
+				'all_accounts' => $this->site_model->load_all_accounts()
 				);
 			$this->load->view('modules/check_dis', $viewData);
 			$this->load->view('parts/footer');
@@ -37,7 +37,7 @@ class Check_dis extends CI_Controller {
 			$viewData = array(
 				'journal_cd' => $this->journal_cd_model->show_bank(),
 				'account_title' => $this->subsidiary_account_model->get_accounts(),
-                'all_accounts' => $this->site_model->load_all_accounts()
+				'all_accounts' => $this->site_model->load_all_accounts()
 				);
 			$this->load->view('modules/check_dis', $viewData);
 		}
@@ -112,40 +112,36 @@ class Check_dis extends CI_Controller {
 		$data = $this->journal_cd_model->journal_cd_get($account_search['searchCD_checkNo'], $account_search['searchCD_voucherDate_frm'], $account_search['searchCD_voucherDate_to']);
 		$html = "";
 		$err = validates(array($account_search), array());
-		if (count($err)) {
-			if ($err<1) {
-				echo jcode(array(
-					'success' 	=> 3,
-					'err' 		=> $err
-					));
-			}else{
-				echo jcode(array(
-						'success' 	=> 2
-						));
-			}
+
+		
+		if ($err<1) {
+			echo jcode(array(
+				'success' 	=> 3,
+				'err' 		=> $err
+				));
 		}else {
-				if (!$data->num_rows()) {
-					echo jcode(array(
-						'success' 	=> 2
-						));
-				} else {
-					foreach ($data->result() as $key) {
-						$html .="
-						<tr>
-							<td class='col-md-2'>".$key->cd_check_no."</td>
-							<td class='col-md-2'>".$key->cd_date."</td>
-							<td class='col-md-3'>".$key->cd_master_name."</td>
-							<td class='col-md-3'>".$key->cd_particulars."</td>
-							<td class='col-md-2'>".number_format($key->cd_check_amount,2)."</td>
-							<td class='col-md-1'><a href='#' data-id='$key->cd_id' class='btn-style-1 account-report-print animate-4 pull-left'><i class='fa fa-print'></i></a></td>
-							<td class='col-md-1'><a href='#' data-id='$key->cd_id' class='btn-style-1 print-check animate-4 pull-left'><i class='fa fa-check-square-o'></i></a></td>
-							<td class='col-md-1'><a href='#' data-id='$key->cd_id' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
-						</tr>
-						";
-					}
-					echo jcode(array('success' => 1,'response' => $html));
+			if (!$data->num_rows()) {
+				echo jcode(array(
+					'success' 	=> 2
+					));
+			} else {
+				foreach ($data->result() as $key) {
+					$html .="
+					<tr>
+						<td class='col-md-2'>".$key->cd_check_no."</td>
+						<td class='col-md-2'>".$key->cd_date."</td>
+						<td class='col-md-3'>".$key->cd_master_name."</td>
+						<td class='col-md-3'>".$key->cd_particulars."</td>
+						<td class='col-md-2'>".number_format($key->cd_check_amount,2)."</td>
+						<td class='col-md-1'><a href='#' data-id='$key->cd_id' class='btn-style-1 account-report-print animate-4 pull-left'><i class='fa fa-print'></i></a></td>
+						<td class='col-md-1'><a href='#' data-id='$key->cd_id' class='btn-style-1 print-check animate-4 pull-left'><i class='fa fa-check-square-o'></i></a></td>
+						<td class='col-md-1'><a href='#' data-id='$key->cd_id' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
+					</tr>
+					";
 				}
+				echo jcode(array('success' => 1,'response' => $html));
 			}
+		}
 	}
 
 	public function cd_report(){

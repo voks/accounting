@@ -106,7 +106,7 @@
 	<!-- Add Master Account button -->
 	<div class="row">
 		<div class="col-md-12">
-			<button type="submit" class="btn btn-style-1 margin-top-30 animate-4 pull-right"><i class="fa fa-plus"></i> Add Account </button>
+			<button type="submit" class="btn btn-style-1 margin-top-30 animate-4 pull-right"><i class="fa fa-save"></i> Save Account </button>
 		</div>
 	</div>	
 

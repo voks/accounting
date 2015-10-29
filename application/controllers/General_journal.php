@@ -107,42 +107,37 @@ class General_journal extends CI_Controller {
 		$this->load->model('journal_gj_model');
 		$account_search = $this->input->post('searchGJ');
 		$data = $this->journal_gj_model->journal_gj_get($account_search['searchGJ_code'],$account_search['searchGJ_date_frm'],$account_search['searchGJ_date_to']);
+		// print_r($this->db->last_query());
 		$html = "";
-
 		$err = validates(array($account_search), array());
 		
-		if (count($err)) {
-			if ($err<1) {
-				echo jcode(array(
-					'success' 	=> 3,
-					'err' 		=> $err
-					));
-			}else{
+
+		if ($err<1) {
+			echo jcode(array(
+				'success' 	=> 3,
+				'err' 		=> $err
+				));
+		}else {
+			if (!$data->num_rows()) {
 				echo jcode(array(
 					'success' 	=> 2
 					));
-			}
-		}else {
-				if (!$data->num_rows()) {
-					echo jcode(array(
-						'success' 	=> 2
-						));
-				} else {
-					foreach ($data->result() as $key) {
-						$html .="
-						<tr>
-							<td class='col-md-2'>".$key->gj_code."</td>
-							<td class='col-md-2'>".$key->gj_date."</td>
-							<td class='col-md-3'>".$key->gj_particulars."</td>
-							<td class='col-md-2'>".cash_value($key->gj_amount)."</td>
-							<td class='col-md-1'><a href='#' data-id='$key->gj_id' class='btn-style-1 account-report-print animate-4 pull-right'><i class='fa fa-print'></i></a></td>
-							<td class='col-md-1'><a href='#' data-id='$key->gj_id' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
-						</tr>
-						";
-					}
-					echo jcode(array('success' => 1,'response' => $html));
+			} else {
+				foreach ($data->result() as $key) {
+					$html .="
+					<tr>
+						<td class='col-md-2'>".$key->gj_code."</td>
+						<td class='col-md-2'>".$key->gj_date."</td>
+						<td class='col-md-3'>".$key->gj_particulars."</td>
+						<td class='col-md-2'>".cash_value($key->gj_amount)."</td>
+						<td class='col-md-1'><a href='#' data-id='$key->gj_id' class='btn-style-1 account-report-print animate-4 pull-right'><i class='fa fa-print'></i></a></td>
+						<td class='col-md-1'><a href='#' data-id='$key->gj_id' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
+					</tr>
+					";
 				}
+				echo jcode(array('success' => 1,'response' => $html));
 			}
+		}
 	}
 
 	public function gj_report(){
@@ -165,10 +160,11 @@ class General_journal extends CI_Controller {
 		$this->load->model("journal_gj_model");
 		if ($this->session->userdata('islogged')) {
 			$gj_code 	= $this->input->get('jn');
-			$gj_date	= $this->input->get('jnd');
+			$gj_date_frm	= $this->input->get('jndfrm');
+			$gj_date_to	= $this->input->get('jndto');
 			$html = $this->config->item('report_header');
 			$data = array(
-				'accounts' => $this->journal_gj_model->journal_gj_get($gj_code,$gj_date)->result()
+				'accounts' => $this->journal_gj_model->journal_gj_get($gj_code,$gj_date_frm,$gj_date_to)->result()
 				);
 			$html.= $this->load->view('report/gj_search_report', $data, true);
 			$html.= $this->config->item('report_footer');

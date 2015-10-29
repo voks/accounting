@@ -98,7 +98,7 @@ function general_journal_js(){
 
 	// Printing of Summary report
 	$('.gj-print-list-result').click(function(e){
-	 	window.open(site_url+"general_journal/gj_summary_report?jn="+$('#searchGJ_code').val()+"&jnd="+$('#searchGJ_date').val(),'_blank');
+	 	window.open(site_url+"general_journal/gj_summary_report?jn="+$('#searchGJ_code').val()+"&jndfrm="+$('#searchGJ_date_frm').val()+"&jndto="+$('#searchGJ_date_to').val(),'_blank');
 	});
 }
 

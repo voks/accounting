@@ -65,7 +65,7 @@
 				</select>
 			</div>
 			<div class="col-md-7">
-				<button type="submit" class="btn btn-style-1 animate-4 margin-top-30 pull-right"><i class="fa fa-plus"></i> Add Account </button>
+				<button type="submit" class="btn btn-style-1 animate-4 margin-top-30 pull-right"><i class="fa fa-save"></i> Save Account </button>
 			</div>
 		</div>
 	</form>

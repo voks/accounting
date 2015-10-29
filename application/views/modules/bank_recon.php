@@ -24,6 +24,7 @@
 	<!-- First Row -->
 	<div class="row">
 		<div class="col-md-3">
+			<input type="hidden" id="project_id" name="bank[project_id]" value="<?php echo $this->session->userdata('project_id') ?>" />
 			<span class="txt">Bank:</span>
 			<select class="form-control main_txtbox select2-dropdown" id="bank_name" name="bank[bank_name]">
 				<option> -- Select Bank -- </option>
@@ -60,10 +61,10 @@
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Balance:</span>
-			<input type="text" class="form-control main_txtbox" id="bank_balance" name="bank[bank_balance]">
+			<input type="text" class="form-control main_txtbox amount" id="bank_balance" name="bank[bank_balance]">
 		</div>
 		<div class="col-md-2">
-			<button type="submit" class="btn btn-style-1 animate-4 margin-top-35 pull-left"><i class="fa fa-plus"></i> Add Account</button>
+			<button type="submit" class="btn btn-style-1 animate-4 margin-top-35 pull-left"><i class="fa fa-save"></i> Save Account</button>
 		</div>
 	</div>
 </form>
@@ -106,10 +107,11 @@
 
 <!-- Searched Results Table List -->
 <div class="row">
-	<div class="col-md-11">
+	<div class="col-md-12">
 		<table class="table margin-top-20 search-table">
 			<thead>
 				<tr>
+					<th></th>
 					<th>Bank</th>
 					<th>Month</th>
 					<th>Year</th>
@@ -120,6 +122,11 @@
 			</tbody>
 		</table>
 	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<button class="btn btn-style-1 pull-right">Reconcile</button>
+	</div>				
 </div>
 <!-- Print Button -->
 <div class="row">

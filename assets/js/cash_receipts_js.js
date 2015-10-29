@@ -98,7 +98,7 @@ function cash_receipts_js(){
 
 	// Printing of Summary Report
 	$('.cr-print-list-result').click(function(e){
-	  	window.open(site_url+"cash_receipts/cr_summary_report?or="+$('#searchCR_orNo').val()+"&ord="+$('#searchCR_date').val(),'_blank');
+	  	window.open(site_url+"cash_receipts/cr_summary_report?or="+$('#searchCR_orNo').val()+"&ordfrm="+$('#searchCR_date_frm').val()+"&ordto="+$('#searchCR_date_to').val(),'_blank');
 	});
 }
 

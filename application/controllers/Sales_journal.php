@@ -17,7 +17,7 @@ class Sales_journal extends CI_Controller {
 			$viewData = array(
 				'journal_sj' => $this->journal_sj_model->show_customer(),
 				'account_title' => $this->subsidiary_account_model->get_accounts(),
-                'all_accounts' => $this->site_model->load_all_accounts()
+				'all_accounts' => $this->site_model->load_all_accounts()
 				);
 			$this->load->view('modules/sales_journal', $viewData);
 			$this->load->view('parts/footer');
@@ -38,7 +38,7 @@ class Sales_journal extends CI_Controller {
 			$viewData = array(
 				'journal_sj' => $this->journal_sj_model->show_customer(),
 				'account_title' => $this->subsidiary_account_model->get_accounts(),
-                'all_accounts' => $this->site_model->load_all_accounts()
+				'all_accounts' => $this->site_model->load_all_accounts()
 				);
 			$this->load->view('modules/sales_journal', $viewData);
 		}
@@ -115,13 +115,13 @@ class Sales_journal extends CI_Controller {
 		$html = "";
 		$err = validates(array($account_search), array());
 		
-		if (count($err)) {
-			if ($err<1) {
+
+		if ($err<1) {
 				echo jcode(array(
 					'success' 	=> 3,
 					'err' 		=> $err
 					));
-			} else {
+		} else {
 				if (!$data->num_rows()) {
 					echo jcode(array(
 						'success' 	=> 2
@@ -144,9 +144,6 @@ class Sales_journal extends CI_Controller {
 				}
 				
 			}
-		}else{
-			echo jcode(array('success' => 2,'response' => $html));
-		}
 	}
 
 	public function sj_report(){
@@ -169,10 +166,11 @@ class Sales_journal extends CI_Controller {
 		$this->load->model("journal_sj_model");
 		if ($this->session->userdata('islogged')) {
 			$sj_si_no 	= $this->input->get('si');
-			$sj_si_date	= $this->input->get('sid');
+			$sj_si_date_frm	= $this->input->get('sidfrm');
+			$sj_si_date_to	= $this->input->get('sidto');
 			$html = $this->config->item('report_header');
 			$data = array(
-				'accounts' => $this->journal_sj_model->journal_sj_get($sj_si_no,$sj_si_date)->result()
+				'accounts' => $this->journal_sj_model->journal_sj_get($sj_si_no,$sj_si_date_frm,$sj_si_date_to)->result()
 				);
 			$html.= $this->load->view('report/sj_search_report', $data, true);
 			$html.= $this->config->item('report_footer');

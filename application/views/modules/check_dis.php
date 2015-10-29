@@ -194,7 +194,7 @@
 								<a href="#" class="btn-style-1 animate-4 margin-top-30 pull-right" id='alert' data-toggle='modal' data-target='.addTrans'><i class="fa fa-plus"></i> Add Account</a>
 							</th>
 						</tr>
-						<tr>
+						<tr> 
 							<td></td><td></td>
 							<td colspan="2">
 								<span class=""><b>Note</b>: Please indicate zero (0) if amount is not avilable.</span>

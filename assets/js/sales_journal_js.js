@@ -98,7 +98,7 @@ function sales_journal_js(){
 
 	// Printing of Summary Report
 	$('.sj-print-list-result').click(function(e){
-		window.open(site_url+"sales_journal/sj_summary_report?si="+$('#searchSJ_siNo').val()+"&sid="+$('#searchSJ_siDate').val(),'_blank');
+		window.open(site_url+"sales_journal/sj_summary_report?si="+$('#searchSJ_siNo').val()+"&sid="+$('#searchSJ_siDate_frm').val()+"&sid="+$('#searchSJ_siDate_to').val(),'_blank');
 	});
 }
 

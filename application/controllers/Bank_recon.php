@@ -77,7 +77,7 @@ class Bank_recon extends CI_Controller {
 					)
 				);
 			}else{
-				echo "Fields are Empty";
+				echo jcode(array('success' => 2));
 			}
 			
 		}else{
@@ -88,6 +88,7 @@ class Bank_recon extends CI_Controller {
 				foreach ($data->result() as $key) {
 					$html .="
 					<tr>
+						<td><input type='checkbox'></td>
 						<td>".$key->bank_name."</td>
 						<td>".$key->bank_month."</td>
 						<td>".$key->bank_year."</td>
@@ -104,53 +105,20 @@ class Bank_recon extends CI_Controller {
 	public function report_tbl(){
 		$this->load->model("bank_recon_model");
 		if ($this->session->userdata('islogged')) {
-			
 			$bank_name = $this->input->get('bn');
 			$bank_month = $this->input->get('bm');
 			$bank_year = $this->input->get('byr');
 			$bank_balance = $this->input->get('bal');
-			$data = $this->bank_recon_model->bank_recon_get($bank_name,$bank_month,$bank_year,$bank_balance)->result();
+			$data = array(
+				'bank_data' => $this->bank_recon_model->bank_recon_get($bank_name,$bank_month,$bank_year,$bank_balance)->result()
+				);
 			$html = $this->config->item('report_header');
-			$html.= "
-			<div class='jumbotron'>
-				<span>Bank Reconciliation Record</span>
-			</div>
-		</div>
-		";
-		$html.= "
-		<div class='content row'>
-			<table class='table'>
-				<thead>
-					<tr >
-						<th class='one-half text-left'>Bank Name</th>
-						<th class='one-fourth text-left'>Month</th>
-						<th class='one-fourth text-left'>Year</th>
-						<th class='one-half text-left'>Balance</th>
-					</tr>
-				</thead>
-				<tbody>
-					";
-					foreach($data as $key){
-						$html.="
-						<tr >
-							<td class='one-half text-left'>".$key->bank_name."</td>
-							<td class='one-fourth text-left'>".$key->bank_month."</td>
-							<td class='one-fourth text-left'>".$key->bank_year."</td>
-							<td class='one-half text-left'>".$key->bank_balance."</td>
-						</tr>
-						";
-					}
-					$html.="
-				</tbody>
-			</table>
-		</div>
-		";
-		$html.= $this->config->item('report_footer');
-		pdf_create($html, 'Bank-Recon');
-		//echo $html;
+			$html.= $this->load->view('report/bankrecon', $data, true);
+			$html.= $this->config->item('report_footer');
+			pdf_create($html, 'Bank-Recon');
+		}
+		else{
+			redirect('login');
+		}
 	}
-	else{
-		redirect('login');
-	}
-}
 }
