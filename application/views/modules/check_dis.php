@@ -119,7 +119,7 @@
 	<!-- Title -->
 	<div class="row">
 		<div class="dv-header col-md-12">
-			<span class="page-title"> » Check Disbursement</span>
+			<span class="page-title scrollhere"> » Check Disbursement</span>
 			<hr/>
 		</div>
 	</div>
@@ -218,7 +218,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<button type="submit" class="btn btn-style-1 animate-4 margin-top-35 pull-right"><i class="fa fa-save"></i> Save Transaction</button>
+			<button type="submit" class="btn btn-style-1 animate-4 margin-top-35 pull-right scroll"><i class="fa fa-save"></i> Save Transaction</button>
 		</div>
 	</div>
 </form>

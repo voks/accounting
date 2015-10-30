@@ -120,7 +120,7 @@
 	<!-- Title -->
 	<div class="row">
 		<div class="dv-header col-md-12">
-			<span class="page-title"> » Cash Recipts</span>
+			<span class="page-title scrollhere"> » Cash Recipts</span>
 			<hr/>
 		</div>
 	</div>
@@ -234,7 +234,7 @@
 	<!-- Add AP Button -->
 	<div class="row">
 		<div class="col-md-12">
-			<button type="submit" class="btn btn-style-1 animate-4 margin-top-30 pull-right"><i class="fa fa-save"></i> Save Transaction</button>
+			<button type="submit" class="btn btn-style-1 animate-4 margin-top-30 pull-right scroll"><i class="fa fa-save"></i> Save Transaction</button>
 		</div>
 	</div>
 </form>

@@ -17,6 +17,7 @@ function form_submit () {
 	trial_balance_js();
 	user_access_js();
 	figure_format();
+	scrollUp();
 }
 
 function global_function(){

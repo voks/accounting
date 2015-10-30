@@ -12,15 +12,25 @@ $(document).ready(function(){
 		alert($(this).attr('data-item'));
 	});
 
+	scrollUp();
 	figure_format();
 });
 
+// Used to format the amount figure -mac
 function figure_format(){
 	// Format txtbx
 	$('.amount').autoNumeric("init",{
 		aSep: ',',
 		aDec: '.', 
 		aSign: ''
+	});
+}
+// Used to scroll up the webpage as the save button is clicked -mac
+function scrollUp(){
+	$(".scroll").click(function(){
+		$('html, body').animate({
+			scrollTop: $(".scrollhere").offset().top
+		}, 500);
 	});
 }
 
@@ -208,19 +218,19 @@ function onload_functions(){
 
 	form_submit();
 
-	// Automatic showing of Total check amount in the entry table, credit side
+	// Automatic showing of Total check amount in the entry table, credit side -mac
 	$('#cd_check_amount').change(function(){
 		var chck_amount = $('#cd_check_amount').val();
 		$('#ap_trans_credit_amount').val(chck_amount);
 	});
 
-	// Automatic showing of Total of amount in the entry table, debit side
+	// Automatic showing of Total of amount in the entry table, debit side -mac
 	$('#cr_or_amount').change(function(){
 		var or_amount = $('#cr_or_amount').val();
 		$('#ap_trans_debit_amount').val(or_amount);
 	});
 
-	//Adding supplier name in the tbl enties
+	//Adding supplier name in the tbl enties -mac
 	$('.show-supplier').change(function() {
 		var supp_name = $(this).val().substring(5);
 		var master_code = $(this).val().substring(0,3);
@@ -245,10 +255,10 @@ function onload_functions(){
 				}
 			}
 		});		
-	});
+});
 	// end of adding the supplier name
 
-	//Adding expenses in the tbl enties
+	//Adding expenses in the tbl enties -mac
 	$('.show-expenses').change(function() {
 		var expense_name = $(this).val().substring(8); 
 		var acc_code = $(this).val().substring(0,5);
@@ -258,7 +268,7 @@ function onload_functions(){
 		figure_format();
 	});
 
-	//Adding bank in the tbl enties
+	//Adding bank in the tbl enties -mac
 	$('.show-bank').change(function() {
 		var bank_name = $(this).val(); 
 		var bank_code = $(this).find(':selected').data('code');
@@ -284,9 +294,9 @@ function onload_functions(){
 				}
 			}
 		});		
-	});
+});
 
-	//Adding customer in the tbl enties
+	//Adding customer in the tbl enties -mac
 	$('.show-customer').change(function() {
 		var customer_name = $(this).val().substring(5); 
 		var master_code = $(this).val().substring(0,3);
@@ -310,9 +320,9 @@ function onload_functions(){
 				}
 			}
 		});	
-	});
+});
 
-	//Adding customer in the tbl enties Sales Journal
+	//Adding customer in the tbl enties Sales Journal -mac
 	$('.show-customer-sj').change(function() {
 		var customer_name = $(this).val().substring(5); 
 		var master_code = $(this).val().substring(0,3);
@@ -337,5 +347,5 @@ function onload_functions(){
 				}
 			}
 		});	
-	});
+});
 }

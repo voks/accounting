@@ -121,7 +121,7 @@
 	<!-- Title -->
 	<div class="row">
 		<div class="dv-header col-md-12">
-			<span class="page-title"> » General Journal</span>
+			<span class="page-title scrollhere"> » General Journal</span>
 			<hr/>
 		</div>
 	</div>
@@ -201,7 +201,7 @@
 	<!-- Button -->
 	<div class="row">
 		<div class="col-md-12">
-			<button type="submit" class="btn btn-style-1 animate-4 margin-top-35 pull-right"><i class="fa fa-save"></i> Save Transaction</button>
+			<button type="submit" class="btn btn-style-1 animate-4 margin-top-35 pull-right scroll"><i class="fa fa-save"></i> Save Transaction</button>
 		</div>
 	</div>
 </form>
