@@ -65,7 +65,7 @@
 				</select>
 			</div>
 			<div class="col-md-7">
-				<button type="submit" class="btn btn-style-1 animate-4 margin-top-30 pull-right"><i class="fa fa-save"></i> Save Account </button>
+				<button type="submit" class="btn btn-style-1 animate-4 margin-top-30 pull-right"><i class="fa fa-plus"></i> Add Account </button>
 			</div>
 		</div>
 	</form>
@@ -137,3 +137,78 @@
 		<a href="#" class="btn-style-1 animate-4 pull-left mainaccount-report-print"><i class="fa fa-print"></i> Print Result List</a>
 	</div>
 </div>
+<!-- Modal content Start -->
+<div class="modal fade accountsummary"  role="dialog" aria-labelledby="" aria-hidden="true" id="accountsummary">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header modal-header-bg">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id=""></h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<span class="modal-subtitle"> » Account Title Information</span>
+						<hr/>
+					</div>
+				</div>
+				<form class="">
+					<div class="row">
+						<div class="col-md-3">
+							<span class="txt">Account Code</span>
+							<input type="text" class="form-control entry-text" value="" id="accountcodeSummary">
+						</div>
+
+						<div class="col-md-9">
+							<span class="txt">Account Title</span>
+							<input type="text"  class="form-control sub-input-masked entry-subcode" id="accounttitleSummary" >
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<span class="txt">Account Type</span>
+							<input type="text" class="form-control entry-text" value="" id="accounttypeSummary">
+						</div>
+
+						<div class="col-md-6">
+							<span class="txt">Account Group</span>
+							<input type="text"  class="form-control sub-input-masked entry-subcode "  id="accountgroupSummary">
+						</div>
+
+						<div class="col-md-3">
+							<span class="txt">Date Created</span>
+							<input type="text"  class="form-control sub-input-masked entry-subcode "  id="accountdateSummary">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> Close</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade deleteConfirmation"  role="dialog" aria-labelledby="" aria-hidden="true" id="deleteConfirmation">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header modal-header-bg">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="">» Delete Confirmation</h4>
+			</div>
+			<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<span class="txt">» Do you want to Delete this Account?</span>
+							<span class="txt txttitle"></span>
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-style-2 deleteTitle"> Delete</button>
+				<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> Cancel</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!-- Modal content Start -->
