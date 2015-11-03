@@ -106,4 +106,21 @@ class Trial_balance_model extends CI_Model {
 		}
 		return $this->db->query($sql);
 	}
+
+	public function get_summary_tot($account_code,$trans,$date_fr,$date_to){
+		if (strlen($trans)>0) {
+			$sql = "
+			SELECT sum(trans_dr) as trans_dr, sum(trans_cr) as trans_cr FROM tb_journal_trans 
+			WHERE account_code = '".$account_code."' and trans_journal = '".$trans."' 
+			and trans_date BETWEEN '".$date_fr."' AND '".$date_to."'
+			";
+		}else{
+			$sql = "
+			SELECT sum(trans_dr) as trans_dr, sum(trans_cr) as trans_cr FROM tb_journal_trans
+			WHERE account_code = '".$account_code."' and trans_date BETWEEN '".$date_fr."' AND '".$date_to."'
+			";
+		}
+		$query = $this->db->query($sql);
+		return $query;
+	}
 }

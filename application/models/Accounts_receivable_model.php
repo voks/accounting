@@ -15,6 +15,16 @@ class Accounts_receivable_model extends CI_Model {
 		return $data;
 	}
 
+	public function search_ar_tot($customer){
+		$sql = "
+			SELECT sum(total_debit) as tot_debit, sum(total_credit) as tot_credit
+			from tb_journal_sj where project_id = ".$this->session->userdata('project_id')."
+			and sj_master_name = ?
+		";
+		$data = $this->db->query($sql, $customer);
+		return $data;
+	}
+
 	public function summary_ar($customer){
 		$sql = "
 		select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr 

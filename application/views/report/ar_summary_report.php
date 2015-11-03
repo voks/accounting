@@ -20,8 +20,17 @@
 				echo "	<td class='padding-left-10'>".$key->sj_si_no."</td>";
 				echo "	<td class='padding-left-10'>".$key->sj_si_date."</td>";
 				echo "	<td class='padding-left-10'>".$key->sj_particulars."</td>";
-				echo "	<td class='padding-left-10 text-right'>".number_format($key->trans_dr,2)."</td>";
-				echo "	<td class='padding-right-5 text-right'>".number_format($key->trans_cr,2)."</td>";
+				echo "	<td class='padding-left-10 text-right'>".number_format($key->total_debit,2)."</td>";
+				echo "	<td class='padding-right-5 text-right'>".number_format($key->total_credit,2)."</td>";
+				echo "</tr>";
+			}
+			foreach($ar_tot as $key){
+				echo "<tr>";
+				echo "	<td class='padding-left-10'></td>";
+				echo "	<td class='padding-left-10'></td>";
+				echo "	<td class='padding-left-10'></td>";
+				echo "	<td class='padding-left-10 text-right'>".number_format($key->tot_debit,2)."</td>";
+				echo "	<td class='padding-right-5 text-right'>".number_format($key->tot_credit,2)."</td>";
 				echo "</tr>";
 			}
 			?>

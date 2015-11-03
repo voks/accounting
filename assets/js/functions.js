@@ -2,6 +2,7 @@ function form_submit () {
 	global_function();
 	login_js();
 	accounts_payable_js();
+	accounts_receivable_js();
 	aging_js();
 	bank_recon_js();
 	cash_receipts_js();

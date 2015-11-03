@@ -12,7 +12,6 @@
 	<div class="row">
 		<div class="col-md-12">
 		<div class="alert alert-warning alert-dismissible fade in  ar-alert-warning" role="alert">
-				<button type="button" class="close"  aria-label="Close"><span aria-hidden="true">×</span></button>
 				<strong>Warning!</strong> Accounts is not existing.
 			</div>
 		</div>

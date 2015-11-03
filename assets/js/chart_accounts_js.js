@@ -61,7 +61,7 @@ function chart_accounts_js(){
 	$('.accountsummary').on('shown.bs.modal', function (event) {
 	  var btn = $(event.relatedTarget);
 	  var accountId = btn.data('accountid');
-	  //ajax retreiving account info by accoung id
+	  //ajax retreiving account info by account id
 	  $.ajax({ 
 			type: 'POST', 
 			datatype:'json',

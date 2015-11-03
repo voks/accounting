@@ -15,6 +15,8 @@ class Login extends CI_Controller {
 							 );
 			$this->load->view('modules/login',load_data(array_merge($data,$projects)));
 			$this->load->view('parts/footer');
+		}else{
+			echo "Please Login!";
 		}
 	}
 

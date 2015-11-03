@@ -18,14 +18,14 @@ class General_ledger_model extends CI_Model {
 			$sql = "
 					select * from tb_journal_trans 
 					where 
-					sub_code='".$sub_code."' and
+					sub_code like '%".$sub_code."%' and
 					trans_date between '".$from_date."' and '".$to_date."'
 			   ";
 		} else {
 			$sql = "
 					select * from tb_journal_trans 
 					where 
-					account_code='".$account_code."' and
+					account_code like '%".$account_code."%' and
 					trans_date between '".$from_date."' and '".$to_date."'
 			   ";
 		}

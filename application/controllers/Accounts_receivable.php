@@ -40,10 +40,11 @@ class Accounts_receivable extends CI_Controller {
 
 	public function search_ar(){
 		$this->load->model('accounts_receivable_model');
-		$ar = $this->input->post('ar');
-		$data = $this->accounts_receivable_model->search_ar($ar['ar_customer']);
+		$ar 		= $this->input->post('ar');
+		$data 		= $this->accounts_receivable_model->search_ar($ar['ar_customer']);
+		$data_total = $this->accounts_receivable_model->search_ar_tot($ar['ar_customer']);
+		// print_r($this->db->last_query());
 		$html = "";
-
 		$err = validates(array($ar), array());
 		
 		
@@ -64,12 +65,25 @@ class Accounts_receivable extends CI_Controller {
 						<td>".$key->sj_si_no."</td>
 						<td>".$key->sj_si_date."</td>
 						<td>".$key->sj_particulars."</td>
-						<td>".number_format($key->total_debit,2)."</td>
-						<td>".number_format($key->total_credit,2)."</td>
+						<td style='text-align:right;'>".number_format($key->total_debit,2)."</td>
+						<td style='text-align:right;'>".number_format($key->total_credit,2)."</td>
 						<td><a href='#' data-id='".$key->sj_id."' class='btn-style-1 animate-4 pull-right ar-report-print'><i class='fa fa-print'></i></a></td>
 						<td><a href='#' data-id='".$key->sj_id."' class='btn-style-1 animate-4 pull-left ar-report-edit'><i class='fa fa-edit'></i></a></td>
 					</tr>
 					";
+
+				}
+				foreach ($data_total->result() as $key) {
+					$html .="
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td style='text-align:right;'>".number_format($key->tot_debit,2)."</td>
+						<td style='text-align:right;'>".number_format($key->tot_credit,2)."</td>
+					</tr>
+					";
+					
 				}
 				echo jcode(array('success' => 1,'response' => $html));
 			}
@@ -99,7 +113,8 @@ class Accounts_receivable extends CI_Controller {
 			$ar_customer = $this->input->get('ar');
 			$html = $this->config->item('report_header');
 			$data = array(
-					'ar' => $this->accounts_receivable_model->summary_ar($ar_customer)->result()
+					'ar' 		=> $this->accounts_receivable_model->summary_ar($ar_customer)->result(),
+					'ar_tot'	=> $this->accounts_receivable_model->search_ar_tot($ar_customer)->result()
 				);
 			$html.= $this->load->view('report/ar_summary_report', $data, true);
 			$html.= $this->config->item('report_footer');

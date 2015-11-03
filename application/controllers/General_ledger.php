@@ -51,6 +51,7 @@ class General_ledger extends CI_Controller {
 
 				$search = $this->input->post('gl-search');
 				$data = $this->general_ledger_model->search_gl_all($main,$subs,$search['from_date'],$search['to_date']);
+				// print_r($this->db->last_query());
 				$html="";
 				$err = validates(array($search), array());
 
