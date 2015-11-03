@@ -57,4 +57,36 @@ function chart_accounts_js(){
 		window.open(site_url+"main_account/report_tbl?at="+$('#searchAccount_type').val()+"&ac="+$('#searchaccount_code').val()+"&atits"+$('#searchaccount_title').val(),'_blank');
 	});
 
+	//Modal trigger function for account summary
+	$('.accountsummary').on('shown.bs.modal', function (event) {
+	  var btn = $(event.relatedTarget);
+	  var accountId = btn.data('accountid');
+	  //ajax retreiving account info by accoung id
+	  $.ajax({ 
+			type: 'POST', 
+			datatype:'json',
+			url: site_url+'main_account/get_accountinfo', 
+			data: {'account_code' : accountId},
+			success: function (data) { 
+				if(data.success==1){
+					$('#accountcodeSummary').val(data.response[0].account_code);
+					$('#accounttitleSummary').val(data.response[0].account_title);
+					$('#accounttypeSummary').val(data.response[0].account_type);
+					$('#accountgroupSummary').val(data.response[0].account_group);
+					$('#accountdateSummary').val(data.response[0].account_date);
+				}
+			}
+		});
+	});
+
+	$('.deleteConfirmation').on('shown.bs.modal', function (event) {
+		var title = $(event.relatedTarget);
+	  	var newtitle = title.data('title');
+		$('.txttitle').html('» '+newtitle);
+	});
+
+	$('.deleteTitle').click(function(){
+		$('.deleteConfirmation').modal('hide');
+	});
+
 }
