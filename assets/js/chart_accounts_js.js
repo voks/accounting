@@ -83,6 +83,16 @@ function chart_accounts_js(){
 		var title = $(event.relatedTarget);
 	  	var newtitle = title.data('title');
 		$('.txttitle').html('» '+newtitle);
+		$.ajax({ 
+			type: 'POST', 
+			datatype:'json',
+			url: site_url+'main_account/get_accountinfo', 
+			data: {'account_code' : accountId},
+			success: function (data) { 
+				if(data.success==1){
+				}
+			}
+		});
 	});
 
 	$('.deleteTitle').click(function(){
