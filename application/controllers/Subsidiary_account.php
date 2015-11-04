@@ -6,9 +6,9 @@ class Subsidiary_account extends CI_Controller {
 		$this->load->model("main_account_model");
 		if ($this->session->userdata('islogged')) {
 			$page_info = array(
-								'page_tab' 		=> 'Set Up',
-								'page_title'	=> 'Subsidiary Account' 
-							  );
+				'page_tab' 		=> 'Set Up',
+				'page_title'	=> 'Subsidiary Account' 
+				);
 			$this->load->view('parts/header',load_data($page_info));
 			$this->load->view('parts/sidebar',load_data($page_info));
 			$master_name = array('master_name' => $this->main_account_model->show_master_name()->result());
@@ -47,10 +47,10 @@ class Subsidiary_account extends CI_Controller {
 
 		if (count($err)) {
 			echo jcode(array(
-								'success' => 3, 
-								'err' 	  => $err
-							)
-					);
+				'success' => 3, 
+				'err' 	  => $err
+				)
+			);
 		} else {
 
 			$accountId = isset($sub_account_data['sub_code']) ? $sub_account_data['sub_code']: '';
@@ -60,9 +60,9 @@ class Subsidiary_account extends CI_Controller {
 				echo jcode(array('success' => 2));
 			} else {
 				//foreach ($sub_account_data as $key => $value) {
-					 $sub_account_data['sub_code'] = $sub_account_data['account_code']." - ".$sub_account_data['sub_code'];
-					 $sub_account_data['account_title'] = substr($sub_account_data['account_title'] , 8) ;
-					 $sub_account_data['sub_name'] = $sub_account_data['account_title'].' - '.$sub_account_data['sub_name'];
+				$sub_account_data['sub_code'] = $sub_account_data['account_code']." - ".$sub_account_data['sub_code'];
+				$sub_account_data['account_title'] = substr($sub_account_data['account_title'] , 8) ;
+				$sub_account_data['sub_name'] = $sub_account_data['account_title'].' - '.$sub_account_data['sub_name'];
 				//}
 				$this->subsidiary_account_model->sub_account_add($sub_account_data);
 				echo jcode(array('success' => 1));
@@ -96,30 +96,57 @@ class Subsidiary_account extends CI_Controller {
 		if (count($err)) {
 			if ($err<1) {
 				echo jcode(array(
-									'success' => 3, 
-									'err' 	  => $err
-								)
-						);
+					'success' => 3, 
+					'err' 	  => $err
+					)
+				);
 			}
 			else {
 				if (!$data->num_rows()) {
-						echo jcode(array('success' => 2));
+					echo jcode(array('success' => 2));
 				}
 				else{
-						foreach ($data->result() as $key) {
+					foreach ($data->result() as $key) {
+						$btn_delete = ($this->subsidiary_account_model->if_used($key->sub_code)>0)?
+						"<td><i class='fa fa-eye btn btn-style-1'  data-toggle='modal' data-target='.subsummary' data-subid='".$key->sub_code."' style='font-size:16px;margin-left:38px;'></i></td>":
+						"<td><i class='fa fa-trash-o btn btn-style-2' data-toggle='modal' data-target='.deleteConfirmation' data-subid='".$key->sub_code."' data-name='".$key->sub_name."'></i><i class='fa fa-eye btn btn-style-1'  data-toggle='modal' data-target='.subsummary' data-subid='".$key->sub_code."' style='font-size:16px;padding:-5px;margin-left:5px'></i></td>";
 						$html .="
-									<tr>
-										<td>".$key->account_type."</td>
-										<td>".$key->sub_code."</td>
-										<td>".$key->sub_name."</td>
-									</tr>
-								";
-						}
+						<tr>
+							<td>".$key->account_type."</td>
+							<td>".$key->sub_code."</td>
+							<td>".$key->sub_name."</td>
+							<td>".$btn_delete."</td>
+						</tr>
+						";
+					}
 
-						echo jcode(array('success' => 1,'response' => $html));
+					echo jcode(array('success' => 1,'response' => $html));
 				}
 			}
 		} 	
+	}
+
+	public function get_subinfo(){
+		$this->load->model("subsidiary_account_model");
+		$sub_code = $this->input->post('sub_code');
+		$data = $this->subsidiary_account_model->get_subinfo($sub_code);
+		echo jcode(
+			array('success' => 1,
+				'response' => $data 
+				)
+			);
+	}
+
+	public function del_subinfo(){
+		$this->load->model('subsidiary_account_model');
+		$sub_code = $this->input->post('sub_code');
+		$data = $this->subsidiary_account_model->delete_subinfo($sub_code);
+		// print_r($this->db->last_query());
+		echo jcode(
+			array('success' => 1,
+				'response' => $data 
+				)
+			);
 	}
 
 	public function report_tbl(){
@@ -132,7 +159,7 @@ class Subsidiary_account extends CI_Controller {
 			$html = $this->config->item('report_header');
 			$data = array(
 				'account_type' => $this->subsidiary_account_model->search_subsidiarymainaccount($account_type,$account_code,$account_title)->result()
-			);
+				);
 			$html.= $this->load->view('report/sub_search_result', $data, true);
 			$html.= $this->config->item('report_footer');
 			pdf_create($html, 'filename');

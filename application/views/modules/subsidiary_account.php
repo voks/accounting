@@ -164,3 +164,72 @@
 		<a href="#" class="btn btn-style-1 animate-4 pull-left subaccount-report-print"><i class="fa fa-print"></i> Print Result List</a>
 	</div>
 </div>
+
+<!-- Modal content Start -->
+<div class="modal fade subsummary"  role="dialog" aria-labelledby="" aria-hidden="true" id="subsummary">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header modal-header-bg">
+				<h4 class="modal-title" id=""></h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<span class="modal-subtitle"> » Subsidiary Account Information</span>
+						<hr/>
+					</div>
+				</div>
+				<form class="">
+					<div class="row">
+						<div class="col-md-3">
+							<span class="txt">Subsidiary Code</span>
+							<input type="text" readonly="true" class="form-control entry-text" value="" id="subCode">
+						</div>
+						<div class="col-md-9">
+							<span class="txt">Subsiidary Name</span>
+							<input type="text" readonly="true"  class="form-control sub-input-masked entry-subcode" id="subName" >
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<span class="txt">Subsidiary Type</span>
+							<input type="text" readonly="true" class="form-control entry-text" value="" id="subType">
+						</div>
+						<div class="col-md-3">
+							<span class="txt">Date Created</span>
+							<input type="text" readonly="true"  class="form-control sub-input-masked entry-subcode "  id="subDate">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> Close</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade deleteConfirmation"  role="dialog" aria-labelledby="" aria-hidden="true" id="deleteConfirmation">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header modal-header-bg">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="">» Delete Confirmation</h4>
+			</div>
+			<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<span class="txt">» Do you want to Delete this Account?</span>
+							<input type="hidden" class="txtcode">
+							<span class="txt txttitle"></span>
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-style-2 deleteTitle"> Delete</button>
+				<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> Cancel</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!-- Modal content Start -->

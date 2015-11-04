@@ -89,13 +89,13 @@ class Main_account extends CI_Controller {
 					foreach ($data->result() as $key) {
 						$btn_delete = ($this->main_account_model->if_used($key->account_code)>0)?
 						"<td><i class='fa fa-eye btn btn-style-1'  data-toggle='modal' data-target='.accountsummary' data-accountid='".$key->account_code."' style='font-size:16px;margin-left:38px;'></i></td>":
-						"<td><i class='fa fa-trash-o btn btn-style-2' data-toggle='modal' data-target='.deleteConfirmation' data-title='".$key->account_title."'></i><i class='fa fa-eye btn btn-style-1'  data-toggle='modal' data-target='.accountsummary' data-accountid='".$key->account_code."' style='font-size:16px;padding:-5px;margin-left:5px'></i></td>";
+						"<td><i class='fa fa-trash-o btn btn-style-2' data-toggle='modal' data-target='.delAcctConfirmation' data-accountid='".$key->account_code."' data-title='".$key->account_title."'></i><i class='fa fa-eye btn btn-style-1'  data-toggle='modal' data-target='.accountsummary' data-accountid='".$key->account_code."' style='font-size:16px;padding:-5px;margin-left:5px'></i></td>";
 						$html .="
 						<tr>
 							<td>".$key->account_type."</td>
 							<td>".$key->account_code."</td>
 							<td>".$key->account_title."</td>
-							".$btn_delete."
+							<td>".$btn_delete."</td>
 						</tr>
 						";
 					}
@@ -110,6 +110,18 @@ class Main_account extends CI_Controller {
 		$this->load->model("main_account_model");
 		$account_code = $this->input->post('account_code');
 		echo jcode(array('success' => 1,'response' => $this->main_account_model->get_accountinfo($account_code)));
+	}
+
+	public function del_acctinfo(){
+		$this->load->model('main_account_model');
+		$account_code = $this->input->post('account_code');
+		$data = $this->main_account_model->delete_acctinfo($account_code);
+		echo jcode(
+			array(
+				'success' 	=> 1,
+				'response' 	=> $data
+				)
+			);
 	}
 	
 	public function report_tbl(){

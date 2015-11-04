@@ -136,6 +136,7 @@ class Master_account extends CI_Controller {
 										<td>".$key->master_add."</td>
 										<td>".$key->master_contact_person."</td>
 										<td>".$key->master_tel_no."</td>
+										<td><i class='fa fa-eye btn btn-style-1' id='showModal' data-mastercode='".$key->master_code."' style='font-size:16px;margin-left:38px;'></i></td>
 									</tr>
 								";
 						}

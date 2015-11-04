@@ -39,5 +39,12 @@ class Main_account_model extends CI_Model {
 		return $this->db->query("select * from tb_account_title where account_code='".$account_code."'")->result();
 	}
 
+	public function delete_acctinfo($account_code){
+		$sql = "
+			DELETE FROM tb_account_title WHERE account_code = ?
+		";
+		return $query = $this->db->query($sql, array($account_code));
+	}
+
 }
 	

@@ -33,4 +33,28 @@ class Subsidiary_account_model extends CI_Model {
 		return $this->db->query($sql, array("%$account_code%","%$account_title%",$account_type));
 	}
 
+	public function if_used($sub_code){
+		$sql = "
+			SELECT * FROM tb_journal_trans WHERE sub_code='".$sub_code."'
+		";
+		$query = $this->db->query($sql)->num_rows();
+		return $query;
+	}
+
+	public function get_subinfo($sub_code){
+		$sql = "
+			SELECT * FROM tb_account_subsidiary WHERE sub_code = ?
+		";
+		$query = $this->db->query($sql,array($sub_code));
+		$result = $query->result();
+		return $result;
+	}
+
+	public function delete_subinfo($sub_code){
+		$sql = "
+			DELETE FROM tb_account_subsidiary WHERE sub_code = ?
+		";
+		return $query = $this->db->query($sql, array($sub_code));
+	}
+
 }

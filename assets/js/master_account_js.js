@@ -36,6 +36,7 @@ function master_account_js(){
 				if(data.success==1){
 					$('.search-table > tbody:last').empty().fadeIn(1000);
 					$(data.response).appendTo($('.search-table > tbody:last')).hide().fadeIn(1000);
+					show_masterinfo();
 				}
 				else if(data.success==2){
 					$('.search-alert-warning').slideDown().delay(2000).slideUp();
@@ -50,8 +51,20 @@ function master_account_js(){
 		});
 	});
 
+	
+
 	// Printing of Summary
 	$('.masteraccount-report-print').click(function(e){
 		window.open(site_url+"master_account/report_tbl?mn="+$('#searchMaster_name').val()+"&ma="+$('#searchMaster_type').val(),'_blank');
+	});
+}
+
+function show_masterinfo(){
+	// $('#showModal').unbind("click");
+	$('#showModal').click(function(){
+		var e = $(this);
+		var mCode = e.data('mastercode');
+
+		alert(mCode);
 	});
 }

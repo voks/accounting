@@ -156,28 +156,28 @@
 					<div class="row">
 						<div class="col-md-3">
 							<span class="txt">Account Code</span>
-							<input type="text" class="form-control entry-text" value="" id="accountcodeSummary">
+							<input type="text" readonly="true" class="form-control entry-text" value="" id="accountcodeSummary">
 						</div>
 
 						<div class="col-md-9">
 							<span class="txt">Account Title</span>
-							<input type="text"  class="form-control sub-input-masked entry-subcode" id="accounttitleSummary" >
+							<input type="text" readonly="true"  class="form-control sub-input-masked entry-subcode" id="accounttitleSummary" >
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-3">
 							<span class="txt">Account Type</span>
-							<input type="text" class="form-control entry-text" value="" id="accounttypeSummary">
+							<input type="text" readonly="true" class="form-control entry-text" value="" id="accounttypeSummary">
 						</div>
 
 						<div class="col-md-6">
 							<span class="txt">Account Group</span>
-							<input type="text"  class="form-control sub-input-masked entry-subcode "  id="accountgroupSummary">
+							<input type="text" readonly="true"  class="form-control sub-input-masked entry-subcode "  id="accountgroupSummary">
 						</div>
 
 						<div class="col-md-3">
 							<span class="txt">Date Created</span>
-							<input type="text"  class="form-control sub-input-masked entry-subcode "  id="accountdateSummary">
+							<input type="text" readonly="true"  class="form-control sub-input-masked entry-subcode "  id="accountdateSummary">
 						</div>
 					</div>
 				</form>
@@ -189,7 +189,7 @@
 	</div><!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade deleteConfirmation"  role="dialog" aria-labelledby="" aria-hidden="true" id="deleteConfirmation">
+<div class="modal fade delAcctConfirmation"  role="dialog" aria-labelledby="" aria-hidden="true" id="delAcctConfirmation">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header modal-header-bg">
@@ -200,12 +200,13 @@
 					<div class="row">
 						<div class="col-md-12">
 							<span class="txt">» Do you want to Delete this Account?</span>
+							<input type="hidden" class="txtacctcode">
 							<span class="txt txttitle"></span>
 						</div>
 					</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-style-2 deleteTitle"> Delete</button>
+				<button class="btn btn-style-2 deleteAcctTitle"> Delete</button>
 				<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> Cancel</button>
 			</div>
 		</div><!-- /.modal-content -->

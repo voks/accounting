@@ -141,28 +141,28 @@ class Trial_balance extends CI_Controller {
 					<td class='text-right'>".number_format($total_cr, 2)."</td>
 					<td class='text-center'><a href=# class='btn btn-style-1'><i class='fa fa-file-text'></i></a></td>
 				</tr>
-			"; 
-			foreach ($tot_amt->result() as $key) {
-				$total_dr = $key->trans_dr;
-				$total_cr = $key->trans_cr;
+				"; 
+				foreach ($tot_amt->result() as $key) {
+					$total_dr = $key->trans_dr;
+					$total_cr = $key->trans_cr;
+				}
+				$html.="
+				<tr>
+					<td class='table-td-outline-right'>TOTAL</td>
+					<td class='table-td-outline-right'></td>
+					<td class='text-right'>".number_format($total_dr, 2)."</td>
+					<td class='text-right'>".number_format($total_cr, 2)."</td>
+				</tr>
+				";
+				echo jcode(array('success'=>1,'data' =>$html));
+			}else{
+				echo jcode(array('success'=>2));
 			}
-			$html.="
-			<tr>
-				<td class='table-td-outline-right'>TOTAL</td>
-				<td class='table-td-outline-right'></td>
-				<td class='text-right'>".number_format($total_dr, 2)."</td>
-				<td class='text-right'>".number_format($total_cr, 2)."</td>
-			</tr>
-			";
-			echo jcode(array('success'=>1,'data' =>$html));
-		}else{
-			echo jcode(array('success'=>2));
-		}
-	} else {
-		$titles = $this->trial_balance_model->get_titles()->result();
-		foreach ($titles as $key) {
-			if ($this->trial_balance_model->check_exist($key->account_code,$trans,$date_fr,$date_to)) {
-				$entry = $this->trial_balance_model->get_main($key->account_code)->row_array();
+		} else {
+			$titles = $this->trial_balance_model->get_titles()->result();
+			foreach ($titles as $key) {
+				if ($this->trial_balance_model->check_exist($key->account_code,$trans,$date_fr,$date_to)) {
+					$entry = $this->trial_balance_model->get_main($key->account_code)->row_array();
 					$entry_title = $entry['account_title']; //src:http://stackoverflow.com/questions/14788695/codeigniter-single-result-without-foreach-loop
 					$entries = $this->trial_balance_model->get_summary($key->account_code,$trans,$date_fr,$date_to);
 					$total_dr =0;
@@ -171,56 +171,57 @@ class Trial_balance extends CI_Controller {
 						$total_dr += $val->trans_dr;
 						$total_cr += $val->trans_cr;
 					}
-					$html.="<tr>
-					<td class='table-td-outline-right'>".$key->account_code."</td>
-					<td class='table-td-outline-right'>".$entry_title."</td>
-					<td class='text-right'>".number_format($total_dr, 2)."</td>
-					<td class='text-right'>".number_format($total_cr, 2)."</td>
-					<td class='text-center'><a href=# class='btn btn-style-1'><i class='fa fa-file-text'></i></a></td>
-				</tr>
-				";
+					$html.="
+					<tr>
+						<td class='table-td-outline-right'>".$key->account_code."</td>
+						<td class='table-td-outline-right'>".$entry_title."</td>
+						<td class='text-right'>".number_format($total_dr, 2)."</td>
+						<td class='text-right'>".number_format($total_cr, 2)."</td>
+						<td class='text-center'><a href=# class='btn btn-style-1'><i class='fa fa-file-text'></i></a></td>
+					</tr>
+					";	
+				}
 			}
+			echo jcode(array('success'=>1,'data' =>$html));
 		}
-		echo jcode(array('success'=>1,'data' =>$html));
 	}
-}
 
-public function trial_summary_report(){
-	$this->load->model("trial_balance_model");
-	if ($this->session->userdata('islogged')) {
+	public function trial_summary_report(){
+		$this->load->model("trial_balance_model");
+		if ($this->session->userdata('islogged')) {
 
-		$ctr_acct 	= $this->input->get('in');
-		$from_date 	= $this->input->get('invd');
-		$to_date 	= $this->input->get('mn');
+			$ctr_acct 	= $this->input->get('in');
+			$from_date 	= $this->input->get('invd');
+			$to_date 	= $this->input->get('mn');
 
-		$account_code = $this->input->get('in');
-		$date_fr = $this->input->get('invd');
-		$date_to = $this->input->get('mn');
-		$trans = $this->input->get('trans');
+			$account_code = $this->input->get('in');
+			$date_fr = $this->input->get('invd');
+			$date_to = $this->input->get('mn');
+			$trans = $this->input->get('trans');
 
-		$html = $this->config->item('report_header');
+			$html = $this->config->item('report_header');
 
-		$html.="	<div class='jumbotron'>
-		<span>Trial Balance Summary Report</span>
+			$html.="	<div class='jumbotron'>
+			<span>Trial Balance Summary Report</span>
+		</div>
 	</div>
-</div>
-<div class='content row'>
-	<table class='table text-tbody table-bordered'>
-		<thead>
-			<tr >
-				<th class=''>Account Code</th>
-				<th class=''>Account Name</th>
-				<th class=''>Debit</th>
-				<th class=''>Credit</th>
-			</tr>
-		</thead>
-		<tbody>"
-			;
+	<div class='content row'>
+		<table class='table text-tbody table-bordered'>
+			<thead>
+				<tr >
+					<th class=''>Account Code</th>
+					<th class=''>Account Name</th>
+					<th class=''>Debit</th>
+					<th class=''>Credit</th>
+				</tr>
+			</thead>
+			<tbody>"
+				;
 
 
-			if (strlen($account_code)>0) {
-				if ($this->trial_balance_model->check_exist($account_code,$trans,$date_fr,$date_to)) {
-					$entry = $this->trial_balance_model->get_main($account_code)->row_array();
+				if (strlen($account_code)>0) {
+					if ($this->trial_balance_model->check_exist($account_code,$trans,$date_fr,$date_to)) {
+						$entry = $this->trial_balance_model->get_main($account_code)->row_array();
 					$entry_title = $entry['account_title']; //src:http://stackoverflow.com/questions/14788695/codeigniter-single-result-without-foreach-loop
 					$entries = $this->trial_balance_model->get_summary($account_code,$trans,$date_fr,$date_to);
 					$total_dr =0;
