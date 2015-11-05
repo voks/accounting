@@ -119,6 +119,7 @@ class Cash_receipts extends CI_Controller {
 		$this->load->model('journal_cr_model');
 		$account_search = $this->input->post('searchCR');
 		$data = $this->journal_cr_model->journal_cr_get($account_search['searchCR_orNo'],$account_search['searchCR_date_frm'],$account_search['searchCR_date_to']);
+		$data_total = $this->journal_cr_model->journal_cr_get_total($account_search['searchCR_orNo'],$account_search['searchCR_date_frm'],$account_search['searchCR_date_to']);
 		$html = "";
 		$err = validates(array($account_search), array());
 		
@@ -140,9 +141,20 @@ class Cash_receipts extends CI_Controller {
 						<td class='col-md-1'>".$key->cr_or_date."</td>
 						<td class='col-md-3'>".$key->cr_master_name_customer."</td>
 						<td class='col-md-3'>".$key->cr_particulars."</td>
-						<td class='col-md-1'>".cash_value($key->cr_or_amount)."</td>
+						<td class='col-md-1'>".number_format($key->cr_or_amount,2)."</td>
 						<td class='col-md-1'><a href='#' data-id='$key->cr_id' class='btn-style-1 account-report-print animate-4 pull-right'><i class='fa fa-print'></i></a></td>
 						<td class='col-md-1'><a href='#' data-id='$key->cr_id' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
+					</tr>
+					";
+				}
+				foreach ($data_total->result() as $key) {
+					$html .="
+					<tr>
+						<td class='col-md-1'>TOTAL</td>
+						<td class='col-md-1'></td>
+						<td class='col-md-3'></td>
+						<td class='col-md-3'></td>
+						<td class='col-md-1'>".number_format($key->tot_amt,2)."</td>
 					</tr>
 					";
 				}

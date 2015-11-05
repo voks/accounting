@@ -95,9 +95,9 @@
 			<select class="form-control main_txtbox select2-dropdown" id="master_subsidiary" name="master[master_subsidiary]">
 				<option value="00000"> -- Select Account -- </option>
 				<?php
-					foreach ($account_title->result() as $data) {
-						echo "<option value='".$data->account_code."'>".$data->account_title."</option>";
-					}
+				foreach ($account_title->result() as $data) {
+					echo "<option value='".$data->account_code."'>".$data->account_title."</option>";
+				}
 				?>
 			</select>
 		</div>
@@ -169,5 +169,80 @@
 	<div class="col-md-11">
 		<a href="#" class="btn-style-1 animate-4 pull-left masteraccount-report-print"><i class="fa fa-print"></i> Print Result List</a>
 	</div>
+</div>
+
+<div class="modal fade viewModal"  role="dialog" aria-labelledby="" aria-hidden="true" id="viewModal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header modal-header-bg">
+				<h4 class="modal-title" id="">» Master Account</h4>
+			</div>
+			<div class="modal-body">
+				<!-- First Row Info -->
+				<div class="row">
+					<div class="col-md-3">
+						<span class="txt">Date:</span>
+						<input id="txt_date" type="text" class="form-control" readonly="true">
+					</div>
+					<div class="col-md-2">
+						<span class="txt">Code:</span>
+						<input id="txt_mcode" type="text" class="form-control" readonly="true">
+					</div>
+					<div class="col-md-4">
+						<span class="txt">Name:</span>
+						<input id="txt_name" type="text" class="form-control" readonly="true">
+					</div>
+					<div class="col-md-3">
+						<span class="txt">Type:</span>
+						<input id="txt_type" type="text" class="form-control" readonly="true">
+					</div>
+				</div>
+				<!-- Second Row Info -->
+				<div class="row">
+					<div class="col-md-9">
+						<span class="txt">Address:</span>
+						<input id="txt_add" type="text" class="form-control" readonly="true">
+					</div>
+					<div class="col-md-3">
+						<span class="txt">Terms of Payment:</span>
+						<input id="txt_term" type="text" class="form-control" readonly="true">
+					</div>
+				</div>
+				<!-- Third Row Info -->
+				<div class="row">
+					<div class="col-md-6">
+						<span class="txt">Contact Person:</span>
+						<input id="txt_person" type="text" class="form-control" readonly="true">
+					</div>
+					<div class="col-md-3">
+						<span class="txt">Position:</span>
+						<input id="txt_position" type="text" class="form-control" readonly="true">
+					</div>
+					<div class="col-md-3">
+						<span class="txt">Tel No:</span>
+						<input id="txt_tel" type="text" class="form-control" readonly="true">
+					</div>
+				</div>
+				<!-- 4th Row Info -->
+				<div class="row">
+					<div class="col-md-6">
+						<span class="txt">Email Address:</span>
+						<input id="txt_email" type="text" class="form-control" readonly="true">
+					</div>
+					<div class="col-md-3">
+						<span class="txt">Fax No:</span>
+						<input id="txt_fax" type="text" class="form-control" readonly="true">
+					</div>
+					<!-- <div class="col-md-3">
+						<span class="txt">Auto Create in Subsidiary:</span>
+						<input type="text" class="form-control">
+					</div> -->
+				</div>	
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> OK</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
 </div>
 <!-- Page content end

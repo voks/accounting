@@ -136,7 +136,7 @@ class Master_account extends CI_Controller {
 										<td>".$key->master_add."</td>
 										<td>".$key->master_contact_person."</td>
 										<td>".$key->master_tel_no."</td>
-										<td><i class='fa fa-eye btn btn-style-1' id='showModal' data-mastercode='".$key->master_code."' style='font-size:16px;margin-left:38px;'></i></td>
+										<td><i class='fa fa-eye btn btn-style-1 showModal' data-mastercode='".$key->master_code."' data-date='".$key->master_date."' data-name='".$key->master_name."' data-type='".$key->master_type."' data-add='".$key->master_add."' data-term='".$key->master_terms_payment."' data-person='".$key->master_contact_person."' data-tel='".$key->master_tel_no."' data-email='".$key->master_email."' data-position='".$key->master_position."' data-fax='".$key->master_fax_no."' style='font-size:16px;margin-left:38px;'></i></td>
 									</tr>
 								";
 						}

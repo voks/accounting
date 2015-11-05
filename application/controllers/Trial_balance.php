@@ -159,6 +159,7 @@ class Trial_balance extends CI_Controller {
 				echo jcode(array('success'=>2));
 			}
 		} else {
+			
 			$titles = $this->trial_balance_model->get_titles()->result();
 			foreach ($titles as $key) {
 				if ($this->trial_balance_model->check_exist($key->account_code,$trans,$date_fr,$date_to)) {

@@ -48,4 +48,12 @@ class Journal_ap_model extends CI_Model {
 		return $query;
 	}
 
+	public function journal_ap_get_total($ap_invoice_no,$ap_invoice_date_frm,$ap_invoice_date_to){
+		$sql = "
+		SELECT sum(ap_invoice_amount) as tot_amt FROM tb_journal_ap 
+		WHERE project_id=".$this->session->userdata('project_id')." 
+		and ap_invoice_no like ? or ap_invoice_date between ? and ?";
+		return $this->db->query($sql, array("%$ap_invoice_no%","$ap_invoice_date_frm","$ap_invoice_date_to"));
+	}
+
 }

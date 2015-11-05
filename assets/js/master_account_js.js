@@ -60,11 +60,33 @@ function master_account_js(){
 }
 
 function show_masterinfo(){
-	// $('#showModal').unbind("click");
-	$('#showModal').click(function(){
+	$('.showModal').unbind("click");
+	$('.showModal').click(function(){
 		var e = $(this);
-		var mCode = e.data('mastercode');
+		$('.viewModal').modal('show');
+		var date 	= e.data('date');
+		var mCode 	= e.data('mastercode');
+		var name 	= e.data('name');
+		var type 	= e.data('type');
+		var add 	= e.data('add');
+		var term 	= e.data('term');
+		var person 	= e.data('person');
+		var pos 	= e.data('position');
+		var tel 	= e.data('tel');
+		var email 	= e.data('email');
+		var fax 	= e.data('fax');
 
-		alert(mCode);
+		$('#txt_date').val(date);
+		$('#txt_mcode').val(mCode);
+		$('#txt_name').val(name);
+		$('#txt_type').val(type);
+		$('#txt_add').val(add);
+		$('#txt_term').val(term);
+		$('#txt_person').val(person);
+		$('#txt_position').val(pos);
+		$('#txt_tel').val(tel);
+		$('#txt_email').val(email);
+		$('#txt_fax').val(fax);
+		
 	});
 }

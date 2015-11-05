@@ -17,11 +17,21 @@
 			<?php
 			foreach($accounts as $key){
 				echo "<tr>";
-				echo "	<td class='padding-left-10'>".$key->cd_voucher_no."</td>";
-				echo "	<td class='padding-left-10'>".$key->cd_date."</td>";
-				echo "	<td class='padding-left-10'>".$key->cd_payee_name."</td>";
-				echo "	<td class='padding-left-10'>".$key->cd_check_no."</td>";
-				echo "	<td class='padding-right-5 text-right'>".$key->cd_check_amount."</td>";
+				echo "	<td class='padding-left-5'>".$key->cd_voucher_no."</td>";
+				echo "	<td class='padding-left-5'>".$key->cd_date."</td>";
+				echo "	<td class='padding-left-5'>".$key->cd_payee_name."</td>";
+				echo "	<td class='padding-left-5'>".$key->cd_check_no."</td>";
+				echo "	<td class='padding-right-5 text-right'>".number_format($key->cd_check_amount,2)."</td>";
+				echo "</tr>";
+			}
+
+			foreach($accounts_total as $key){
+				echo "<tr>";
+				echo "	<td class='padding-left-5'></td>";
+				echo "	<td class='padding-left-5'></td>";
+				echo "	<td class='padding-left-5'></td>";
+				echo "	<td class='padding-right-5 text-bold text-right'>TOTAL</td>";
+				echo "	<td class='padding-right-5 text-right'>".number_format($key->tot_amt,2)."</td>";
 				echo "</tr>";
 			}
 			?>

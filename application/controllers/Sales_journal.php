@@ -112,6 +112,7 @@ class Sales_journal extends CI_Controller {
 		$this->load->model('journal_sj_model');
 		$account_search = $this->input->post('searchSJ');
 		$data = $this->journal_sj_model->journal_sj_get($account_search['searchSJ_siNo'],$account_search['searchSJ_siDate_frm'],$account_search['searchSJ_siDate_to']);
+		$data_total = $this->journal_sj_model->journal_sj_get_total($account_search['searchSJ_siNo'],$account_search['searchSJ_siDate_frm'],$account_search['searchSJ_siDate_to']);
 		$html = "";
 		$err = validates(array($account_search), array());
 		
@@ -134,9 +135,20 @@ class Sales_journal extends CI_Controller {
 							<td class='col-md-1'>".$key->sj_si_date."</td>
 							<td class='col-md-3'>".$key->sj_master_name."</td>
 							<td class='col-md-4'>".$key->sj_particulars."</td>
-							<td class='col-md-1'>".cash_value($key->sj_si_amount)."</td>
+							<td class='col-md-1'>".number_format($key->sj_si_amount,2)."</td>
 							<td class='col-md-1'><a href='#' data-id='$key->sj_id' class='btn-style-1 account-report-print animate-4 pull-right'><i class='fa fa-print'></i></a></td>
 							<td class='col-md-1'><a href='#' data-id='$key->sj_id' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
+						</tr>
+						";
+					}
+					foreach ($data_total->result() as $key) {
+						$html .="
+						<tr>
+							<td class='col-md-1'>TOTAL</td>
+							<td class='col-md-1'></td>
+							<td class='col-md-3'></td>
+							<td class='col-md-4'></td>
+							<td class='col-md-1'>".number_format($key->tot_amt,2)."</td>
 						</tr>
 						";
 					}
@@ -170,7 +182,8 @@ class Sales_journal extends CI_Controller {
 			$sj_si_date_to	= $this->input->get('sidto');
 			$html = $this->config->item('report_header');
 			$data = array(
-				'accounts' => $this->journal_sj_model->journal_sj_get($sj_si_no,$sj_si_date_frm,$sj_si_date_to)->result()
+				'accounts' => $this->journal_sj_model->journal_sj_get($sj_si_no,$sj_si_date_frm,$sj_si_date_to)->result(),
+				'accounts_total' => $this->journal_sj_model->journal_sj_get_total($sj_si_no,$sj_si_date_frm,$sj_si_date_to)->result()
 				);
 			$html.= $this->load->view('report/sj_search_report', $data, true);
 			$html.= $this->config->item('report_footer');

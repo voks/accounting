@@ -56,4 +56,12 @@ class Journal_cr_model extends CI_Model {
 		return $result;
 	}
 
+	public function journal_cr_get_total($cr_or_no,$cr_or_date_frm,$cr_or_date_to){
+		$sql = "
+		SELECT sum(cr_or_amount) as tot_amt FROM tb_journal_cr 
+		WHERE project_id=".$this->session->userdata('project_id')." 
+		and cr_or_no like ? or cr_or_date between ? and ?";
+		$query 	= $this->db->query($sql, array("%$cr_or_no%","$cr_or_date_frm","$cr_or_date_to"));
+		return $query;
+	}
 }

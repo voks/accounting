@@ -16,10 +16,19 @@
 			<?php
 			foreach($accounts as $key){
 				echo "<tr>";
-				echo "	<td class='padding-left-10'>".$key->gj_code."</td>";
-				echo "	<td class='padding-left-10'>".$key->gj_date."</td>";
-				echo "	<td class='padding-left-10'>".$key->gj_particulars."</td>";
-				echo "	<td class='padding-right-5 text-right'>".$key->gj_amount."</td>";
+				echo "	<td class='padding-left-5'>".$key->gj_code."</td>";
+				echo "	<td class='padding-left-5'>".$key->gj_date."</td>";
+				echo "	<td class='padding-left-5'>".$key->gj_particulars."</td>";
+				echo "	<td class='padding-right-5 text-right'>".number_format($key->gj_amount)."</td>";
+				echo "</tr>";
+			}
+
+			foreach($accounts_total as $key){
+				echo "<tr>";
+				echo "	<td class='padding-left-5'></td>";
+				echo "	<td class='padding-left-5'></td>";
+				echo "	<td class='padding-right-5 text-right text-bold'>TOTAL</td>";
+				echo "	<td class='padding-right-5 text-right'>".number_format($key->tot_amt)."</td>";
 				echo "</tr>";
 			}
 			?>

@@ -100,7 +100,7 @@ function check_dis_js(){
 
 	// Printing of Summary Report
 	$('.cd-print-list-result').click(function(e){
-		window.open(site_url+"check_dis/cd_summary_report?vn="+$('#searchCD_voucherNo').val()+"&vd="+$('#searchCD_voucherDate').val()+"&pyee"+$('#searchCD_payee').val()+"&cn"+$('#searchCD_checkNo').val(),'_blank');
+		window.open(site_url+"check_dis/cd_summary_report?&cn"+$('#searchCD_checkNo').val()+"dfrm="+$('#searchCD_voucherDate_frm').val()+"&dto"+$('#searchCD_voucherDate_to').val(),'_blank');
 	});
 }
 

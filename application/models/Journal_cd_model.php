@@ -43,4 +43,12 @@ class Journal_cd_model extends CI_Model {
 		return $query;
 	}
 
+	public function journal_cd_get_total($cd_check_no,$cd_date_frm,$cd_date_to){
+		$sql = "
+		SELECT sum(cd_check_amount) as tot_amt FROM tb_journal_cd 
+		WHERE project_id=".$this->session->userdata('project_id')." 
+		and cd_check_no like ? or cd_date between ? and ?";
+		return $this->db->query($sql, array("%$cd_check_no%","$cd_date_frm","$cd_date_to"));
+	}
+
 }

@@ -41,4 +41,13 @@ class Journal_sj_model extends CI_Model {
 		$query = $this->db->get($sql)->result();
 		return $query;
 	}
+
+	public function journal_sj_get_total($sj_si_no,$sj_si_date_frm,$sj_si_date_to){
+		$sql = "
+		SELECT sum(sj_si_amount) as tot_amt FROM tb_journal_sj WHERE 
+		project_id=".$this->session->userdata('project_id')." 
+		and sj_si_no like ? or sj_si_date between ? and ?";
+		$query	= $this->db->query($sql, array("%$sj_si_no%","$sj_si_date_frm","$sj_si_date_to"));
+		return $query;
+	}
 }

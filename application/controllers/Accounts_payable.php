@@ -111,6 +111,7 @@ class Accounts_payable extends CI_Controller {
 		$this->load->model('journal_ap_model');
 		$account_search = $this->input->post('searchAP');
 		$data = $this->journal_ap_model->journal_ap_get($account_search['searchAP_invNo'], $account_search['searchAP_date_frm'], $account_search['searchAP_date_to']);
+		$data_total = $this->journal_ap_model->journal_ap_get_total($account_search['searchAP_invNo'], $account_search['searchAP_date_frm'], $account_search['searchAP_date_to']);
 		$html = "";
 		$err = validates(array($account_search), array());
 		
@@ -136,6 +137,17 @@ class Accounts_payable extends CI_Controller {
 						<td class='col-md-2'>".cash_value($key->ap_invoice_amount)."</td>
 						<td class='col-md-1'><a href='#' data-id='".$key->ap_id."' class='btn-style-1 animate-4 pull-right account-report-print'><i class='fa fa-print'></i></a></td>
 						<td class='col-md-1'><a href='#' data-id='".$key->ap_id."' data-invdate='".$key->ap_invoice_date."' data-invno='".$key->ap_invoice_no."' data-po='".$key->ap_po_no."' data-terms='".$key->ap_terms."' data-supp='".$key->ap_master_name."' data-invamt='".$key->ap_invoice_amount."' data-part='".$key->ap_particulars."' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
+					</tr>
+					";
+				}
+				foreach ($data_total->result() as $key) {
+					$html .="
+					<tr>
+						<td class='col-md-2'>TOTAL</td>
+						<td class='col-md-2'></td>
+						<td class='col-md-3'></td>
+						<td class='col-md-4'></td>
+						<td class='col-md-2'>".number_format($key->tot_amt,2)."</td>
 					</tr>
 					";
 				}
@@ -173,7 +185,8 @@ class Accounts_payable extends CI_Controller {
 			$html = $this->config->item('report_header');
 
 			$data = array(
-				'accounts' => $this->journal_ap_model->journal_ap_get($ap_invoice_no,$ap_invoice_date,$ap_master_name,$ap_po_no)->result()
+				'accounts' => $this->journal_ap_model->journal_ap_get($ap_invoice_no,$ap_invoice_date,$ap_master_name,$ap_po_no)->result(),
+				'accounts_total' => $this->journal_ap_model->journal_ap_get_total($ap_invoice_no,$ap_invoice_date,$ap_master_name,$ap_po_no)->result()
 				);
 			$html.= $this->load->view('report/ap_search_report', $data, true);
 			$html.= $this->config->item('report_footer');

@@ -250,7 +250,7 @@
 						<th class="col-md-2">Journal #</th>
 						<th class="col-md-2">Date</th>
 						<th class="col-md-3">Particulars</th>
-						<th class="col-md-2">Journal Amount</th>
+						<th class="col-md-2 text-right">Journal Amount</th>
 						<th class="col-md-2 text-center" colspan="2">Action</th>
 					</tr>
 				</thead>

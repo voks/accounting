@@ -110,6 +110,7 @@ class Check_dis extends CI_Controller {
 		$this->load->model('journal_cd_model');
 		$account_search = $this->input->post('searchCD');
 		$data = $this->journal_cd_model->journal_cd_get($account_search['searchCD_checkNo'], $account_search['searchCD_voucherDate_frm'], $account_search['searchCD_voucherDate_to']);
+		$data_total = $this->journal_cd_model->journal_cd_get_total($account_search['searchCD_checkNo'], $account_search['searchCD_voucherDate_frm'], $account_search['searchCD_voucherDate_to']);
 		$html = "";
 		$err = validates(array($account_search), array());
 
@@ -132,10 +133,22 @@ class Check_dis extends CI_Controller {
 						<td class='col-md-2'>".$key->cd_date."</td>
 						<td class='col-md-3'>".$key->cd_master_name."</td>
 						<td class='col-md-3'>".$key->cd_particulars."</td>
-						<td class='col-md-2'>".number_format($key->cd_check_amount,2)."</td>
+						<td class='col-md-2 text-right'>".number_format($key->cd_check_amount,2)."</td>
 						<td class='col-md-1'><a href='#' data-id='$key->cd_id' class='btn-style-1 account-report-print animate-4 pull-left'><i class='fa fa-print'></i></a></td>
 						<td class='col-md-1'><a href='#' data-id='$key->cd_id' class='btn-style-1 print-check animate-4 pull-left'><i class='fa fa-check-square-o'></i></a></td>
 						<td class='col-md-1'><a href='#' data-id='$key->cd_id' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
+					</tr>
+					";
+				}
+
+				foreach ($data_total->result() as $key) {
+					$html .="
+					<tr>
+						<td class='col-md-2'>TOTAL</td>
+						<td class='col-md-2'></td>
+						<td class='col-md-3'></td>
+						<td class='col-md-3'></td>
+						<td class='col-md-2 text-right'>".number_format($key->tot_amt,2)."</td>
 					</tr>
 					";
 				}
@@ -178,13 +191,13 @@ class Check_dis extends CI_Controller {
 	public function cd_summary_report(){
 		$this->load->model("journal_cd_model");
 		if ($this->session->userdata('islogged')) {
-			$cd_voucher_no 	= $this->input->get('vn');
-			$cd_date 		= $this->input->get('vd');
-			$cd_payee_name 	= $this->input->get('pyee');
 			$cd_check_no 	= $this->input->get('cn');
+			$cd_date_frm 		= $this->input->get('dfrm');
+			$cd_date_to 		= $this->input->get('dto');
 			$html = $this->config->item('report_header');
 			$data = array(
-				'accounts' => $this->journal_cd_model->journal_cd_get($cd_voucher_no,$cd_date,$cd_payee_name,$cd_check_no)->result()
+				'accounts' => $this->journal_cd_model->journal_cd_get($cd_check_no,$cd_date_frm,$cd_date_to)->result(),
+				'accounts_total' => $this->journal_cd_model->journal_cd_get_total($cd_check_no,$cd_date_frm,$cd_date_to)->result()
 				);
 			$html.= $this->load->view('report/cd_search_report', $data, true);
 			$html.= $this->config->item('report_footer');
