@@ -134,7 +134,7 @@ class Accounts_payable extends CI_Controller {
 						<td class='col-md-2'>".$key->ap_invoice_date."</td>
 						<td class='col-md-3'>".$key->ap_master_name."</td>
 						<td class='col-md-4'>".$key->ap_particulars."</td>
-						<td class='col-md-2'>".cash_value($key->ap_invoice_amount)."</td>
+						<td class='col-md-2 text-right'>".number_format($key->ap_invoice_amount,2)."</td>
 						<td class='col-md-1'><a href='#' data-id='".$key->ap_id."' class='btn-style-1 animate-4 pull-right account-report-print'><i class='fa fa-print'></i></a></td>
 						<td class='col-md-1'><a href='#' data-id='".$key->ap_id."' data-invdate='".$key->ap_invoice_date."' data-invno='".$key->ap_invoice_no."' data-po='".$key->ap_po_no."' data-terms='".$key->ap_terms."' data-supp='".$key->ap_master_name."' data-invamt='".$key->ap_invoice_amount."' data-part='".$key->ap_particulars."' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
 					</tr>
@@ -147,7 +147,7 @@ class Accounts_payable extends CI_Controller {
 						<td class='col-md-2'></td>
 						<td class='col-md-3'></td>
 						<td class='col-md-4'></td>
-						<td class='col-md-2'>".number_format($key->tot_amt,2)."</td>
+						<td class='col-md-2 text-right'>".number_format($key->tot_amt,2)."</td>
 					</tr>
 					";
 				}
@@ -232,6 +232,7 @@ class Accounts_payable extends CI_Controller {
 		}
 	}
 
+	// Get all info of specific account for editting purposes (shows in modal) -mich
 	public function show_apinfo(){
 		$this->load->model('journal_ap_model');
 		$id = $this->input->post('ap_id');

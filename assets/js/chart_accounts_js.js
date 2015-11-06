@@ -81,12 +81,12 @@ function chart_accounts_js(){
 
 	$('.delAcctConfirmation').on('shown.bs.modal', function (event) {
 		var title = $(event.relatedTarget);
-<<<<<<< HEAD
+
 		var newtitle = title.data('title');
 		var acctCode = title.data('accountid');
 		$('.txtacctcode').val(acctCode);
 		$('.txttitle').html('» ' +newtitle);
-=======
+
 	  	var newtitle = title.data('title');
 		$('.txttitle').html('» '+newtitle);
 		$.ajax({ 
@@ -99,7 +99,7 @@ function chart_accounts_js(){
 				}
 			}
 		});
->>>>>>> origin/master
+
 	});
 
 	$('.deleteAcctTitle').click(function(){
@@ -120,6 +120,7 @@ function chart_accounts_js(){
 
 }
 
+// Use to fill the table search once specific account is deleted -mich
 function auto_fill_acct(){
 	$.ajax({ 
 		type: 'POST', 

@@ -118,7 +118,6 @@ function view_trans_ap(){
 			data: {'ap_id' : id},
 			success: function(data){
 				if (data.success==1) {
-					// alert(1);
 					$('.invdate').val(data.response[0].ap_invoice_date);
 					$('.invno').val(data.response[0].ap_invoice_no);
 					$('.pono').val(data.response[0].ap_po_no);
@@ -128,6 +127,7 @@ function view_trans_ap(){
 					$('.part').val(data.response[0].ap_particulars);
 					$('.totdr').val(data.response[0].total_debit)
 					$('.totcr').val(data.response[0].total_credit).toLocaleString('en');
+					$('#edit_table > tbody:last').empty().fadeIn(1000);
 					$(data.html).appendTo($('#edit_table > tbody:last')).hide().fadeIn(1000);
 				};
 			}

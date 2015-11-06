@@ -130,23 +130,23 @@
 				<div class="row">
 					<div class="col-md-3">
 						<span class="txt">Invoice Date:</span>
-						<input type="text" readonly="true" class="form-control invdate" value="">
+						<input type="text" class="form-control invdate" value="">
 					</div>
 					<div class="col-md-3">
 						<span class="txt">Invoice #:</span>
-						<input type="text" readonly="true" class="form-control invno" value="">
+						<input type="text" class="form-control invno" value="">
 					</div>
 					<div class="col-md-3">
 						<span class="txt">PO #:</span>
-						<input type="text" readonly="true" class="form-control pono" value="">
+						<input type="text" class="form-control pono" value="">
 					</div>
 					<div class="col-md-1">
 						<span class="txt">Terms:</span>
-						<input type="text" readonly="true" class="form-control terms" value="">
+						<input type="text" class="form-control terms" value="">
 					</div>
 					<div class="col-md-2">
 						<span class="txt">Invoice Amount:</span>
-						<input type="text" readonly="true" class="form-control invamt" value="">
+						<input type="text" class="form-control invamt" value="">
 					</div>
 				</div>
 				<!-- Second Row -->
@@ -157,7 +157,7 @@
 					</div>
 					<div class="col-md-6">
 						<span class="txt">Particulars:</span>
-						<input type="text" readonly="true" class="form-control part" value="">
+						<input type="text" class="form-control part" value="">
 					</div>
 				</div>
 
@@ -181,7 +181,7 @@
 									<tr>
 										<td>TOTAL</td><td ></td>
 										<td><input type="text" class="form-control entry-debit-total totdr" readonly="true" value=""></td>
-										<td><input type="text" class="form-control entry-credit-total totcr"  readonly="true" value=""></td>
+										<td><input type="text" class="form-control entry-credit-total totcr" readonly="true" value=""></td>
 										<td></td>
 									</tr>
 								</tfoot>

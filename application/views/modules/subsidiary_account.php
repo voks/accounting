@@ -39,10 +39,6 @@
 				<option value="Expense">Expense</option>
 			</select>
 		</div>
-		<div class="col-md-2">
-			<span class="txt">Account Code:</span>
-			<input type="text" class="form-control main_txtbox sub-accountcode"  id="account_type" name="subsidiary[account_code]" Placeholder="00000"/>
-		</div>
 		<div class="col-md-5">
 			<span class="txt">Account Title:</span>
 			<select class="form-control main_txtbox select2-dropdown sub_account_title" id="account_title" name="subsidiary[account_title]">
@@ -53,6 +49,10 @@
 				}
 				?>
 			</select>
+		</div>
+		<div class="col-md-2">
+			<span class="txt">Account Code:</span>
+			<input type="text" readonly="true" class="form-control main_txtbox sub-accountcode"  id="account_type" name="subsidiary[account_code]" Placeholder="00000"/>
 		</div>
 	</div>
 	<!-- Second Row -->
