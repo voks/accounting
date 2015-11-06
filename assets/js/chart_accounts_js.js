@@ -81,10 +81,25 @@ function chart_accounts_js(){
 
 	$('.delAcctConfirmation').on('shown.bs.modal', function (event) {
 		var title = $(event.relatedTarget);
+<<<<<<< HEAD
 		var newtitle = title.data('title');
 		var acctCode = title.data('accountid');
 		$('.txtacctcode').val(acctCode);
 		$('.txttitle').html('» ' +newtitle);
+=======
+	  	var newtitle = title.data('title');
+		$('.txttitle').html('» '+newtitle);
+		$.ajax({ 
+			type: 'POST', 
+			datatype:'json',
+			url: site_url+'main_account/get_accountinfo', 
+			data: {'account_code' : accountId},
+			success: function (data) { 
+				if(data.success==1){
+				}
+			}
+		});
+>>>>>>> origin/master
 	});
 
 	$('.deleteAcctTitle').click(function(){
