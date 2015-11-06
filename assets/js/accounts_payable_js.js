@@ -103,7 +103,6 @@ function accounts_payable_js(){
 }
 
 
-
 function view_trans_ap(){
 	$('.account-report-edit').unbind("click");
 	$('.account-report-edit').click(function (event) {
@@ -111,28 +110,32 @@ function view_trans_ap(){
 		var e = $(this);
 		$('#editTrans').modal('show');
 		var id 		= e.data('id');
-		var invdate = e.data('invdate');
-		var invno 	= e.data('invno');
-		var po  	= e.data('po');
-		var terms 	= e.data('terms');
-		var supp 	= e.data('supp');
-		var invamt 	= e.data('invamt');
-		var part 	= e.data('part');
-
-		var amt 	= invamt.toFixed(2);
-		
-		$('.invdate').val(invdate);
-		$('.invno').val(invno);
-		$('.pono').val(po);
-		$('.terms').val(terms);
-		$('.supp').val(supp);
-		$('.invamt').val(amt);
-		$('.part').val(part); 
+		var invnum 	= e.data('invno');
+		$.ajax({
+			type: 'POST',
+			datatype: 'json',
+			url: site_url+'accounts_payable/show_apinfo',
+			data: {'ap_id' : id},
+			success: function(data){
+				if (data.success==1) {
+					// alert(1);
+					$('.invdate').val(data.response[0].ap_invoice_date);
+					$('.invno').val(data.response[0].ap_invoice_no);
+					$('.pono').val(data.response[0].ap_po_no);
+					$('.terms').val(data.response[0].ap_terms);
+					$('.supp').val(data.response[0].ap_master_name);
+					$('.invamt').val(data.response[0].ap_invoice_amount);
+					$('.part').val(data.response[0].ap_particulars);
+					$('.totdr').val(data.response[0].total_debit)
+					$('.totcr').val(data.response[0].total_credit).toLocaleString('en');
+					$(data.html).appendTo($('#edit_table > tbody:last')).hide().fadeIn(1000);
+				};
+			}
+		});
 	    // alert(id);
 	   // window.open(site_url+"accounts_payable/view_trans?id="+id,'_blank');
 	});
 }
-
 
 function ap_bind_print(){
 	$('.account-report-print').unbind("click");

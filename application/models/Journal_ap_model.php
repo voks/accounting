@@ -56,4 +56,16 @@ class Journal_ap_model extends CI_Model {
 		return $this->db->query($sql, array("%$ap_invoice_no%","$ap_invoice_date_frm","$ap_invoice_date_to"));
 	}
 
+	public function show_apinfo($id){
+		$sql = "
+		select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr 
+		from tb_journal_ap jtb left join tb_journal_trans jtr on jtb.ap_id=jtr.trans_id
+
+		where jtb.project_id=".$this->session->userdata('project_id')." and ap_id = ?
+		and trans_journal = 'ap'
+		";
+		$query = $this->db->query($sql, array($id));
+		return $query->result();
+	}
+
 }

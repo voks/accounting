@@ -164,8 +164,8 @@
 				<!-- fourth Row: Adding Accounts -->
 				<div class="row">
 					<div class="col-md-12">
-						<div class="table">
-							<table class="table" id="">
+						<div class="table" >
+							<table class="table" id="edit_table">
 								<thead>
 									<tr>
 										<th>Account Code</th>
@@ -174,14 +174,17 @@
 										<th>Credit (CR)</th>
 									</tr>
 								</thead>
-								<tbody class="entry-list">
-									<tr class="row_total">
-										<td >TOTAL</td><td ></td>
-										<td><input type="text" class="form-control entry-debit-total" readonly="true" value=""></td>
-										<td><input type="text" class="form-control entry-credit-total"  readonly="true" value=""></td>
+								<tbody>
+									
+								</tbody>
+								<tfoot>
+									<tr>
+										<td>TOTAL</td><td ></td>
+										<td><input type="text" class="form-control entry-debit-total totdr" readonly="true" value=""></td>
+										<td><input type="text" class="form-control entry-credit-total totcr"  readonly="true" value=""></td>
 										<td></td>
 									</tr>
-								</tbody>
+								</tfoot>
 							</table>
 						</div>
 					</div>

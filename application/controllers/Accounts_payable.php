@@ -7,7 +7,7 @@ class Accounts_payable extends CI_Controller {
 		$this->load->model('journal_ap_model');
 		$this->load->model('bank_recon_model');
 		$this->load->model('subsidiary_account_model');
-        $this->load->model('site_model');
+		$this->load->model('site_model');
 		if ($this->session->userdata('islogged')) {
 			$page_info = array(
 				'page_tab' 		=> 'Journal',
@@ -19,7 +19,7 @@ class Accounts_payable extends CI_Controller {
 				'accounts_payable' => $this->journal_ap_model->show_expense_name(),
 				'bank_recon' => $this->bank_recon_model->show_supplier(),
 				'account_title' => $this->subsidiary_account_model->get_accounts(),
-                'all_accounts' => $this->site_model->load_all_accounts()
+				'all_accounts' => $this->site_model->load_all_accounts()
 				);
 			$this->load->view('modules/accounts_payable', $viewData);
 			$this->load->view('parts/footer');
@@ -33,7 +33,7 @@ class Accounts_payable extends CI_Controller {
 		$this->load->model('journal_ap_model');
 		$this->load->model('bank_recon_model');
 		$this->load->model('subsidiary_account_model');
-        $this->load->model('site_model');
+		$this->load->model('site_model');
 		if ($this->session->userdata('islogged')) {
 			$this->session->set_userdata('page_tab', 'Journal');
 			$this->session->set_userdata('page_title', 'Accounts Payable');
@@ -42,7 +42,7 @@ class Accounts_payable extends CI_Controller {
 				'accounts_payable' => $this->journal_ap_model->show_expense_name(),
 				'bank_recon' => $this->bank_recon_model->show_supplier(),
 				'account_title' => $this->subsidiary_account_model->get_accounts(),
-                'all_accounts' => $this->site_model->load_all_accounts()
+				'all_accounts' => $this->site_model->load_all_accounts()
 				);
 			$this->load->view('modules/accounts_payable', $viewData);
 		}else{
@@ -221,15 +221,38 @@ class Accounts_payable extends CI_Controller {
 		$this->load->model('site_model');
 		$data = $this->site_model->load_all_accounts();
 		// print_r($this->db->last_query());
-        $html = "";
+		$html = "";
 		foreach ($data->result() as $key) {
 			$html .="
-				<tr>
-    				<td>".$key->title."</td>
-    				<td>".$key->code."</td>
-			    </tr>
+			<tr>
+				<td>".$key->title."</td>
+				<td>".$key->code."</td>
+			</tr>
 			";
 		}
-
 	}
+
+	public function show_apinfo(){
+		$this->load->model('journal_ap_model');
+		$id = $this->input->post('ap_id');
+		$data = $this->journal_ap_model->show_apinfo($id);
+		$html = "";
+		foreach ($data as $key) {
+			$html .="
+			<tr>
+				<td>".$key->sub_code."</td>
+				<td>".$key->account_name."</td>
+				<td><input type='text' class='form-control text-right' value='".number_format($key->trans_dr,2)."'></td>
+				<td><input type='text' class='form-control text-right' value='".number_format($key->trans_cr,2)."'></td>
+			</tr>
+			";
+		}
+		echo jcode(
+			array('success' => 1, 
+				'response' => $data,
+				'html' => $html 
+				)
+			);
+	}
+
 }
