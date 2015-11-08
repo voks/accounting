@@ -8,7 +8,12 @@ function load_data($data = array()){
 
 	$user_info = array(
 		'fullname' 			=> ci()->session->userdata('fullname'),
-		'project_name' 		=> ci()->session->userdata('project_name')
+		'project_name' 		=> ci()->session->userdata('project_name'),
+		'tab_trans'			=> ci()->session->userdata('tab_trans'),
+		'tab_ledger'		=> ci()->session->userdata('tab_ledger'),
+		'tab_report'		=> ci()->session->userdata('tab_report'),
+		'tab_admin'			=> ci()->session->userdata('tab_admin'),
+		'tab_setup'			=> ci()->session->userdata('tab_setup')
 			// 'access'	 => ci()->model->select_query("select * from tb_systemuser_keyaccess where id=".ci()->session->userdata('userid')."")->result_array()
 		);
 	return array_merge(array_merge($site_info,$user_info),$data);

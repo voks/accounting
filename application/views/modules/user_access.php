@@ -67,19 +67,16 @@
 					</div>
 					<div class="row checkbox">
 						<div class="col-md-4">
-							<label><input type="checkbox" value="" class="">Dashboard</label>
-						</div>
-						<div class="col-md-4">
-							<label><input type="checkbox" value="" class="">Journal</label>
+							<label><input type="checkbox" value="" class="">Transaction</label>
 						</div>
 						<div class="col-md-4">
 							<label><input type="checkbox" value="" class="">Ledger</label>
 						</div>
-					</div>	
-					<div class="row checkbox">
 						<div class="col-md-4">
 							<label><input type="checkbox" value="" class="">Report</label>
 						</div>
+					</div>	
+					<div class="row checkbox">
 						<div class="col-md-4">
 							<label><input type="checkbox" value="" class="">Administrator</label>
 						</div>

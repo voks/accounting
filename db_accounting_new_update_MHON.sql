@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2015 at 05:19 AM
+-- Generation Time: Nov 08, 2015 at 05:25 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -151,8 +151,7 @@ INSERT INTO `tb_account_title` (`account_id`, `project_id`, `account_date`, `acc
 (7, 2, '08/22/2015', '50001', 'Office Supplies', 'Expense', 'test'),
 (8, 2, '08/22/2015', '50002', 'Programmers System Unit Maintenance', 'Expense', 'test'),
 (9, 2, '08/22/2015', '10001', 'Cash in Bank', 'Assets', 'test'),
-(10, 2, '08/22/2015', '40004', 'Sales Revenue', 'Revenue', 'test'),
-(11, 2, '08/29/2015', '22222', 'testdemo', 'Liabilities', 'Accounts Payable - Trade');
+(10, 2, '08/22/2015', '40004', 'Sales Revenue', 'Revenue', 'test');
 
 -- --------------------------------------------------------
 
@@ -287,7 +286,14 @@ CREATE TABLE IF NOT EXISTS `tb_journal_cr` (
   `cr_trans_id` int(11) NOT NULL,
   `total_debit` varchar(255) NOT NULL,
   `total_credit` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_journal_cr`
+--
+
+INSERT INTO `tb_journal_cr` (`cr_id`, `project_id`, `cr_or_no`, `cr_or_date`, `cr_master_name_customer`, `cr_sj_si_no`, `cr_master_name_bank`, `cr_cleared`, `cr_cleared_date`, `cr_or_amount`, `cr_particulars`, `cr_trans_id`, `total_debit`, `total_credit`) VALUES
+(1, 2, '12', '10/09/2015', 'Sommers Systems', '5654', 'Cash in Bank - Metro Bank Commonwealth', 'Yes', '10/14/2015', '5000.00', 'TO RECORD DATA', 0, ' 5000.00', ' 5000.00');
 
 -- --------------------------------------------------------
 
@@ -327,7 +333,14 @@ CREATE TABLE IF NOT EXISTS `tb_journal_sj` (
   `sj_trans_id` int(11) NOT NULL,
   `total_debit` varchar(255) NOT NULL,
   `total_credit` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_journal_sj`
+--
+
+INSERT INTO `tb_journal_sj` (`sj_id`, `project_id`, `sj_si_no`, `sj_si_date`, `sj_master_name`, `sj_terms`, `sj_si_amount`, `sj_particulars`, `sj_trans_id`, `total_debit`, `total_credit`) VALUES
+(1, 2, '1234', '09/01/2015', 'DevCon Inc', '7', '15000.00', 'to record data', 0, ' 15000.00', ' 15000.00');
 
 -- --------------------------------------------------------
 
@@ -347,7 +360,7 @@ CREATE TABLE IF NOT EXISTS `tb_journal_trans` (
   `trans_date` varchar(225) NOT NULL,
   `trans_journal` varchar(225) NOT NULL,
   `account_group` varchar(225) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_journal_trans`
@@ -367,7 +380,11 @@ INSERT INTO `tb_journal_trans` (`id`, `project_id`, `trans_id`, `account_code`, 
 (11, 2, 6, '10001', '10001 - 10001', 'Cash in Bank - Metro Bank Commonwealth', '0.00', '900.00', '09/10/2015', 'ap', 'test'),
 (12, 2, 6, '20001', '20001 - 00003', 'Accounts Payable Trade - PC Express Computer Supplies', '900.00', '0.00', '09/10/2015', 'ap', 'Accounts Payable - Trade'),
 (13, 2, 1, '20001', '20001 - 00003', 'Accounts Payable Trade - PC Express Computer Supplies', '12000.00', '0.00', '09/13/2015', 'cd', 'Accounts Payable - Trade'),
-(14, 2, 1, '10001', '10001 - 10000', 'Cash in Bank - BDO San Juan', '0.00', '12000.00', '09/13/2015', 'cd', 'test');
+(14, 2, 1, '10001', '10001 - 10000', 'Cash in Bank - BDO San Juan', '0.00', '12000.00', '09/13/2015', 'cd', 'test'),
+(15, 2, 1, '40001', '40001 - 00002', 'Accounts Receivable Trade - DevCon Inc', '15000.00', '0.00', '09/01/2015', 'sj', 'test'),
+(16, 2, 1, '40004', '40004 - 40002', 'Sales Revenue - DevCon Inc', '0.00', '15000.00', '09/01/2015', 'sj', 'test'),
+(17, 2, 1, '40001', '40001 - 00001', 'Accounts Receivable Trade - Sommers Systems', '0', '5000.00', '10/09/2015', 'cr', 'test'),
+(18, 2, 1, '10001', '10001 - 10001', 'Cash in Bank - Metro Bank Commonwealth', '5000.00', '0.00', '10/09/2015', 'cr', 'test');
 
 -- --------------------------------------------------------
 
@@ -444,11 +461,35 @@ CREATE TABLE IF NOT EXISTS `tb_users` (
 --
 
 INSERT INTO `tb_users` (`user_id`, `project_id`, `user_type`, `fname`, `lname`, `uname`, `pwd`) VALUES
-(1, 1, 'Administrator', 'MHon', 'Romero', 'ts', 'admin'),
+(1, 1, 'Administrator', 'MHon', 'Romero', 'adminMhon', 'admin'),
 (2, 2, 'Administrator', 'Michelle', 'Anne', 'admin', 'admin'),
 (3, 2, 'User', 'Mich', 'Cruz', 'chelle', '12'),
-(4, 2, 'User', 'Dominick', 'Sanchez', 'doms', 'pass'),
+(4, 2, 'User', 'MHon', 'Romero', 'admin2', 'admin2'),
 (5, 2, 'User', 'dsa', 'dsad', 'dsad', 'dsad');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_user_access`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_user_access` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `tab_transaction` int(11) NOT NULL,
+  `tab_ledger` int(11) NOT NULL,
+  `tab_report` int(11) NOT NULL,
+  `tab_admin` int(11) NOT NULL,
+  `tab_setup` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_user_access`
+--
+
+INSERT INTO `tb_user_access` (`id`, `user_id`, `tab_transaction`, `tab_ledger`, `tab_report`, `tab_admin`, `tab_setup`) VALUES
+(1, 2, 1, 1, 1, 1, 1),
+(2, 4, 1, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -560,6 +601,12 @@ ALTER TABLE `tb_users`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `tb_user_access`
+--
+ALTER TABLE `tb_user_access`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_user_type`
 --
 ALTER TABLE `tb_user_type`
@@ -608,7 +655,7 @@ ALTER TABLE `tb_journal_cd`
 -- AUTO_INCREMENT for table `tb_journal_cr`
 --
 ALTER TABLE `tb_journal_cr`
-  MODIFY `cr_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cr_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_journal_gj`
 --
@@ -618,12 +665,12 @@ ALTER TABLE `tb_journal_gj`
 -- AUTO_INCREMENT for table `tb_journal_sj`
 --
 ALTER TABLE `tb_journal_sj`
-  MODIFY `sj_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sj_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_journal_trans`
 --
 ALTER TABLE `tb_journal_trans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `tb_master`
 --
@@ -639,6 +686,11 @@ ALTER TABLE `tb_project`
 --
 ALTER TABLE `tb_users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `tb_user_access`
+--
+ALTER TABLE `tb_user_access`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_user_type`
 --

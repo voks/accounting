@@ -14,7 +14,7 @@
 					<a href="javascript:;"><i class='fa fa-dashboard'></i><span>Dashboard</span></a>
 				</li> -->
 				<li class="tab-link <?=($page_tab=='Set Up') ? 'active' : '' ?>" role="tab" id="tab-setup">
-					<a href="#setup" data-parent="#menu" data-toggle="collapse" aria-expanded="false" aria-controls="setup">
+					<a href="<?=($tab_setup==1) ? '#setup':''?>" data-parent="#menu" data-toggle="collapse" aria-expanded="false" aria-controls="setup">
 						<i class='fa fa-cogs'></i><span>Setup</span>
 					</a>
 					<ul class="ul-link collapse animate-10 <?=($page_tab=='Set Up') ? 'in': ''?>" id="setup">
@@ -25,7 +25,7 @@
 					</ul>
 				</li>
 				<li role="tab" id="tab-journal" class="tab-link <?=($page_tab=='Journal') ? 'active' : '' ?>" >
-					<a href="#journal" data-parent="#menu" data-toggle="collapse" aria-expanded="false" aria-controls="journal">
+					<a href="<?=($tab_trans==1) ? '#journal':''?>" data-parent="#menu" data-toggle="collapse" aria-expanded="false" aria-controls="journal">
 						<i class='fa fa-book'></i><span>Transaction</span>
 					</a>
 					<ul class="ul-link collapse animate-10 <?=($page_tab=='Journal') ? 'in': ''?>" id="journal">
@@ -37,7 +37,7 @@
 					</ul>
 				</li>
 				<li class="tab-link <?=($page_tab=='Ledger') ? 'active' : '' ?>" role="tab" id="tab-ledger">
-					<a href="#ledger" data-parent="#menu" data-toggle="collapse" aria-expanded="false" aria-controls="ledger">
+					<a href="<?=($tab_ledger==1) ? '#ledger':''?>" data-parent="#menu" data-toggle="collapse" aria-expanded="false" aria-controls="ledger">
 						<i class='fa fa-table'></i><span>Ledger</span>
 					</a>
 					<ul class="ul-link collapse animate-10 <?=($page_tab=='Ledger') ? 'in': ''?>" id="ledger">
@@ -47,7 +47,7 @@
 					</ul>
 				</li>
 				<li class="tab-link <?=($page_tab=='Reports') ? 'active' : '' ?>" role='tab' id='tab-reports'>
-					<a href="#reports" data-parent="#menu" data-toggle="collapse" aria-expanded="false" aria-controls="reports">
+					<a href="<?=($tab_report==1) ? '#reports':''?>" data-parent="#menu" data-toggle="collapse" aria-expanded="false" aria-controls="reports">
 						<i class='fa fa-line-chart'></i><span>Reports</span>
 					</a>
 					<ul class="ul-link collapse animate-10 <?=($page_tab=='Reports') ? 'in': ''?>" id="reports">
@@ -58,7 +58,7 @@
 					</ul>
 				</li>
 				<li class="tab-link <?=($page_tab=='Administrator') ? 'active' : '' ?>" role="tab" id="tab-admin">
-					<a href="#admin" data-parent="#menu" data-toggle="collapse" aria-expanded="true" aria-controls="admin">
+					<a href="<?=($tab_admin==1) ? '#admin':''?>" data-parent="#menu" data-toggle="collapse" aria-expanded="true" aria-controls="admin">
 						<i class='fa fa-user'></i><span>Administrator</span>
 					</a>
 					<ul class="ul-link collapse animate-10 <?=($page_tab=='Administrator') ? 'in': ''?>" id="admin">
