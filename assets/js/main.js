@@ -97,12 +97,12 @@ $(".menu-link").click(function(e){
     		window.location.href = site_url+"login";
     	}
     	else{
-	    	$( ".dv-content" ).html( response.page_content );
+	    	$( ".dv-content" ).html( response );
+    	}
 	    	onload_functions()
 	    	setTimeout(function(){
 	    		$(document).skylo('end');
 	    	},100);
-    	}
     });
 });
 
