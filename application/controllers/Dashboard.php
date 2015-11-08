@@ -14,7 +14,7 @@ class Dashboard extends CI_Controller {
 			$this->load->view('parts/footer');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller {
 			$this->load->view('modules/dashboard');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 	

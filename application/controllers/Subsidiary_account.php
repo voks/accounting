@@ -17,7 +17,7 @@ class Subsidiary_account extends CI_Controller {
 			
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -35,7 +35,7 @@ class Subsidiary_account extends CI_Controller {
 			$this->load->view('modules/subsidiary_account',array_merge($account_list,$account_title,$master_name));
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -165,7 +165,7 @@ class Subsidiary_account extends CI_Controller {
 			pdf_create($html, 'filename');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 }

@@ -16,7 +16,7 @@ class Bank_recon extends CI_Controller {
 			$this->load->view('parts/footer');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -30,7 +30,7 @@ class Bank_recon extends CI_Controller {
 			$this->load->view('modules/bank_recon', $bank_recon);
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -118,7 +118,7 @@ class Bank_recon extends CI_Controller {
 			pdf_create($html, 'Bank-Recon');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 }

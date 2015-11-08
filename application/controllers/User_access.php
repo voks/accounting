@@ -17,7 +17,7 @@ class User_access extends CI_Controller {
 			$this->load->view('parts/footer');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -33,7 +33,7 @@ class User_access extends CI_Controller {
 			$this->load->view('modules/user_access', array_merge($user_access,$projects,$user_access_type));
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 

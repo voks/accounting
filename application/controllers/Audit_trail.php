@@ -14,7 +14,7 @@ class Audit_trail extends CI_Controller {
 			$this->load->view('parts/footer');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -26,7 +26,7 @@ class Audit_trail extends CI_Controller {
 			$this->session->set_userdata('current_page', 'audit_trail');
 			$this->load->view('modules/audit_trail');
 		}else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 }

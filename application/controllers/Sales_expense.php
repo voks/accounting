@@ -14,7 +14,7 @@ class Sales_expense extends CI_Controller {
 			$this->load->view('parts/footer');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -23,7 +23,7 @@ class Sales_expense extends CI_Controller {
 		if ($this->session->userdata('islogged')) {
 			$this->load->view('modules/sales_expense');
 		}else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 }

@@ -18,7 +18,7 @@ class System_settings extends CI_Controller {
 			$this->load->view('parts/footer');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -34,7 +34,7 @@ class System_settings extends CI_Controller {
 			$this->load->view('modules/system_settings',array_merge($copyright,$account_group));
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 

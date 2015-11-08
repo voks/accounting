@@ -16,7 +16,7 @@ class Master_account extends CI_Controller {
 			$this->load->view('parts/footer');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -30,7 +30,7 @@ class Master_account extends CI_Controller {
 			$this->load->view('modules/master_account',$account_title);
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -165,7 +165,7 @@ class Master_account extends CI_Controller {
 			pdf_create($html, 'filename');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 }

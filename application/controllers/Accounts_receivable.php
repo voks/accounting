@@ -18,7 +18,7 @@ class Accounts_receivable extends CI_Controller {
 			$this->load->view('parts/footer');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -34,7 +34,7 @@ class Accounts_receivable extends CI_Controller {
 			$this->load->view('modules/accounts_receivable', $viewData);
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -103,7 +103,7 @@ class Accounts_receivable extends CI_Controller {
 			$html.= $this->config->item('report_footer');
 			pdf_create($html, 'EPS-Accounting-Report');
 		}else {
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -121,7 +121,7 @@ class Accounts_receivable extends CI_Controller {
 			pdf_create($html, 'Accounts-Receivable');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 }

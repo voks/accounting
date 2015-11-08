@@ -14,7 +14,7 @@ class Aging extends CI_Controller {
 			$this->load->view('parts/footer');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -26,7 +26,7 @@ class Aging extends CI_Controller {
 			$this->session->set_userdata('current_page', 'aging');
 			$this->load->view('modules/aging');
 		}else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -46,7 +46,7 @@ class Aging extends CI_Controller {
 			$html.= $this->config->item('report_footer');
 			pdf_create($html, 'EPS-Accounting-Report');
 		}else {
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 

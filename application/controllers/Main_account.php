@@ -19,7 +19,7 @@ class Main_account extends CI_Controller {
 			$this->load->view('parts/footer');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -35,7 +35,7 @@ class Main_account extends CI_Controller {
 			$this->load->view('modules/main_account',$account_group);
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 

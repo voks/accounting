@@ -92,12 +92,17 @@ $(".menu-link").click(function(e){
     	type: 'POST', 
     	datatype:'json',
     	url: $(this).data("address")+"/load_page"
-    }).done(function( response ) {
-    	$( ".dv-content" ).html( response );
-    	onload_functions()
-    	setTimeout(function(){
-    		$(document).skylo('end');
-    	},100);
+    }).done(function( response ) { //set js redirect to login if session expire -mhon
+    	if (response.success==1) {
+    		window.location.href = site_url+"login";
+    	}
+    	else{
+	    	$( ".dv-content" ).html( response.page_content );
+	    	onload_functions()
+	    	setTimeout(function(){
+	    		$(document).skylo('end');
+	    	},100);
+    	}
     });
 });
 

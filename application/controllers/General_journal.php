@@ -20,7 +20,7 @@ class General_journal extends CI_Controller {
 			$this->load->view('parts/footer');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -38,7 +38,7 @@ class General_journal extends CI_Controller {
 			$this->load->view('modules/general_journal', $viewData);
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -164,7 +164,7 @@ class General_journal extends CI_Controller {
 			$html.= $this->config->item('report_footer');
 			pdf_create($html, 'EPS-Accounting-Report');
 		}else {
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
@@ -184,7 +184,7 @@ class General_journal extends CI_Controller {
 			pdf_create($html, 'filename');
 		}
 		else{
-			redirect('login');
+			echo jcode(array('success' => 1));
 		}
 	}
 
