@@ -26,6 +26,7 @@ class Accounts_payable extends CI_Controller {
 		}
 		else{
 			echo jcode(array('success' => 1));
+			echo "string";
 		}
 	}
 
@@ -249,9 +250,10 @@ class Accounts_payable extends CI_Controller {
 			";
 		}
 		echo jcode(
-			array('success' => 1, 
-				'response' => $data,
-				'html' => $html 
+			array(
+				'success' 	=> 1, 
+				'response' 	=> $data,
+				'html' 		=> $html 
 				)
 			);
 	}

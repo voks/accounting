@@ -108,9 +108,39 @@ function view_trans_cd(){
 	$('.account-report-edit').unbind("click");
 	$('.account-report-edit').click(function (event) {
 		event.preventDefault();
-		var id = $(this).data('id');
+		var e 		= $(this);
+		var id		= e.data('id');
+		$('#editTrans').modal('show');
+		$.ajax({
+			type: 'POST',
+			datatype: 'json',
+			url: site_url+'check_dis/show_cdinfo',
+			data: {'cd_id' : id},
+			success: function(data){
+				if (data.success==1) {
+					// use to add amount format (00,000.00) - mich
+					var data_amt 	= data.response[0].cd_check_amount;
+					var chck_amt 	= Number(data_amt).toLocaleString('en-US', {minimumFractionDigits: 2});
+					var data_totDr 	= data.response[0].total_debit;
+					var totdr 		= Number(data_totDr).toLocaleString('en-US', {minimumFractionDigits: 2});
+					var data_totCr 	= data.response[0].total_credit;
+					var totcr 		= Number(data_totCr).toLocaleString('en-US', {minimumFractionDigits: 2});
+					$('.cd_date').val(data.response[0].cd_date);
+					$('.cd_vnum').val(data.response[0].cd_voucher_no);
+					$('.cd_chcknum').val(data.response[0].cd_check_no);
+					$('.cd_bank').val(data.response[0].cd_master_name);
+					$('.cd_name').val(data.response[0].cd_payee_name);
+					$('.cd_chckamt').val(chck_amt);
+					$('.cd_part').val(data.response[0].cd_particulars);
+					$('.totdr').val(totdr)
+					$('.totcr').val(totcr);
+					$('#edit_table > tbody:last').empty().fadeIn(1000);
+					$(data.html).appendTo($('#edit_table > tbody:last')).hide().fadeIn(1000);
+				};
+			}
+		});
 	    // alert(id);
-	   window.open(site_url+"check_dis/view_trans?id="+id,'_blank');
+	   // window.open(site_url+"check_dis/view_trans?id="+id,'_blank');
 	});
 }
 

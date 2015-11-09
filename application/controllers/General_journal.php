@@ -207,4 +207,28 @@ class General_journal extends CI_Controller {
 			
 		}
 	}
+
+	public function show_gjinfo(){
+		$this->load->model('journal_gj_model');
+		$id = $this->input->post('gj_id');
+		$data = $this->journal_gj_model->show_gjinfo($id);
+		$html = "";
+		foreach ($data as $key) {
+			$html .="
+			<tr>
+				<td>".$key->sub_code."</td>
+				<td>".$key->account_name."</td>
+				<td><input type='text' class='form-control text-right' value='".number_format($key->trans_dr,2)."'></td>
+				<td><input type='text' class='form-control text-right' value='".number_format($key->trans_cr,2)."'></td>
+			</tr>
+			";
+		}
+		echo jcode(
+			array(
+				'success' 	=> 1,
+				'response' 	=> $data,
+				'html' 		=> $html
+				)
+			);
+	}
 }

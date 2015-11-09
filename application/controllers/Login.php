@@ -6,7 +6,6 @@ class Login extends CI_Controller {
 	{
 		if (!$this->session->userdata('islogged')) {
 			$this->load->model('login_model');
-
 			$data = array(
 							'page_title' => 'Login'
 						 );
@@ -16,7 +15,7 @@ class Login extends CI_Controller {
 			$this->load->view('modules/login',load_data(array_merge($data,$projects)));
 			$this->load->view('parts/footer');
 		}else{
-			echo "Please Login!";
+			redirect('login');
 		}
 	}
 

@@ -118,15 +118,22 @@ function view_trans_ap(){
 			data: {'ap_id' : id},
 			success: function(data){
 				if (data.success==1) {
+					// use to add amount format (00,000.00) - mich
+					var data_amt 	= data.response[0].ap_invoice_amount;
+					var invamt 		= Number(data_amt).toLocaleString('en-US', {minimumFractionDigits: 2});
+					var data_totDr 	= data.response[0].total_debit;
+					var totdr 		= Number(data_totDr).toLocaleString('en-US', {minimumFractionDigits: 2});
+					var data_totCr 	= data.response[0].total_credit;
+					var totcr 		= Number(data_totCr).toLocaleString('en-US', {minimumFractionDigits: 2});
 					$('.invdate').val(data.response[0].ap_invoice_date);
 					$('.invno').val(data.response[0].ap_invoice_no);
 					$('.pono').val(data.response[0].ap_po_no);
 					$('.terms').val(data.response[0].ap_terms);
 					$('.supp').val(data.response[0].ap_master_name);
-					$('.invamt').val(data.response[0].ap_invoice_amount);
+					$('.invamt').val(invamt);
 					$('.part').val(data.response[0].ap_particulars);
-					$('.totdr').val(data.response[0].total_debit)
-					$('.totcr').val(data.response[0].total_credit).toLocaleString('en');
+					$('.totdr').val(totdr);
+					$('.totcr').val(totcr);
 					$('#edit_table > tbody:last').empty().fadeIn(1000);
 					$(data.html).appendTo($('#edit_table > tbody:last')).hide().fadeIn(1000);
 				};

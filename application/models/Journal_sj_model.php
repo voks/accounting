@@ -31,7 +31,8 @@ class Journal_sj_model extends CI_Model {
 		$sql = "
 		select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr
 		from tb_journal_sj jtb left join tb_journal_trans jtr on jtb.sj_id=jtr.trans_id
-		where jtb.project_id=".$this->session->userdata('project_id')." and sj_id = ? and jtr.trans_journal = 'sj'
+		where jtb.project_id=".$this->session->userdata('project_id')." and sj_id = ? 
+		and jtr.trans_journal = 'sj'
 		";
 		return $this->db->query($sql, array($sj_id));
 	}
@@ -49,5 +50,16 @@ class Journal_sj_model extends CI_Model {
 		and sj_si_no like ? or sj_si_date between ? and ?";
 		$query	= $this->db->query($sql, array("%$sj_si_no%","$sj_si_date_frm","$sj_si_date_to"));
 		return $query;
+	}
+
+	public function show_sjinfo($id){
+		$sql = "
+		select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr
+		from tb_journal_sj jtb left join tb_journal_trans jtr on jtb.sj_id=jtr.trans_id
+		where jtb.project_id=".$this->session->userdata('project_id')." and sj_id = ? 
+		and jtr.trans_journal = 'sj'
+		";
+		$query = $this->db->query($sql, array($id));
+		return $query->result();
 	}
 }

@@ -31,7 +31,8 @@ class Journal_cr_model extends CI_Model {
 		$sql = "
 		select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr
 		from tb_journal_cr jtb left join tb_journal_trans jtr on jtb.cr_id=jtr.trans_id
-		where jtb.project_id=".$this->session->userdata('project_id')." and cr_id = ? and jtr.trans_journal = 'cr'
+		where jtb.project_id=".$this->session->userdata('project_id')." and cr_id = ? 
+		and jtr.trans_journal = 'cr'
 		";
 		return $this->db->query($sql, array($cr_id));
 	}
@@ -63,5 +64,16 @@ class Journal_cr_model extends CI_Model {
 		and cr_or_no like ? or cr_or_date between ? and ?";
 		$query 	= $this->db->query($sql, array("%$cr_or_no%","$cr_or_date_frm","$cr_or_date_to"));
 		return $query;
+	}
+
+	public function show_crinfo($id){
+		$sql = "
+		select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr
+		from tb_journal_cr jtb left join tb_journal_trans jtr on jtb.cr_id=jtr.trans_id
+		where jtb.project_id=".$this->session->userdata('project_id')." and cr_id = ? 
+		and jtr.trans_journal = 'cr'
+		";
+		$query = $this->db->query($sql, array($id));
+		return $query->result();
 	}
 }

@@ -226,6 +226,31 @@ class Check_dis extends CI_Controller {
 			$this->load->view('parts/footer');
 			
 		}
+	}
 
+	// Get all info of specific account for editting purposes (shows in modal) -mich
+	public function show_cdinfo(){
+		$this->load->model('journal_cd_model');
+		$id = $this->input->post('cd_id');
+		$data = $this->journal_cd_model->show_cdinfo($id);
+		// print_r($this->db->last_query());
+		$html = "";
+		foreach ($data as $key) {
+			$html .="
+			<tr>
+				<td>".$key->sub_code."</td>
+				<td>".$key->account_name."</td>
+				<td><input type='text' class='form-control text-right' value='".number_format($key->trans_dr,2)."'></td>
+				<td><input type='text' class='form-control text-right' value='".number_format($key->trans_cr,2)."'></td>
+			</tr>
+			";
+		}
+		echo jcode(
+			array(
+				'success' 	=> 1, 
+				'response' 	=> $data,
+				'html' 		=> $html 
+				)
+			);
 	}
 }

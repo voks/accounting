@@ -106,9 +106,40 @@ function view_trans_cr(){
 	$('.account-report-edit').unbind("click");
 	$('.account-report-edit').click(function (event) {
 		event.preventDefault();
-		var id = $(this).data('id');
+		var e = $(this);
+		var id = e.data('id');
+		$('#editTrans').modal('show');
+		$.ajax({
+			type: 'POST',
+			datatype: 'json',
+			url: site_url+'cash_receipts/show_crinfo',
+			data: {'cr_id': id},
+			success: function(data){
+				if (data.success==1) {
+					// use to add amount format (00,000.00) - mich
+					var data_amt 	= data.response[0].cr_or_amount;
+					var or_amt 		= Number(data_amt).toLocaleString('en-US', {minimumFractionDigits: 2});
+					var data_totDr 	= data.response[0].total_debit;
+					var totdr 		= Number(data_totDr).toLocaleString('en-US', {minimumFractionDigits: 2});
+					var data_totCr 	= data.response[0].total_credit;
+					var totcr 		= Number(data_totCr).toLocaleString('en-US', {minimumFractionDigits: 2});
+					$('.cr_ornum').val(data.response[0].cr_or_no);
+					$('.cr_ordate').val(data.response[0].cr_or_date);
+					$('.cr_cust').val(data.response[0].cr_master_name_customer);
+					$('.cr_bino').val(data.response[0].cr_sj_si_no);
+					$('.cr_bank').val(data.response[0].cr_master_name_bank);
+					$('.cr_amt').val(or_amt);
+					$('.cr_part').val(data.response[0].cr_particulars);
+					$('.totdr').val(totdr)
+					$('.totcr').val(totcr);
+					$('#edit_table > tbody:last').empty().fadeIn(1000);
+					$(data.html).appendTo($('#edit_table > tbody:last')).hide().fadeIn(1000);
+				};
+			}
+		});
+
 	    // alert(id);
-	   window.open(site_url+"cash_receipts/view_trans?id="+id,'_blank');
+	   // window.open(site_url+"cash_receipts/view_trans?id="+id,'_blank');
 	});
 }
 

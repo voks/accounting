@@ -31,7 +31,8 @@ class Journal_gj_model extends CI_Model {
 		$sql = "
 		select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr
 		from tb_journal_gj jtb left join tb_journal_trans jtr on jtb.gj_id=jtr.trans_id
-		where jtb.project_id=".$this->session->userdata('project_id')." and gj_id = ? and jtr.trans_journal = 'gj'
+		where jtb.project_id=".$this->session->userdata('project_id')." and gj_id = ?
+		and jtr.trans_journal = 'gj'
 		";
 		return $this->db->query($sql, array($gj_id));
 	}
@@ -43,5 +44,16 @@ class Journal_gj_model extends CI_Model {
 		gj_code like ? or gj_date between ? and ?";
 		$query 	= $this->db->query($sql, array("%$gj_code%","$gj_date_frm","$gj_date_to"));
 		return $query;
+	}
+
+	public function show_gjinfo($id){
+		$sql = "
+		select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr
+		from tb_journal_gj jtb left join tb_journal_trans jtr on jtb.gj_id=jtr.trans_id
+		where jtb.project_id=".$this->session->userdata('project_id')." and gj_id = ?
+		and jtr.trans_journal = 'gj'
+		";
+		$query = $this->db->query($sql, array($id));
+		return $query->result();
 	}
 }

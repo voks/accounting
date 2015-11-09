@@ -106,9 +106,38 @@ function view_trans_sj(){
 	$('.account-report-edit').unbind("click");
 	$('.account-report-edit').click(function (event) {
 		event.preventDefault();
-		var id = $(this).data('id');
+		var e  = $(this);
+		var id = e.data('id');
+		$('#editTrans').modal('show');
+		$.ajax({
+			type: 'POST',
+			datatype: 'json',
+			url: site_url+'sales_journal/show_sjinfo',
+			data: {'sj_id' : id},
+			success: function(data){
+				if(data.success==1){
+					// use to add amount format (00,000.00) - mich
+					var data_amt 	= data.response[0].sj_si_amount;
+					var bill_amt 	= Number(data_amt).toLocaleString('en-US', {minimumFractionDigits: 2});
+					var data_totDr 	= data.response[0].total_debit;
+					var totdr 		= Number(data_totDr).toLocaleString('en-US', {minimumFractionDigits: 2});
+					var data_totCr 	= data.response[0].total_credit;
+					var totcr 		= Number(data_totCr).toLocaleString('en-US', {minimumFractionDigits: 2});
+					$('.sj_date').val(data.response[0].sj_si_date);
+					$('.sj_num').val(data.response[0].sj_si_no);
+					$('.sj_cust').val(data.response[0].sj_master_name);
+					$('.sj_terms').val(data.response[0].sj_terms);
+					$('.sj_amt').val(bill_amt);
+					$('.sj_part').val(data.response[0].sj_particulars);
+					$('.totdr').val(totdr)
+					$('.totcr').val(totcr);
+					$('#edit_table > tbody:last').empty().fadeIn(1000);
+					$(data.html).appendTo($('#edit_table > tbody:last')).hide().fadeIn(1000);
+				};
+			}
+		});
 	    // alert(id);
-	   window.open(site_url+"sales_journal/view_trans?id="+id,'_blank');
+	   // window.open(site_url+"sales_journal/view_trans?id="+id,'_blank');
 	});
 }
 
@@ -116,7 +145,8 @@ function sj_bind_print(){
 	$('.account-report-print').unbind("click");
 	$('.account-report-print').click(function (event) {
 		event.preventDefault();
-		var id = $(this).data('id');
+		var e  = $(this);
+		var id = e.data('id');
 	   //alert(id);
 	   window.open(site_url+"sales_journal/sj_report?id="+id,'_blank');
 	});

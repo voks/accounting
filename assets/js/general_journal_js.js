@@ -107,8 +107,34 @@ function view_trans_gj(){
 	$('.account-report-edit').click(function (event) {
 		event.preventDefault();
 		var id = $(this).data('id');
+		$('#editTrans').modal('show');
+		$.ajax({
+			type: 'POST',
+			datatype: 'json',
+			url: site_url+'general_journal/show_gjinfo',
+			data:{'gj_id': id},
+			success: function(data){
+				if(data.success==1){
+					// use to add amount format (00,000.00) - mich
+					var data_amt 	= data.response[0].gj_amount;
+					var gj_amt 		= Number(data_amt).toLocaleString('en-US', {minimumFractionDigits: 2});
+					var data_totDr 	= data.response[0].total_debit;
+					var totdr 		= Number(data_totDr).toLocaleString('en-US', {minimumFractionDigits: 2});
+					var data_totCr 	= data.response[0].total_credit;
+					var totcr 		= Number(data_totCr).toLocaleString('en-US', {minimumFractionDigits: 2});
+					$('.gj_num').val(data.response[0].gj_code);
+					$('.gj_date').val(data.response[0].gj_date);
+					$('.gj_amt').val(gj_amt);
+					$('.gj_part').val(data.response[0].gj_particulars);
+					$('.totdr').val(totdr)
+					$('.totcr').val(totcr);
+					$('#edit_table > tbody:last').empty().fadeIn(1000);
+					$(data.html).appendTo($('#edit_table > tbody:last')).hide().fadeIn(1000);
+				};
+			}
+		});
 	    // alert(id);
-	   window.open(site_url+"general_journal/view_trans?id="+id,'_blank');
+	   // window.open(site_url+"general_journal/view_trans?id="+id,'_blank');
 	});
 }
 
