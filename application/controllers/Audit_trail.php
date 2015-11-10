@@ -21,6 +21,7 @@ class Audit_trail extends CI_Controller {
 	public function load_page(){
 
 		if ($this->session->userdata('islogged')) {
+			$this->load->view('parts/header',load_data($page_info));
 			$this->session->set_userdata('page_tab', 'Administrator');
 			$this->session->set_userdata('page_title', 'Audit Trail');
 			$this->session->set_userdata('current_page', 'audit_trail');

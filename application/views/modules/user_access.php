@@ -67,21 +67,21 @@
 					</div>
 					<div class="row checkbox">
 						<div class="col-md-4">
-							<label><input type="checkbox" value="" class="">Transaction</label>
+							<label><input type="checkbox" name="user[tab_transaction]"  value="" class="check_access" id="trans">Transaction</label>
 						</div>
 						<div class="col-md-4">
-							<label><input type="checkbox" value="" class="">Ledger</label>
+							<label><input type="checkbox" name="user[tab_ledger]" value="" class="check_access" id="tab_ledger">Ledger</label>
 						</div>
 						<div class="col-md-4">
-							<label><input type="checkbox" value="" class="">Report</label>
+							<label><input type="checkbox" name="user[tab_report]" value="" class="check_access" id="tab_report">Report</label>
 						</div>
 					</div>	
 					<div class="row checkbox">
 						<div class="col-md-4">
-							<label><input type="checkbox" value="" class="">Administrator</label>
+							<label><input type="checkbox" name="user[tab_admin]" value="" class="check_access" id="tab_admin">Administrator</label>
 						</div>
 						<div class="col-md-4">
-							<label><input type="checkbox" value="" class="">Setup</label>
+							<label><input type="checkbox" name="user[tab_setup]" value="" class="check_access" id="tab_setup">Setup</label>
 						</div>
 					</div>		
 				</div>
@@ -250,7 +250,20 @@
 						<td>".$data->pwd."</td>
 						<td>".$data->user_type."</td>
 						<td>
-							<span class='action'><a href='#' data-id='".$data->user_id."' data-fname='".$data->fname."' data-lname='".$data->lname."' data-uname='".$data->uname."' data-pwd='".$data->pwd."' data-utype='".$data->user_type."' class='edit_user'><i class='fa fa-edit' data-item=''></i> Update</a></span> |
+							<span class='action'>
+								<a href='#' 
+									data-id='".$data->user_id."' 
+									data-fname='".$data->fname."' 
+									data-lname='".$data->lname."' 
+									data-uname='".$data->uname."' 
+									data-pwd='".$data->pwd."' 
+									data-utype='".$data->user_type."' 
+									data-trans='".$data->tab_transaction."'
+									data-ledger='".$data->tab_ledger."'
+									data-report='".$data->tab_report."'
+									data-admin='".$data->tab_admin."'
+									data-setup='".$data->tab_setup."'
+									class='edit_user'><i class='fa fa-edit' data-item=''></i> Update</a></span> |
 							<span class='action'><i class='fa fa-trash-o' data-item=''></i> <a href='#' class='' id='alert' data-toggle='modal' data-target='.deleteAccess'>Delete</a></span>
 						</td>
 					</tr>

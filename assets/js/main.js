@@ -92,7 +92,7 @@ $(".menu-link").click(function(e){
     	type: 'POST', 
     	datatype:'json',
     	url: $(this).data("address")+"/load_page"
-    }).done(function( response ) { //set js redirect to login if session expire -mhon
+    }).done(function( response ) { //set js redirect to login if session expire -MHon
     	if (response.success==1) {
     		window.location.href = site_url+"login";
     	}

@@ -35,6 +35,11 @@ function user_access_js(){
 		var uname 	= e.data('uname');
 		var pwd		= e.data('pwd');
 		var utype	= e.data('utype');
+		var trans   = e.data('trans');
+		var ledger  = e.data('ledger');
+		var report  = e.data('report');
+		var admin   = e.data('admin');
+		var setup   = e.data('setup');
 
 		$('.userAccess').modal('show');
 		$('#user_id').val(id);
@@ -43,6 +48,18 @@ function user_access_js(){
 		$('#uname').val(uname);
 		$('#pass').val(pwd);
 		$('#utype').val(utype);
+		$('#trans').val(trans);
+		$('#tab_ledger').val(ledger);
+		$('#tab_report').val(report);
+		$('#tab_admin').val(admin);
+		$('#tab_setup').val(setup);
+
+		($('#trans').val()>0) ? $('#trans').attr('checked',true) : $('#trans').attr('checked',false);
+		($('#tab_ledger').val()>0) ? $('#tab_ledger').attr('checked',true) : $('#tab_ledger').attr('checked',false);
+		($('#tab_admin').val()>0) ? $('#tab_admin').attr('checked',true) : $('#tab_admin').attr('checked',false);
+		($('#tab_report').val()>0) ? $('#tab_report').attr('checked',true) : $('#tab_report').attr('checked',false);
+		($('#tab_setup').val()>0) ? $('#tab_setup').attr('checked',true) : $('#tab_setup').attr('checked',false);
+
 	});
 
 	// Updating User access
@@ -68,5 +85,9 @@ function user_access_js(){
 			}
 		});
 		// alert("success");
+	});
+
+	$('.check_access').click(function(){
+		($(this).val()>0) ? $(this).attr('value','0') : $(this).attr('value','1');
 	});
 }

@@ -20,17 +20,22 @@ class User_access_model extends CI_Model {
 	}
 
 	public function show_user_access(){
-		return $this->db->get('tb_users');
+		return $this->db->query('select ui.*,
+									    ua.*
+								 from tb_users ui
+								 inner join tb_user_access ua on ua.user_id=ui.user_id');
 	}
 
 	public function show_user_type(){
 		return $this->db->get('tb_user_type');
 	}
 
-	public function update_user($user_type,$fname,$lname,$uname,$pwd,$user_id){
+	public function update_user($user_type,$fname,$lname,$uname,$pwd,$user_id,$trans,$ledger,$report,$admin,$setup){
 		$sql = "update tb_users SET user_type =?, fname=?, lname=?, uname=?, pwd=? WHERE user_id = ?";
-		$data = $this->db->query($sql,array($user_type,$fname,$lname,$uname,$pwd,$user_id));
-		return $data;
+		$this->db->query($sql,array($user_type,$fname,$lname,$uname,$pwd,$user_id));
+
+		$sql2 = "update tb_user_access set tab_transaction=?,tab_ledger=?,tab_report=?,tab_admin=?,tab_setup=? WHERE user_id = ?";
+		$this->db->query($sql2,array($trans,$ledger,$report,$admin,$setup,$user_id));
 	}
 
 }

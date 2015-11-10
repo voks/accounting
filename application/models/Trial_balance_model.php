@@ -22,6 +22,42 @@ class Trial_balance_model extends CI_Model {
 		return $this->db->query($sql)->result();
 	}
 
+	public function get_title($type){
+		if ($type=='Assets') {
+			return $this->db->query("select * from tb_account_title where account_type='Assets'")->result();
+		}
+		else if ($type=='Liabilities') {
+			return $this->db->query("select * from tb_account_title where account_type='Liabilities'")->result();
+		}
+		else if ($type=='Revenue') {
+			return $this->db->query("select * from tb_account_title where account_type='Revenue'")->result();
+		}
+		else if ($type=='Capital') {
+			return $this->db->query("select * from tb_account_title where account_type='Capital'")->result();
+		}
+		else if ($type=='Expense') {
+			return $this->db->query("select * from tb_account_title where account_type='Expense'")->result();
+		}
+	}
+
+	public function get_sub($code){
+		$data =  $this->db->query("select * from tb_account_subsidiary where account_code='".$code."'");
+		if ($data->num_rows()>0) {
+			return $data->result();
+		}
+		else{
+			return 0;
+		}
+	}
+
+	public function get_trans_main($code){
+		return $this->db->query("select sum(trans_dr) as sdebit,sum(trans_cr) as scredit,sub_code,account_name from tb_journal_trans where account_code='".$code."'")->result();
+	}
+
+	public function get_trans_sub($code){
+		return $this->db->query("select sum(trans_dr) as sdebit,sum(trans_cr) as scredit,sub_code,account_name from tb_journal_trans where sub_code='".$code."'")->result();
+	}
+
 	public function search_trial_all($ap_code, $from_date,$to_date){
 		$sql = "
 		select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr 

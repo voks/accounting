@@ -70,6 +70,17 @@
 				</tr>
 			</thead>
 			<tbody class="tran_data">
+				<?php 
+					foreach ($trial as $key) {
+						echo "	<tr>
+									<td>".$key->code." - ".$key->subcode."</td>
+									<td>".$key->title."</td>
+									<td>".$key->debit."</td>
+									<td>".$key->credit."</td>
+									<td></td>
+								</tr>";
+					}
+				?>
 			</tbody>
 		</table>
 	</div>

@@ -89,7 +89,20 @@ class User_access extends CI_Controller {
 				)
 			);
 		} else {
-			$this->user_access_model->update_user($user_access_data['utype'],$user_access_data['fname'],$user_access_data['lname'],$user_access_data['uname'],$user_access_data['pass'],$user_access_data['user_id']);
+			$this->user_access_model->update_user(
+													$user_access_data['utype'],
+													$user_access_data['fname'],
+													$user_access_data['lname'],
+													$user_access_data['uname'],
+													$user_access_data['pass'],
+													$user_access_data['user_id'],
+
+													$user_access_data['tab_transaction'],
+													$user_access_data['tab_ledger'],
+													$user_access_data['tab_report'],
+													$user_access_data['tab_admin'],
+													$user_access_data['tab_setup']
+												);
 			echo jcode(array('success' => 1));
 		}
 

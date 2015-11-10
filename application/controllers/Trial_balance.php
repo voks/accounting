@@ -11,15 +11,56 @@ class Trial_balance extends CI_Controller {
 				);
 			$this->load->view('parts/header',load_data($page_info));
 			$this->load->view('parts/sidebar',load_data($page_info));
-			$viewData = array(
-				'trial_balance' => $this->trial_balance_model->get_accounts()
-				);
-			$this->load->view('modules/trial_balance', $viewData);
+			$trial = array();
+			$trial[] = $this->trial_data('Assets');
+			$trial[] = $this->trial_data('Liabilities');
+			$trial[] = $this->trial_data('Capital');
+			$trial[] = $this->trial_data('Revenue');
+			$trial[] = $this->trial_data('Expense');
+
+			// print_r($trial);
+			$test = array('trial' => $trial );			
+			$this->load->view('modules/trial_balance', $test);
 			$this->load->view('parts/footer');
 		}
 		else{
 			echo jcode(array('success' => 1));
 		}
+	}
+
+	public function trial_data($type){
+			$accounts = $this->trial_balance_model->get_title($type);
+			$trial = array();
+			foreach ($accounts as $key) {
+					$sub = $this->trial_balance_model->get_sub($key->account_code);
+					if ($sub==0) {
+							$account_code = $this->trial_balance_model->get_trans_main($key->account_code); 
+							foreach ($account_code as $data) {
+								$trial[] = array(
+													'Code'  	=> $key->account_code,
+													'subcode'	=> $data->sub_code,
+													'title'		=> $data->account_name,
+													'debit'		=> $data->sdebit,
+													'credit'	=> $data->scredit
+												);
+							}
+					}
+					else{
+						foreach ($sub as $subkey) {
+							$account_code = $this->trial_balance_model->get_trans_sub($subkey->sub_code); 
+							foreach ($account_code as $data) {
+								$trial[] = array(
+													'Code'  	=> $key->account_code,
+													'subcode'	=> $data->sub_code,
+													'title'		=> $data->account_name,
+													'debit'		=> $data->sdebit,
+													'credit'	=> $data->scredit
+												);
+							}
+						}
+					}
+			}
+			return $trial;
 	}
 
 	public function load_page(){
@@ -28,10 +69,17 @@ class Trial_balance extends CI_Controller {
 			$this->session->set_userdata('page_tab', 'Ledger');
 			$this->session->set_userdata('page_title', 'Trial Balance');
 			$this->session->set_userdata('current_page', 'trial_balance');
-			$viewData = array(
-				'trial_balance' => $this->trial_balance_model->get_accounts()
-				);
-			$this->load->view('modules/trial_balance', $viewData);
+
+			$trial = array();
+			$trial[] = $this->trial_data('Assets');
+			$trial[] = $this->trial_data('Liabilities');
+			$trial[] = $this->trial_data('Capital');
+			$trial[] = $this->trial_data('Revenue');
+			$trial[] = $this->trial_data('Expense');
+
+			// print_r($trial);
+			$test = array('trial' => $trial );			
+			$this->load->view('modules/trial_balance', $test);
 		}
 		else{
 			echo jcode(array('success' => 1));

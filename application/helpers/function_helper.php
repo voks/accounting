@@ -6,6 +6,10 @@ function load_data($data = array()){
 		'site_title' => ci()->config->item('site_title') 
 		);
 
+	$audit_actions = array(
+							 //Working in progress for setting of audit messages - MHON 
+						  );
+
 	$user_info = array(
 		'fullname' 			=> ci()->session->userdata('fullname'),
 		'project_name' 		=> ci()->session->userdata('project_name'),
