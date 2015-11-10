@@ -71,90 +71,89 @@ class General_ledger extends CI_Controller {
 							if ($key->trans_journal=='ap') {
 								foreach ($data_ap->result() as $key_ap) {
 									$html.="
-										<tr>
-											<td>".$key_ap->ap_invoice_date."</td>
-											<td>".$key->account_name."</td>
-											<td>".$key_ap->ap_particulars."</td>
-											<td>".$key_ap->ap_invoice_no."</td>
-											<td class='text-right'>".$key_ap->total_debit."</td>
-											<td class='text-right'>".$key_ap->total_credit."</td>
-											
-										</tr>";
+									<tr>
+										<td>".$key_ap->ap_invoice_date."</td>
+										<td>".$key->account_name."</td>
+										<td>".$key_ap->ap_particulars."</td>
+										<td>".$key_ap->ap_invoice_no."</td>
+										<td class='text-right'>".$key_ap->total_debit."</td>
+										<td class='text-right'>".$key_ap->total_credit."</td>
+
+									</tr>";
 								}
 							}
 							elseif ($key->trans_journal=='cd') {
 								$data_cd = $this->general_ledger_model->get_in_cd($key->trans_id);
 								foreach ($data_cd->result() as $key_cd) {
 									$html.="
-										<tr>
-											<td>".$key_cd->cd_date."</td>
-											<td>".$key->account_name."</td>
-											<td>".$key_cd->cd_particulars."</td>
-											<td>".$key_cd->cd_voucher_no."</td>
-											<td class='text-right'>".$key_cd->total_debit."</td>
-											<td class='text-right'>".$key_cd->total_credit."</td>
-											
-										</tr>";
+									<tr>
+										<td>".$key_cd->cd_date."</td>
+										<td>".$key->account_name."</td>
+										<td>".$key_cd->cd_particulars."</td>
+										<td>".$key_cd->cd_voucher_no."</td>
+										<td class='text-right'>".$key_cd->total_debit."</td>
+										<td class='text-right'>".$key_cd->total_credit."</td>
+
+									</tr>";
 								}
 							}
 							elseif ($key->trans_journal=='cr') {
 								$data_cr = $this->general_ledger_model->get_in_cr($key->trans_id);
 								foreach ($data_cr->result() as $key_cr) {
 									$html.="
-										<tr>
-											<td>".$key_cr->cr_or_date."</td>
-											<td>".$key->account_name."</td>
-											<td>".$key_cr->cr_particulars."</td>
-											<td>".$key_cr->cr_or_no."</td>
-											<td class='text-right'>".$key_cr->total_debit."</td>
-											<td class='text-right'>".$key_cr->total_credit."</td>
-											
-										</tr>";
+									<tr>
+										<td>".$key_cr->cr_or_date."</td>
+										<td>".$key->account_name."</td>
+										<td>".$key_cr->cr_particulars."</td>
+										<td>".$key_cr->cr_or_no."</td>
+										<td class='text-right'>".$key_cr->total_debit."</td>
+										<td class='text-right'>".$key_cr->total_credit."</td>
+
+									</tr>";
 								}
 							}
 							elseif ($key->trans_journal=='cr') {
 								$data_cr = $this->general_ledger_model->get_in_cr($key->trans_id);
 								foreach ($data_cr->result() as $key_cr) {
 									$html.="
-										<tr>
-											<td>".$key_cr->cr_or_date."</td>
-											<td>".$key->account_name."</td>
-											<td>".$key_cr->cr_particulars."</td>
-											<td>".$key_cr->cr_or_no."</td>
-											<td class='text-right'>".$key_cr->total_debit."</td>
-											<td class='text-right'>".$key_cr->total_credit."</td>
-											
-										</tr>";
+									<tr>
+										<td>".$key_cr->cr_or_date."</td>
+										<td>".$key->account_name."</td>
+										<td>".$key_cr->cr_particulars."</td>
+										<td>".$key_cr->cr_or_no."</td>
+										<td class='text-right'>".$key_cr->total_debit."</td>
+										<td class='text-right'>".$key_cr->total_credit."</td>
+
+									</tr>";
 								}
 							}
 							elseif ($key->trans_journal=='gj') {
 								$data_gj = $this->general_ledger_model->get_in_gj($key->trans_id);
 								foreach ($data_gj->result() as $key_gj) {
 									$html.="
-										<tr>
-											<td>".$key_gj->gj_date."</td>
-											<td>".$key->account_name."</td>
-											<td>".$key_gj->gj_particulars."</td>
-											<td>".$key_gj->gj_code."</td>
-											<td class='text-right'>".$key_gj->total_debit."</td>
-											<td class='text-right'>".$key_gj->total_credit."</td>
-											
-										</tr>";
+									<tr>
+										<td>".$key_gj->gj_date."</td>
+										<td>".$key->account_name."</td>
+										<td>".$key_gj->gj_particulars."</td>
+										<td>".$key_gj->gj_code."</td>
+										<td class='text-right'>".$key_gj->total_debit."</td>
+										<td class='text-right'>".$key_gj->total_credit."</td>
+
+									</tr>";
 								}
 							}
 							elseif ($key->trans_journal=='sj') {
 								$data_sj = $this->general_ledger_model->get_in_sj($key->trans_id);
 								foreach ($data_sj->result() as $key_sj) {
 									$html.="
-										<tr>
-											<td>".$key_sj->sj_si_date."</td>
-											<td>".$key->account_name."</td>
-											<td>".$key_sj->sj_particulars."</td>
-											<td>".$key_sj->sj_si_no."</td>
-											<td class='text-right'>".$key_sj->total_debit."</td>
-											<td class='text-right'>".$key_sj->total_credit."</td>
-											
-										</tr>";
+									<tr>
+										<td>".$key_sj->sj_si_date."</td>
+										<td>".$key->account_name."</td>
+										<td>".$key_sj->sj_particulars."</td>
+										<td>".$key_sj->sj_si_no."</td>
+										<td class='text-right'>".$key_sj->total_debit."</td>
+										<td class='text-right'>".$key_sj->total_credit."</td>
+									</tr>";
 								}
 							}
 							
@@ -407,61 +406,126 @@ class General_ledger extends CI_Controller {
 
 	public function view_account(){
 		$this->load->model('general_ledger_model');
+		$id = (int)$this->input->post('id');
+		$journal = $this->input->post('journal');
 		if ($this->session->userdata('islogged')) {
-			$id = (int)$this->input->get('id');
-			$page_info = array(
-				'page_tab' 		=> 'Ledger',
-				'page_title' 	=> 'General Ledger'
-				);
-			$this->load->view('parts/header',load_data($page_info));
-			$this->load->view('parts/sidebar');
-
-			$journal = $this->input->get('journal');
-			if ($journal==1) {
-				$this->load->view('modules/view_accounts_payable', $viewData);
-			} 
-			elseif ($journal==2) {
-				$viewData = array(
-					'transdata' => $this->general_ledger_model->view_cr($id)->result()
+			if($journal==1) {
+				echo "ALL";
+			}else if($journal==2) {
+				$this->load->model('journal_cr_model');
+				$data = $this->journal_cr_model->show_crinfo($id);
+				$html = "";
+				foreach ($data as $key) {
+					$html .="
+					<tr>
+						<td>".$key->sub_code."</td>
+						<td>".$key->account_name."</td>
+						<td><input type='text' class='form-control text-right' value='".number_format($key->trans_dr,2)."'></td>
+						<td><input type='text' class='form-control text-right' value='".number_format($key->trans_cr,2)."'></td>
+					</tr>
+					";
+				}
+				echo jcode(
+					array(
+						'success' 	=> 1, 
+						'response' 	=> $data,
+						'html' 		=> $html 
+						)
 					);
-				$this->load->view('modules/view_cash_recipts', $viewData);
-			}
-			elseif ($journal==3) {
-				$viewData = array(
-					'transdata' => $this->general_ledger_model->view_ap($id)->result()
+			}else if($journal==3) {
+				$this->load->model('journal_ap_model');
+				$data = $this->journal_ap_model->show_apinfo($id);
+				$html = "";
+				foreach ($data as $key) {
+					$html .="
+					<tr>
+						<td>".$key->sub_code."</td>
+						<td>".$key->account_name."</td>
+						<td><input type='text' class='form-control text-right' value='".number_format($key->trans_dr,2)."'></td>
+						<td><input type='text' class='form-control text-right' value='".number_format($key->trans_cr,2)."'></td>
+					</tr>
+					";
+				}
+				echo jcode(
+					array(
+						'success' 	=> 1, 
+						'response' 	=> $data,
+						'html' 		=> $html 
+						)
 					);
-				$this->load->view('modules/view_accounts_payable', $viewData);
-			}
-			elseif ($journal==4) {
-				$viewData = array(
-					'transdata' => $this->general_ledger_model->view_cd($id)->result()
+			}else if($journal==4) {
+				$this->load->model('journal_cd_model');
+				$data = $this->journal_cd_model->show_cdinfo($id);
+				$html = "";
+				foreach ($data as $key) {
+					$html .="
+					<tr>
+						<td>".$key->sub_code."</td>
+						<td>".$key->account_name."</td>
+						<td><input type='text' class='form-control text-right' value='".number_format($key->trans_dr,2)."'></td>
+						<td><input type='text' class='form-control text-right' value='".number_format($key->trans_cr,2)."'></td>
+					</tr>
+					";
+				}
+				echo jcode(
+					array(
+						'success' 	=> 1, 
+						'response' 	=> $data,
+						'html' 		=> $html 
+						)
 					);
-				
-				$this->load->view('modules/view_check_dis', $viewData);
-			}
-			elseif ($journal==5) {
-				$viewData = array(
-					'transdata' => $this->general_ledger_model->view_sj($id)->result()
+			}else if($journal==5) {
+				$this->load->model('journal_sj_model');
+				$data = $this->journal_sj_model->show_sjinfo($id);
+				$html = "";
+				foreach ($data as $key) {
+					$html .="
+					<tr>
+						<td>".$key->sub_code."</td>
+						<td>".$key->account_name."</td>
+						<td><input type='text' class='form-control text-right' value='".number_format($key->trans_dr,2)."'></td>
+						<td><input type='text' class='form-control text-right' value='".number_format($key->trans_cr,2)."'></td>
+					</tr>
+					";
+				}
+				echo jcode(
+					array(
+						'success' 	=> 1, 
+						'response' 	=> $data,
+						'html' 		=> $html 
+						)
 					);
-				$this->load->view('modules/view_sales_journal', $viewData);
-			}
-			elseif ($journal==6) {
-				$viewData = array(
-					'transdata' => $this->general_ledger_model->view_gj($id)->result()
+			}else if($journal==6) {
+				$this->load->model('journal_gj_model');
+				$data = $this->journal_gj_model->show_gjinfo($id);
+				$html = "";
+				foreach ($data as $key) {
+					$html .="
+					<tr>
+						<td>".$key->sub_code."</td>
+						<td>".$key->account_name."</td>
+						<td><input type='text' class='form-control text-right' value='".number_format($key->trans_dr,2)."'></td>
+						<td><input type='text' class='form-control text-right' value='".number_format($key->trans_cr,2)."'></td>
+					</tr>
+					";
+				}
+				echo jcode(
+					array(
+						'success' 	=> 1,
+						'response' 	=> $data,
+						'html' 		=> $html
+						)
 					);
-				$this->load->view('modules/view_gen_journal',  $viewData);
 			}
-			$this->load->view('parts/footer');
-		}else {
-			echo jcode(array('success' => 1));
+		}else{
+			echo "7";
 		}
 	}
-
 
 	public function summary_report(){
 		$this->load->model("general_ledger_model");
 		if ($this->session->userdata('islogged')) {
-			
+
 			$ctr_acct = $this->input->get('ctr');
 			$sub_acct = $this->input->get('sub');
 			$from = $this->input->get('fr');

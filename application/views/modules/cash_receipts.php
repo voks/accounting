@@ -23,7 +23,6 @@
 							<span class="txt">Account Code</span>
 							<input type="text" class="form-control entry-text" value="" name="chart[account_code]">
 						</div>
-
 						<div class="col-md-9">
 							<span class="txt">Account Title</span>
 							<select id="" class="form-control select2-dropdown entry-select" >
@@ -41,13 +40,11 @@
 							<span class="txt">Subsidiary Code</span>
 							<input type="text" id="" class="form-control sub-input-masked entry-subcode " name="chart[sub_code]" data-inputmask-clearmaskonlostfocus="false">
 						</div>
-
 						<div class="col-md-7">
 							<span class="txt">Subsidiary Name</span>
 							<select id="" class="form-control select2-dropdown entry-subname">
 							</select>
 						</div>
-
 						<div class="col-md-2">
 							<button class="btn btn-style-1 margin-top-30 pull-right"><i class='fa fa-search'></i> Search</button>
 						</div>
@@ -94,27 +91,27 @@
 									foreach ($all_accounts->result() as $key) {
 										echo "
 										<tr'>
-										<td class='col-md-1'><label><input type='checkbox' class='' value='0' id='check' data-subcode='".$key->sub_code."' data-subname='".$key->sub_name."'><label></td>
-										<td class='col-md-1'>".$key->account_code."</td>
-										<td class='col-md-3'>".$key->account_title."</td>
-										<td class='col-md-2'>".$key->sub_code."</td>
-										<td class='col-md-4' colspan='2'>".$key->sub_name."</td>
-									</tr>
-									";
-								}
-								?>
-							</tbody>
-						</table>
+											<td class='col-md-1'><label><input type='checkbox' class='' value='0' id='check' data-subcode='".$key->sub_code."' data-subname='".$key->sub_name."'><label></td>
+											<td class='col-md-1'>".$key->account_code."</td>
+											<td class='col-md-3'>".$key->account_title."</td>
+											<td class='col-md-2'>".$key->sub_code."</td>
+											<td class='col-md-4' colspan='2'>".$key->sub_name."</td>
+										</tr>
+										";
+									}
+									?>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-style-1 btn-add-trans" type="button" >Add Transaction</button>
-			<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> Cancel</button>
-		</div>
-	</div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+			<div class="modal-footer">
+				<button class="btn btn-style-1 btn-add-trans" type="button" >Add Transaction</button>
+				<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> Cancel</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
 </div>
 
 <!--Edit Trasaction Modal-->
