@@ -15,7 +15,7 @@
 			<select class="form-control select2-dropdown entry-select" >
 				<option value=""> -- Select Account Title -- </option>
 				<?php
-				foreach ($trial_balance as $title) {
+				foreach ($trial as $title) {
 					echo "<option>".$title->account_code." - ".$title->account_title."</option>";
 				}
 				?>
@@ -71,15 +71,18 @@
 			</thead>
 			<tbody class="tran_data">
 				<?php 
-					foreach ($trial as $key) {
-						echo "	<tr>
-									<td>".$key->code." - ".$key->subcode."</td>
-									<td>".$key->title."</td>
-									<td>".$key->debit."</td>
-									<td>".$key->credit."</td>
-									<td></td>
-								</tr>";
-					}
+				// print_r($trials);
+				echo $this->db->last_query();
+				foreach ($trials as $key) {
+					echo "
+					<tr>
+						<td>".$key->code." - ".$key->subcode."</td>
+						<td>".$key->title."</td>
+						<td>".$key->debit."</td>
+						<td>".$key->credit."</td>
+						<td></td>
+					</tr>";
+				}
 				?>
 			</tbody>
 		</table>

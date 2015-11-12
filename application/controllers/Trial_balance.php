@@ -29,38 +29,38 @@ class Trial_balance extends CI_Controller {
 	}
 
 	public function trial_data($type){
-			$accounts = $this->trial_balance_model->get_title($type);
-			$trial = array();
-			foreach ($accounts as $key) {
-					$sub = $this->trial_balance_model->get_sub($key->account_code);
-					if ($sub==0) {
-							$account_code = $this->trial_balance_model->get_trans_main($key->account_code); 
-							foreach ($account_code as $data) {
-								$trial[] = array(
-													'Code'  	=> $key->account_code,
-													'subcode'	=> $data->sub_code,
-													'title'		=> $data->account_name,
-													'debit'		=> $data->sdebit,
-													'credit'	=> $data->scredit
-												);
-							}
-					}
-					else{
-						foreach ($sub as $subkey) {
-							$account_code = $this->trial_balance_model->get_trans_sub($subkey->sub_code); 
-							foreach ($account_code as $data) {
-								$trial[] = array(
-													'Code'  	=> $key->account_code,
-													'subcode'	=> $data->sub_code,
-													'title'		=> $data->account_name,
-													'debit'		=> $data->sdebit,
-													'credit'	=> $data->scredit
-												);
-							}
-						}
-					}
+		$accounts = $this->trial_balance_model->get_title($type);
+		$trial = array();
+		foreach ($accounts as $key) {
+			$sub = $this->trial_balance_model->get_sub($key->account_code);
+			if ($sub==0) {
+				$account_code = $this->trial_balance_model->get_trans_main($key->account_code); 
+				foreach ($account_code as $data) {
+					$trial[] = array(
+						'Code'  	=> $key->account_code,
+						'subcode'	=> $data->sub_code,
+						'title'		=> $data->account_name,
+						'debit'		=> $data->sdebit,
+						'credit'	=> $data->scredit
+						);
+				}
 			}
-			return $trial;
+			else{
+				foreach ($sub as $subkey) {
+					$account_code = $this->trial_balance_model->get_trans_sub($subkey->sub_code); 
+					foreach ($account_code as $data) {
+						$trial[] = array(
+							'Code'  	=> $key->account_code,
+							'subcode'	=> $data->sub_code,
+							'title'		=> $data->account_name,
+							'debit'		=> $data->sdebit,
+							'credit'	=> $data->scredit
+							);
+					}
+				}
+			}
+		}
+		return $trial;
 	}
 
 	public function load_page(){
@@ -78,7 +78,7 @@ class Trial_balance extends CI_Controller {
 			$trial[] = $this->trial_data('Expense');
 
 			// print_r($trial);
-			$test = array('trial' => $trial );			
+			$test = array('trials' => $trial );	
 			$this->load->view('modules/trial_balance', $test);
 		}
 		else{
