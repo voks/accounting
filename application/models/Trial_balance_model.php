@@ -24,24 +24,30 @@ class Trial_balance_model extends CI_Model {
 
 	public function get_title($type){
 		if ($type=='Assets') {
-			return $this->db->query("select * from tb_account_title where account_type='Assets'")->result();
+			$sql = "select * from tb_account_title where account_type='Assets'";
+			return $this->db->query($sql)->result();
 		}
 		else if ($type=='Liabilities') {
-			return $this->db->query("select * from tb_account_title where account_type='Liabilities'")->result();
+			$sql = "select * from tb_account_title where account_type='Liabilities'";
+			return $this->db->query($sql)->result();
 		}
 		else if ($type=='Revenue') {
-			return $this->db->query("select * from tb_account_title where account_type='Revenue'")->result();
+			$sql = "select * from tb_account_title where account_type='Revenue'";
+			return $this->db->query($sql)->result();
 		}
 		else if ($type=='Capital') {
-			return $this->db->query("select * from tb_account_title where account_type='Capital'")->result();
+			$sql = "select * from tb_account_title where account_type='Capital'";
+			return $this->db->query($sql)->result();
 		}
 		else if ($type=='Expense') {
-			return $this->db->query("select * from tb_account_title where account_type='Expense'")->result();
+			$sql = "select * from tb_account_title where account_type='Expense'";
+			return $this->db->query($sql)->result();
 		}
 	}
 
 	public function get_sub($code){
-		$data =  $this->db->query("select * from tb_account_subsidiary where account_code='".$code."'");
+		$sql = "select * from tb_account_subsidiary where account_code='".$code."'";
+		$data =  $this->db->query($sql);
 		if ($data->num_rows()>0) {
 			return $data->result();
 		}
@@ -49,7 +55,7 @@ class Trial_balance_model extends CI_Model {
 			return 0;
 		}
 	}
-
+	
 	public function get_trans_main($code,$date1,$date2){
 		return $this->db->query("select sum(trans_dr) as sdebit,sum(trans_cr) as scredit,sub_code,account_name from tb_journal_trans where account_code='".$code."' and trans_date between '".$date1."' and '".$date2."'")->result();
 	}

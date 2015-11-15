@@ -15,7 +15,7 @@
 			<select class="form-control select2-dropdown entry-select" >
 				<option value=""> -- Select Account Title -- </option>
 				<?php
-				foreach ($trial_balance as $title) {
+				foreach ($trial as $title) {
 					echo "<option>".$title->account_code." - ".$title->account_title."</option>";
 				}
 				?>
@@ -71,6 +71,7 @@
 			</thead>
 			<tbody class="tbtran_data">
 				<?php 
+
 					// $sumd=0;
 					// $sumc=0;
 					// foreach ($trial as $key) {
@@ -96,6 +97,8 @@
 					// 				<td>".$sumc."</td>
 					// 			</tr>"
 					// 		;
+
+				// print_r($trials);
 				?>
 			</tbody>
 		</table>
