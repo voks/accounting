@@ -448,3 +448,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', end
      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
 }
+
+.tbtran_data tr td{
+  text-align: center;
+}
+
+.tbtran_data tr .title{
+  text-align: justify;
+}

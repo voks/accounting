@@ -69,17 +69,33 @@
 					<th class="text-center">Action</th>
 				</tr>
 			</thead>
-			<tbody class="tran_data">
+			<tbody class="tbtran_data">
 				<?php 
-					foreach ($trial as $key) {
-						echo "	<tr>
-									<td>".$key->code." - ".$key->subcode."</td>
-									<td>".$key->title."</td>
-									<td>".$key->debit."</td>
-									<td>".$key->credit."</td>
-									<td></td>
-								</tr>";
-					}
+					// $sumd=0;
+					// $sumc=0;
+					// foreach ($trial as $key) {
+					// 	echo "	
+					// 			<tr>
+					// 				<td>".element('subcode',$key)."</td>
+					// 				<td class='title'>".element('title',$key)."</td>
+					// 				<td>".element('debit',$key)."</td>
+					// 				<td>".element('credit',$key)."</td>
+					// 				<td>
+					// 					<a href='#' data-ac='".element('code',$key)."' data-sb='".element('subcode',$key)."' class='btn-style-1 animate-4 viewLedger'><i class='fa fa-eye'></i></a>
+					// 				</td>
+					// 			</tr>
+					// 		";
+					// 		$sumd+=element('debit',$key);
+					// 		$sumc+=element('credit',$key);
+					// }
+					// 	echo "
+					// 			<tr>
+					// 				<td></td>
+					// 				<td class='title'>Total:</td>
+					// 				<td>".$sumd."</td>
+					// 				<td>".$sumc."</td>
+					// 			</tr>"
+					// 		;
 				?>
 			</tbody>
 		</table>

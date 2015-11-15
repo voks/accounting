@@ -290,6 +290,47 @@ class Site extends CI_Controller {
 		}
 	}
 
+	public function trial_data($type){
+			$accounts = $this->trial_balance_model->get_title($type);
+			$trial = array();
+			foreach ($accounts as $key) {
+					$sub = $this->trial_balance_model->get_sub($key->account_code);
+					if ($sub==0) {
+						if ($this->trial_balance_model->checktrans($key->account_code)>0) {
+							$account_code = $this->trial_balance_model->get_trans_main($key->account_code); 
+							foreach ($account_code as $data) {
+								$trial[] = array(
+													'code'  	=> $key->account_code,
+													'subcode'	=> $data->sub_code,
+													'title'		=> $data->account_name,
+													'debit'		=> $data->sdebit,
+													'credit'	=> $data->scredit
+												);
+								
+							}
+						}
+					}
+					else{
+						foreach ($sub as $subkey) {
+							if ($this->trial_balance_model->checktrans($subkey->sub_code)>0) {
+								$account_code = $this->trial_balance_model->get_trans_sub($subkey->sub_code); 
+								foreach ($account_code as $data) {
+									$trial[] = array(
+														'code'  	=> $key->account_code,
+														'subcode'	=> $data->sub_code,
+														'title'		=> $data->account_name,
+														'debit'		=> $data->sdebit,
+														'credit'	=> $data->scredit
+													);
+									
+								}
+							}
+						}
+					}
+			}
+			return $trial;
+	}
+
 	public function search_chartaccount(){
 		$this->load->model('site_model');
 		$chart_search = $this->input->post('chart');
