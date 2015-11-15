@@ -10,8 +10,8 @@ function trial_balance_js(){
 			data: $('.form_trail').serialize(),
 			success: function (data) { 
 				if(data.success==1){
-					$('.tran_data').empty();
-					$(data.data).appendTo($('#datalist > tbody:last')).hide().fadeIn(1000);
+					$('#datalist tbody').html('');
+					$(data.html).appendTo($('#datalist > tbody:last')).hide().fadeIn(1000);
 					view_account();
 				}
 				else if(data.success==2){

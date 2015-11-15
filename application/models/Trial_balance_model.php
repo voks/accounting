@@ -17,32 +17,13 @@ class Trial_balance_model extends CI_Model {
 
 	public function get_accounts(){
 		$sql = "
-		select * from tb_account_title where project_id=".$this->session->userdata('project_id')." 
-		";
+		select * from tb_account_title where project_id=".$this->session->userdata('project_id')."";
 		return $this->db->query($sql)->result();
 	}
 
 	public function get_title($type){
-		if ($type=='Assets') {
-			$sql = "select * from tb_account_title where account_type='Assets'";
+			$sql = "select * from tb_journal_trans where trans_journal='".$type."' GROUP BY account_code ";
 			return $this->db->query($sql)->result();
-		}
-		else if ($type=='Liabilities') {
-			$sql = "select * from tb_account_title where account_type='Liabilities'";
-			return $this->db->query($sql)->result();
-		}
-		else if ($type=='Revenue') {
-			$sql = "select * from tb_account_title where account_type='Revenue'";
-			return $this->db->query($sql)->result();
-		}
-		else if ($type=='Capital') {
-			$sql = "select * from tb_account_title where account_type='Capital'";
-			return $this->db->query($sql)->result();
-		}
-		else if ($type=='Expense') {
-			$sql = "select * from tb_account_title where account_type='Expense'";
-			return $this->db->query($sql)->result();
-		}
 	}
 
 	public function get_sub($code){
@@ -55,16 +36,16 @@ class Trial_balance_model extends CI_Model {
 			return 0;
 		}
 	}
-	
-	public function get_trans_main($code,$date1,$date2){
-		return $this->db->query("select sum(trans_dr) as sdebit,sum(trans_cr) as scredit,sub_code,account_name from tb_journal_trans where account_code='".$code."' and trans_date between '".$date1."' and '".$date2."'")->result();
+
+	public function get_trans_main($code,$date1,$date2,$type){
+		return $this->db->query("select sum(trans_dr) as sdebit,sum(trans_cr) as scredit,sub_code,account_name from tb_journal_trans where account_code='".$code."' and trans_date between '".$date1."' and '".$date2."' and trans_journal='".$type."' GROUP BY account_code ")->result();
 	}
 
-	public function get_trans_sub($code,$date1,$date2){
-		return $this->db->query("select sum(trans_dr) as sdebit,sum(trans_cr) as scredit,sub_code,account_name from tb_journal_trans where sub_code='".$code."' and trans_date between '".$date1."' and '".$date2."'")->result();
+	public function get_trans_sub($code,$date1,$date2,$type){
+		return $this->db->query("select sum(trans_dr) as sdebit,sum(trans_cr) as scredit,sub_code,account_name from tb_journal_trans where sub_code='".$code."' and trans_date between '".$date1."' and '".$date2."' and trans_journal='".$type."'  GROUP BY account_code ")->result();
 	}
 
-	public function checktrans($code,$date1,$date2){
-		return $this->db->query("select * from tb_journal_trans where account_code='".$code."' or sub_code='".$code."' and trans_date between '".$date1."' and '".$date2."'")->num_rows();
+	public function checktrans($code,$date1,$date2,$type){
+		return $this->db->query("select * from tb_journal_trans where account_code='".$code."' or sub_code='".$code."' and trans_date between '".$date1."' and '".$date2."' and trans_journal='".$type."' GROUP BY account_code ")->num_rows();
 	}
 }

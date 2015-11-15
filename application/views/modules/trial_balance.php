@@ -15,7 +15,7 @@
 			<select class="form-control select2-dropdown entry-select" >
 				<option value=""> -- Select Account Title -- </option>
 				<?php
-				foreach ($trial as $title) {
+				foreach ($trial_balance as $title) {
 					echo "<option>".$title->account_code." - ".$title->account_title."</option>";
 				}
 				?>
