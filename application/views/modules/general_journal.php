@@ -210,19 +210,19 @@
 			<div class="col-md-2">
 				<span class="txt">Journal #:</span>
 				<!-- Auto generate journal num  -->
-				<input type="text" class="form-control main_txtbox" id="gj_code" name="gj[gj_code]">
+				<input type="text" class="form-control empty_txtbx" id="gj_code" name="gj[gj_code]">
 			</div>
 			<div class="col-md-2">
 				<span class="txt">Date</span>
-				<input type="text" placeholder="mm/dd/yyy" class="form-control datepicker main_txtbox" id="gj_date" name="gj[gj_date]">
+				<input type="text" placeholder="mm/dd/yyy" class="form-control datepicker empty_txtbx" id="gj_date" name="gj[gj_date]">
 			</div>
 			<div class="col-md-3">
 				<span class="txt">Journal Amount:</span>
-				<input type="text" class="form-control main_txtbox amount" id="gj_amount" name="gj[gj_amount]">
+				<input type="text" class="form-control empty_txtbx amount" id="gj_amount" name="gj[gj_amount]">
 			</div>
 			<div class="col-md-5">
 				<span class="txt">Particulars</span>
-				<input type="text" class="form-control main_txtbox" id="gj_particulars" name="gj[gj_particulars]">
+				<input type="text" class="form-control empty_txtbx" id="gj_particulars" name="gj[gj_particulars]">
 			</div>
 		</div>
 	</div>
@@ -254,8 +254,8 @@
 					<tfoot>
 						<tr class="row_total">
 							<td colspan="2">TOTAL</td>
-							<td><input type="text" class="form-control amount main_txtbox entry-debit-total" readonly="true" id="total_debit" name="gj[total_debit]"></td>
-							<td><input type="text" class="form-control amount main_txtbox entry-credit-total"  readonly="true" id="total_credit" name="gj[total_credit]"></td>
+							<td><input type="text" class="form-control amount empty_txtbx entry-debit-total" readonly="true" id="total_debit" name="gj[total_debit]"></td>
+							<td><input type="text" class="form-control amount empty_txtbx entry-credit-total"  readonly="true" id="total_credit" name="gj[total_credit]"></td>
 							<td></td>
 						</tr>
 					</tfoot>

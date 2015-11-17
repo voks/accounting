@@ -72,10 +72,13 @@ class Site extends CI_Controller {
 					);
 				$this->load->view('parts/header',load_data($page_info));
 				$this->load->view('parts/sidebar',load_data($page_info));
-				$user_access_type = array('user_access_type' => $this->user_access_model->show_user_type()->result());
-				$user_access = array('user_access' => $this->user_access_model->show_user_access()->result());
-				$projects = array('project_list' => $this->user_access_model->project_list());
-				$this->load->view('modules/user_access', array_merge($user_access,$projects,$user_access_type));
+				$data = array(
+					'user_access_type' 	=> $this->user_access_model->show_user_type()->result(),
+					'u_id' 				=> $this->user_access_model->get_last_record(),
+					'user_access' 		=> $this->user_access_model->show_user_access()->result(),
+					'project_list' 		=> $this->user_access_model->project_list()
+					);
+				$this->load->view('modules/user_access', $data);
 				$this->load->view('parts/footer');
 				break;
 				// Use to show the Bank name in the bank recon module under select field 
@@ -142,7 +145,8 @@ class Site extends CI_Controller {
 				$viewData = array(
 					'journal_cd' => $this->journal_cd_model->show_bank(),
 					'account_title' => $this->subsidiary_account_model->get_accounts(),
-                	'all_accounts' => $this->site_model->load_all_accounts()
+					'all_accounts' => $this->site_model->load_all_accounts(),
+					'v_num' => $this->journal_cd_model->get_last_vnum()
 					);
 				$this->load->view('modules/check_dis', $viewData);
 				$this->load->view('parts/footer');
@@ -163,7 +167,7 @@ class Site extends CI_Controller {
 				$viewData = array(
 					'journal_sj' => $this->journal_sj_model->show_customer(),
 					'account_title' => $this->subsidiary_account_model->get_accounts(),
-                	'all_accounts' => $this->site_model->load_all_accounts()
+					'all_accounts' => $this->site_model->load_all_accounts()
 					);
 				$this->load->view('modules/sales_journal', $viewData);
 				$this->load->view('parts/footer');
@@ -186,8 +190,8 @@ class Site extends CI_Controller {
 					'journal_cr_bank' => $this->journal_cr_model->show_bank(),
 					'account_title' => $this->subsidiary_account_model->get_accounts(),
 					'bi_no' => $this->journal_cr_model->get_bi(),
-                	'all_accounts' => $this->site_model->load_all_accounts()
-				);
+					'all_accounts' => $this->site_model->load_all_accounts()
+					);
 				$this->load->view('modules/cash_receipts', $viewData);
 				$this->load->view('parts/footer');
 				break;
@@ -204,7 +208,7 @@ class Site extends CI_Controller {
 				$this->load->view('parts/sidebar');
 				$viewData = array(
 					'account_title' => $this->subsidiary_account_model->get_accounts(),
-                	'all_accounts' => $this->site_model->load_all_accounts()
+					'all_accounts' => $this->site_model->load_all_accounts()
 					);
 				$this->load->view('modules/general_journal', $viewData);
 				$this->load->view('parts/footer');
@@ -291,44 +295,44 @@ class Site extends CI_Controller {
 	}
 
 	public function trial_data($type){
-			$accounts = $this->trial_balance_model->get_title($type);
-			$trial = array();
-			foreach ($accounts as $key) {
-					$sub = $this->trial_balance_model->get_sub($key->account_code);
-					if ($sub==0) {
-						if ($this->trial_balance_model->checktrans($key->account_code)>0) {
-							$account_code = $this->trial_balance_model->get_trans_main($key->account_code); 
-							foreach ($account_code as $data) {
-								$trial[] = array(
-													'code'  	=> $key->account_code,
-													'subcode'	=> $data->sub_code,
-													'title'		=> $data->account_name,
-													'debit'		=> $data->sdebit,
-													'credit'	=> $data->scredit
-												);
-								
-							}
-						}
+		$accounts = $this->trial_balance_model->get_title($type);
+		$trial = array();
+		foreach ($accounts as $key) {
+			$sub = $this->trial_balance_model->get_sub($key->account_code);
+			if ($sub==0) {
+				if ($this->trial_balance_model->checktrans($key->account_code)>0) {
+					$account_code = $this->trial_balance_model->get_trans_main($key->account_code); 
+					foreach ($account_code as $data) {
+						$trial[] = array(
+							'code'  	=> $key->account_code,
+							'subcode'	=> $data->sub_code,
+							'title'		=> $data->account_name,
+							'debit'		=> $data->sdebit,
+							'credit'	=> $data->scredit
+							);
+
 					}
-					else{
-						foreach ($sub as $subkey) {
-							if ($this->trial_balance_model->checktrans($subkey->sub_code)>0) {
-								$account_code = $this->trial_balance_model->get_trans_sub($subkey->sub_code); 
-								foreach ($account_code as $data) {
-									$trial[] = array(
-														'code'  	=> $key->account_code,
-														'subcode'	=> $data->sub_code,
-														'title'		=> $data->account_name,
-														'debit'		=> $data->sdebit,
-														'credit'	=> $data->scredit
-													);
-									
-								}
-							}
-						}
-					}
+				}
 			}
-			return $trial;
+			else{
+				foreach ($sub as $subkey) {
+					if ($this->trial_balance_model->checktrans($subkey->sub_code)>0) {
+						$account_code = $this->trial_balance_model->get_trans_sub($subkey->sub_code); 
+						foreach ($account_code as $data) {
+							$trial[] = array(
+								'code'  	=> $key->account_code,
+								'subcode'	=> $data->sub_code,
+								'title'		=> $data->account_name,
+								'debit'		=> $data->sdebit,
+								'credit'	=> $data->scredit
+								);
+
+						}
+					}
+				}
+			}
+		}
+		return $trial;
 	}
 
 	public function search_chartaccount(){

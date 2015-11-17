@@ -217,15 +217,15 @@
 	<div class="row">
 		<div class="col-md-2">
 			<span class="txt">OR #:</span>
-			<input type="text" class="form-control main_txtbox" id="cr_or_no" name="cr[cr_or_no]">
+			<input type="text" class="form-control empty_txtbx" id="cr_or_no" name="cr[cr_or_no]">
 		</div>
 		<div class="col-md-2">
 			<span class="txt">OR Date:</span>
-			<input type="text" placeholder="mm/dd/yyy" class="form-control datepicker main_txtbox" id="cr_or_date" name="cr[cr_or_date]">
+			<input type="text" placeholder="mm/dd/yyy" class="form-control datepicker empty_txtbx" id="cr_or_date" name="cr[cr_or_date]">
 		</div>
 		<div class="col-md-5">
 			<span class="txt">Customer:</span>
-			<select class="form-control main_txtbox show-customer select2-dropdown" id="cr_master_name_customer" name="cr[cr_master_name_customer]">
+			<select class="form-control empty_txtbx show-customer select2-dropdown" id="cr_master_name_customer" name="cr[cr_master_name_customer]">
 				<option> -- Select Customer -- </option>
 				<?php 
 				foreach ($journal_cr_customer as $data) {
@@ -236,7 +236,7 @@
 		</div>
 		<div class="col-md-3">
 			<span class="txt">BI #:</span>
-			<!-- <input type="text" class="form-control main_txtbox" id="cr_sj_si_no" name="cr[cr_sj_si_no]"> -->
+			<!-- <input type="text" class="form-control empty_txtbx" id="cr_sj_si_no" name="cr[cr_sj_si_no]"> -->
 			<select id="cr_sj_si_no" name="cr[cr_sj_si_no]" class="form-control select2-dropdown">
 				<option> -- Select BI # -- </option>
 				<?php 
@@ -251,7 +251,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<span class="txt">Bank:</span>
-			<select class="form-control main_txtbox show-bank select2-dropdown" id="cr_master_name_bank" name="cr[cr_master_name_bank]">
+			<select class="form-control empty_txtbx show-bank select2-dropdown" id="cr_master_name_bank" name="cr[cr_master_name_bank]">
 				<option> -- Select Bank-- </option>
 				<?php 
 				foreach ($journal_cr_bank as $data) {
@@ -262,11 +262,11 @@
 		</div>
 		<div class="col-md-3">
 			<span class="txt">OR Amount:</span>
-			<input type="text" class="form-control main_txtbox amount" id="cr_or_amount" name="cr[cr_or_amount]">
+			<input type="text" class="form-control empty_txtbx amount" id="cr_or_amount" name="cr[cr_or_amount]">
 		</div>
 		<div class="col-md-5">
 			<span class="txt">Particulars:</span>
-			<input type="text" class="form-control main_txtbox" id="cr_particulars" name="cr[cr_particulars]">
+			<input type="text" class="form-control empty_txtbx" id="cr_particulars" name="cr[cr_particulars]">
 		</div>
 	</div>
 	<!-- fourth Row: Adding Accounts -->
@@ -297,8 +297,8 @@
 					<tfoot>
 						<tr class="row_total">
 							<td colspan="2">TOTAL</td>
-							<td><input type="text" class="form-control main_txtbox amount entry-debit-total" readonly="true" id="total_debit" name="cr[total_debit]"></td>
-							<td><input type="text" class="form-control main_txtbox amount entry-credit-total"  readonly="true" id="total_credit" name="cr[total_credit]"></td>
+							<td><input type="text" class="form-control empty_txtbx amount entry-debit-total" readonly="true" id="total_debit" name="cr[total_debit]"></td>
+							<td><input type="text" class="form-control empty_txtbx amount entry-credit-total"  readonly="true" id="total_credit" name="cr[total_credit]"></td>
 							<td></td>
 						</tr>
 					</tfoot>

@@ -16,7 +16,8 @@ class Check_dis extends CI_Controller {
 			$viewData = array(
 				'journal_cd' => $this->journal_cd_model->show_bank(),
 				'account_title' => $this->subsidiary_account_model->get_accounts(),
-				'all_accounts' => $this->site_model->load_all_accounts()
+				'all_accounts' => $this->site_model->load_all_accounts(),
+				'v_num' => $this->journal_cd_model->get_last_vnum()
 				);
 			$this->load->view('modules/check_dis', $viewData);
 			$this->load->view('parts/footer');
@@ -37,7 +38,8 @@ class Check_dis extends CI_Controller {
 			$viewData = array(
 				'journal_cd' => $this->journal_cd_model->show_bank(),
 				'account_title' => $this->subsidiary_account_model->get_accounts(),
-				'all_accounts' => $this->site_model->load_all_accounts()
+				'all_accounts' => $this->site_model->load_all_accounts(),
+				'v_num' => $this->journal_cd_model->get_last_vnum()
 				);
 			$this->load->view('modules/check_dis', $viewData);
 		}

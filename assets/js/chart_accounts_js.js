@@ -11,7 +11,7 @@ function chart_accounts_js(){
 			success: function (data) { 
 				if(data.success==1){
 					$('.main-alert-success').slideDown().delay(2000).slideUp();
-					$('.main_txtbox').val("");
+					$('.empty_txtbx').val("");
 					$('.main-alert-success').delay(2000).fadeOut();
 				}
 				else if(data.success==2){

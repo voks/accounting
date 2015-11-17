@@ -223,19 +223,19 @@
 	<div class="row">
 		<div class="col-md-2">
 			<span class="txt">Invoice Date:</span>
-			<input type="text" placeholder="mm/dd/yyy" class="form-control datepicker main_txtbox" id="ap_invoice_date" name="ap[ap_invoice_date]">
+			<input type="text" placeholder="mm/dd/yyy" class="form-control datepicker empty_txtbx" id="ap_invoice_date" name="ap[ap_invoice_date]">
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Invoice #:</span>
-			<input type="text" class="form-control main_txtbox" id="ap_ivoice_no" name="ap[ap_invoice_no]">
+			<input type="text" class="form-control empty_txtbx" id="ap_ivoice_no" name="ap[ap_invoice_no]">
 		</div>
 		<div class="col-md-4">
 			<span class="txt">PO #:</span>
-			<input type="text" class="form-control main_txtbox" id="ap_po_no" name="ap[ap_po_no]">
+			<input type="text" class="form-control empty_txtbx" id="ap_po_no" name="ap[ap_po_no]">
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Terms:</span>
-			<select class="form-control main_txtbox select2-dropdown" id="ap_terms" name="ap[ap_terms]">
+			<select class="form-control empty_txtbx select2-dropdown" id="ap_terms" name="ap[ap_terms]">
 				<option value="0">0</option>
 				<option value="7">7</option>
 				<option value="15">15</option>
@@ -249,18 +249,18 @@
 	<div class="row">
 		<div class="col-md-5">
 			<span class="txt">Supplier:</span>
-			<select class="form-control main_txtbox show-supplier select2-dropdown" id="ap_master_name" name="ap[ap_master_name]">
+			<select class="form-control empty_txtbx show-supplier select2-dropdown" id="ap_master_name" name="ap[ap_master_name]">
 				<option value="00000"> -- Select Supplier -- </option>
 				<?php 
 				foreach ($bank_recon as $data) {
-					echo "<option class='main_txtbox' data-master='".$data->master_name."' data-mcode='".$data->master_code."'>".$data->master_code." - ".$data->master_name."</option>";
+					echo "<option class='empty_txtbx' data-master='".$data->master_name."' data-mcode='".$data->master_code."'>".$data->master_code." - ".$data->master_name."</option>";
 				}
 				?>
 			</select>
 		</div>
 		<div class="col-md-4">
 			<span class="txt">Expenses:</span>
-			<select class="form-control main_txtbox show-expenses select2-dropdown" id="ap_expenses">
+			<select class="form-control empty_txtbx show-expenses select2-dropdown" id="ap_expenses">
 				<option> -- Select Expense -- </option>
 				<?php 
 				foreach ($accounts_payable as $data) {
@@ -271,14 +271,14 @@
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Invoice Amount:</span>
-			<input type="text" class="form-control main_txtbox amount" id="ap_invoice_amount" name="ap[ap_invoice_amount]">
+			<input type="text" class="form-control empty_txtbx amount" id="ap_invoice_amount" name="ap[ap_invoice_amount]">
 		</div>
 	</div>
 	<!-- Third Row -->
 	<div class="row">
 		<div class="col-md-12">
 			<span class="txt">Particulars:</span>
-			<input type="text" class="form-control main_txtbox" id="ap_particulars" name="ap[ap_particulars]">
+			<input type="text" class="form-control empty_txtbx" id="ap_particulars" name="ap[ap_particulars]">
 		</div>
 	</div>
 	<!-- fourth Row: Adding Accounts -->
@@ -309,8 +309,8 @@
 					<tfoot>
 						<tr class="row_total">
 							<td colspan="2">TOTAL</td>
-							<td><input type="text" class="form-control main_txtbox amount entry-debit-total" readonly="true" name="ap[total_debit]"></td>
-							<td><input type="text" class="form-control main_txtbox amount entry-credit-total"  readonly="true" name="ap[total_credit]"></td>
+							<td><input type="text" class="form-control empty_txtbx amount entry-debit-total" readonly="true" name="ap[total_debit]"></td>
+							<td><input type="text" class="form-control empty_txtbx amount entry-credit-total"  readonly="true" name="ap[total_credit]"></td>
 							<td></td>
 						</tr>
 					</tfoot>	

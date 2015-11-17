@@ -19,7 +19,7 @@
 					<!-- Alerts -->
 					<div class="row">
 						<div class="col-md-12">
-						<div class="alert alert-success alert-dismissible fade in  editUA-alert-success" role="alert">
+							<div class="alert alert-success alert-dismissible fade in  editUA-alert-success" role="alert">
 								<button type="button" class="close"  aria-label="Close"><span aria-hidden="true">×</span></button>
 								<strong>Success!</strong> User details has been updated.
 							</div>
@@ -132,7 +132,7 @@
 			</div>
 		</div>
 	</div>
-<!-- 	<div class="row">
+		<!-- <div class="row">
 		<div class="col-md-6">
 			<span class="txt">Project</span>
 			<select name="ua[project_id]" id="project_id" class="form-control">
@@ -146,29 +146,30 @@
 	</div> -->
 	<div class="row">
 		<div class="col-md-3">
+			<input type="hidden" id="project_id" name="ua[project_id]" value="<?php echo $this->session->userdata('project_id') ?>" />
 			<span class="txt">First Name</span>
-			<input type="text" id="fname" name="ua[fname]" class="form-control">
+			<input type="text" id="fname" name="ua[fname]" class="form-control empty_txtbx">
 		</div>
 
 		<div class="col-md-3">
 			<span class="txt">Last Name</span>
-			<input type="text" id="lname" name="ua[lname]" class="form-control">
+			<input type="text" id="lname" name="ua[lname]" class="form-control empty_txtbx">
 		</div>
 
 		<div class="col-md-3">
 			<span class="txt">Username</span>
-			<input type="text" id="uname" name="ua[uname]" class="form-control">
+			<input type="text" id="uname" name="ua[uname]" class="form-control empty_txtbx">
 		</div>
 
 		<div class="col-md-3">
 			<span class="txt">Password</span>
-			<input type="text" id="pwd" name="ua[pwd]" class="form-control">
+			<input type="text" id="pwd" name="ua[pwd]" class="form-control empty_txtbx">
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-3">
 			<span class="txt">User Type</span>
-			<select name="ua[user_type]" id="user_type" class="form-control">
+			<select name="ua[user_type]" id="user_type" class="form-control select2-dropdown empty_txtbx">
 				<?php 
 				foreach ($user_access_type as $data) {
 					echo "<option>".$data->userType."</option>";
@@ -176,7 +177,26 @@
 				?>
 			</select>
 		</div>
-	</div>
+		<div class="col-md-9 margin-top-20">
+			<div class="checkbox">			
+				<div class="col-md-2">
+					<input type="hidden" id="user_id" name="tab[user_id]" value="<?=$u_id[0]->user_id?>" />
+					<label><input type="checkbox" name="tab[tab_setup]" value="" class="check_access empty_chckbx">Setup</label>
+				</div>
+				<div class="col-md-2">
+					<label><input type="checkbox" name="tab[tab_transaction]"  value="" class="check_access empty_chckbx">Transaction</label>
+				</div>
+				<div class="col-md-2">
+					<label><input type="checkbox" name="tab[tab_ledger]" value="" class="check_access empty_chckbx">Ledger</label>
+				</div>
+				<div class="col-md-2">
+					<label><input type="checkbox" name="tab[tab_report]" value="" class="check_access empty_chckbx">Report</label>
+				</div>
+				<div class="col-md-2">
+					<label><input type="checkbox" name="tab[tab_admin]" value="" class="check_access empty_chckbx">Administrator</label>
+				</div>
+			</div>
+		</div>
 	<!-- <div class="row">
 		<div class="col-md-12 margin-left-30">
 			<div class="row">
@@ -252,27 +272,27 @@
 						<td>
 							<span class='action'>
 								<a href='#' 
-									data-id='".$data->user_id."' 
-									data-fname='".$data->fname."' 
-									data-lname='".$data->lname."' 
-									data-uname='".$data->uname."' 
-									data-pwd='".$data->pwd."' 
-									data-utype='".$data->user_type."' 
-									data-trans='".$data->tab_transaction."'
-									data-ledger='".$data->tab_ledger."'
-									data-report='".$data->tab_report."'
-									data-admin='".$data->tab_admin."'
-									data-setup='".$data->tab_setup."'
-									class='edit_user'><i class='fa fa-edit' data-item=''></i> Update</a></span> |
-							<span class='action'><i class='fa fa-trash-o' data-item=''></i> <a href='#' class='' id='alert' data-toggle='modal' data-target='.deleteAccess'>Delete</a></span>
-						</td>
-					</tr>
-					";
-				}
-				?>
-			</tbody>
-		</table>
+								data-id='".$data->user_id."' 
+								data-fname='".$data->fname."' 
+								data-lname='".$data->lname."' 
+								data-uname='".$data->uname."' 
+								data-pwd='".$data->pwd."' 
+								data-utype='".$data->user_type."' 
+								data-trans='".$data->tab_transaction."'
+								data-ledger='".$data->tab_ledger."'
+								data-report='".$data->tab_report."'
+								data-admin='".$data->tab_admin."'
+								data-setup='".$data->tab_setup."'
+								class='edit_user'><i class='fa fa-edit' data-item=''></i> Update</a></span> |
+								<span class='action'><i class='fa fa-trash-o' data-item=''></i> <a href='#' class='' id='alert' data-toggle='modal' data-target='.deleteAccess'>Delete</a></span>
+							</td>
+						</tr>
+						";
+					}
+					?>
+				</tbody>
+			</table>
 
+		</div>
 	</div>
-</div>
 <!-- Page content end -->

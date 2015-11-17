@@ -11,7 +11,7 @@ function sales_journal_js(){
 			success: function (data) { 
 				if(data.success==1){
 					$('.sj-alert-success').slideDown().delay(2000).slideUp();
-					$('.main_txtbox').val("");
+					$('.empty_txtbx').val("");
 					$('.entry-list').empty();
 				}
 				else if(data.success==2){

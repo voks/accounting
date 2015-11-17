@@ -26,7 +26,7 @@
 		<div class="col-md-3">
 			<input type="hidden" id="project_id" name="bank[project_id]" value="<?php echo $this->session->userdata('project_id') ?>" />
 			<span class="txt">Bank:</span>
-			<select class="form-control main_txtbox select2-dropdown" id="bank_name" name="bank[bank_name]">
+			<select class="form-control empty_txtbx select2-dropdown" id="bank_name" name="bank[bank_name]">
 				<option> -- Select Bank -- </option>
 				<?php 
 					foreach ($bank_recon as $data) {
@@ -37,7 +37,7 @@
 		</div>
 		<div class="col-md-2">
 			<span class="txt">Month:</span>
-			<select class="form-control main_txtbox select2-dropdown" id="bank_month" name="bank[bank_month]">
+			<select class="form-control empty_txtbx select2-dropdown" id="bank_month" name="bank[bank_month]">
 				<?php 
 					for ($i = 1; $i <= 12; $i++)
 					{
@@ -51,7 +51,7 @@
 		</div>
 		<div class="col-md-2">
 			<span class="txt">Year:</span>
-			<select class="form-control main_txtbox select2-dropdown" id="bank_year" name="bank[bank_year]">
+			<select class="form-control empty_txtbx select2-dropdown" id="bank_year" name="bank[bank_year]">
 				<?php
 				foreach(range(2005, 2020) as $year) {
 					echo "\t<option value='".$year."'>".$year."</option>\n\r";
@@ -61,7 +61,7 @@
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Balance:</span>
-			<input type="text" class="form-control main_txtbox amount" id="bank_balance" name="bank[bank_balance]">
+			<input type="text" class="form-control empty_txtbx amount" id="bank_balance" name="bank[bank_balance]">
 		</div>
 		<div class="col-md-2">
 			<button type="submit" class="btn btn-style-1 animate-4 margin-top-35 pull-left"><i class="fa fa-save"></i> Save Account</button>

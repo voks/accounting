@@ -26,11 +26,11 @@
 		<input  type="hidden" value="<?=$this->session->userdata('project_id')?>" name="subsidiary[project_id]" >
 		<div class="col-md-3">
 			<span class="txt">Date:</span>
-			<input type="text" placeholder="mm/dd/yyy" id="sub_date" name="subsidiary[sub_date]" class="form-control datepicker main_txtbox" />
+			<input type="text" placeholder="mm/dd/yyy" id="sub_date" name="subsidiary[sub_date]" class="form-control datepicker empty_txtbx" />
 		</div>
 		<div class="col-md-2">
 			<span class="txt">Account Type:</span>
-			<select class="form-control main_txtbox sub-accounttype select2-dropdown" id="account_type" name="subsidiary[account_type]">
+			<select class="form-control empty_txtbx sub-accounttype select2-dropdown" id="account_type" name="subsidiary[account_type]">
 				<option value="Assets"></option>
 				<option value="Assets">Assets</option>
 				<option value="Liabilities">Liabilities</option>
@@ -41,7 +41,7 @@
 		</div>
 		<div class="col-md-5">
 			<span class="txt">Account Title:</span>
-			<select class="form-control main_txtbox select2-dropdown sub_account_title" id="account_title" name="subsidiary[account_title]">
+			<select class="form-control empty_txtbx select2-dropdown sub_account_title" id="account_title" name="subsidiary[account_title]">
 				<option value="">-- Select Account Title --</option>
 				<?php
 				foreach ($account_title as $title) {
@@ -52,18 +52,18 @@
 		</div>
 		<div class="col-md-2">
 			<span class="txt">Account Code:</span>
-			<input type="text" readonly="true" class="form-control main_txtbox sub-accountcode"  id="account_type" name="subsidiary[account_code]" Placeholder="00000"/>
+			<input type="text" readonly="true" class="form-control empty_txtbx sub-accountcode"  id="account_type" name="subsidiary[account_code]" Placeholder="00000"/>
 		</div>
 	</div>
 	<!-- Second Row -->
 	<div class="row">
 		<div class="col-md-3">
 			<span class="txt">Subsidairy Code:</span>
-			<input type="text" data-inputmask-clearmaskonlostfocus="false" class="form-control main_txtbox sub-input-masked" id="sub_code" name="subsidiary[sub_code]" />
+			<input type="text" data-inputmask-clearmaskonlostfocus="false" class="form-control empty_txtbx sub-input-masked" id="sub_code" name="subsidiary[sub_code]" />
 		</div>
 		<div class="col-md-4">
 			<span class="txt">Subdiary Name:</span>
-			<input type="text" class="form-control main_txtbox" id="sub_name" name="subsidiary[sub_name]">
+			<input type="text" class="form-control empty_txtbx" id="sub_name" name="subsidiary[sub_name]">
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Link to Master</span>

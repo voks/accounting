@@ -10,7 +10,7 @@ function master_account_js(){
 			success: function (data) { 
 				if(data.success==1){
 					$('.master-alert-success').slideDown().delay(2000).slideUp();
-					$('.main_txtbox').val("");
+					$('.empty_txtbx').val("");
 				}
 				else if(data.success==2){
 					$('.master-alert-warning').slideDown().delay(2000).slideUp();

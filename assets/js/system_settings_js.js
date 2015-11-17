@@ -16,7 +16,7 @@ function system_settings_js(){
 					if(data.success==1){
 						$(data.response).appendTo($('.accountgroup-table > tbody:last')).hide().fadeIn(1000);
 						$('.accountgroup-alert-success').slideDown().delay(2000).slideUp();
-						$('.main_txtbox').val("");
+						$('.empty_txtbx').val("");
 						$('.accountgroup-alert-success').delay(2000).fadeOut();
 					}
 					else{
@@ -44,7 +44,7 @@ function system_settings_js(){
 			success: function (data) { 
 				if(data.success==1){
 					$('.copyrights-alert-success').slideDown().delay(2000).slideUp();
-					$('.main_txtbox').val("");
+					$('.empty_txtbx').val("");
 				}
 				else if(data.success==2){
 					$('.copyrights-alert-warning').slideDown().delay(2000).slideUp();

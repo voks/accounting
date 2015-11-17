@@ -10,7 +10,8 @@ function user_access_js(){
 			success: function (data) { 
 				if(data.success==1){
 					$('.userAcc-alert-success').slideDown().delay(2000).slideUp();
-					$('.main_txtbox').val("");
+					$('.empty_txtbx').val("");
+					$('.empty_chckbx').prop('checked',false)
 					$(data.response).appendTo($('.userlist > tbody:last')).hide().fadeIn(1000);
 				}
 				else if(data.success==2){
@@ -54,11 +55,11 @@ function user_access_js(){
 		$('#tab_admin').val(admin);
 		$('#tab_setup').val(setup);
 
-		($('#trans').val()>0) ? $('#trans').attr('checked',true) : $('#trans').attr('checked',false);
-		($('#tab_ledger').val()>0) ? $('#tab_ledger').attr('checked',true) : $('#tab_ledger').attr('checked',false);
-		($('#tab_admin').val()>0) ? $('#tab_admin').attr('checked',true) : $('#tab_admin').attr('checked',false);
-		($('#tab_report').val()>0) ? $('#tab_report').attr('checked',true) : $('#tab_report').attr('checked',false);
-		($('#tab_setup').val()>0) ? $('#tab_setup').attr('checked',true) : $('#tab_setup').attr('checked',false);
+		(trans>0) ? $('#trans').prop('checked',true) : $('#trans').prop('checked',false);
+		(ledger>0) ? $('#tab_ledger').prop('checked',true) : $('#tab_ledger').prop('checked',false);
+		(admin>0) ? $('#tab_admin').prop('checked',true) : $('#tab_admin').prop('checked',false);
+		(report>0) ? $('#tab_report').prop('checked',true) : $('#tab_report').prop('checked',false);
+		(setup>0) ? $('#tab_setup').prop('checked',true) : $('#tab_setup').prop('checked',false);
 
 	});
 

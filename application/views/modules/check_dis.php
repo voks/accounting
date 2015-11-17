@@ -218,19 +218,19 @@
 	<div class="row">
 		<div class="col-md-2">
 			<span class="txt">Date:</span>
-			<input type="text" placeholder="mm/dd/yyy" class="form-control datepicker main_txtbox" id="cd_date" name="cd[cd_date]">
+			<input type="text" placeholder="mm/dd/yyy" class="form-control datepicker empty_txtbx" id="cd_date" name="cd[cd_date]">
 		</div>
 		<div class="col-md-2">
 			<span class="txt">Voucher #:</span>
-			<input type="text" class="form-control main_txtbox" placeholder="00-0000" id="cd_voucher_no" name="cd[cd_voucher_no]">
+			<input type="text" class="form-control empty_txtbx" readonly="true" placeholder="00-0000" id="cd_voucher_no" name="cd[cd_voucher_no]" value="<?=$v_num[0]->v_num?>">
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Check#:</span>
-			<input type="text" class="form-control main_txtbox" id="cd_check_no" name="cd[cd_check_no]">
+			<input type="text" class="form-control empty_txtbx" id="cd_check_no" name="cd[cd_check_no]">
 		</div>
 		<div class="col-md-5">
 			<span class="txt">Bank:</span>
-			<select class="form-control main_txtbox show-bank select2-dropdown" id="cd_master_name" name="cd[cd_master_name]">
+			<select class="form-control empty_txtbx show-bank select2-dropdown" id="cd_master_name" name="cd[cd_master_name]">
 				<option> -- Select Bank -- </option>
 				<?php 
 				foreach ($journal_cd as $data) {
@@ -244,15 +244,15 @@
 	<div class="row">
 		<div class="col-md-4">
 			<span class="txt">Payee Name:</span>
-			<input type="text"class="form-control main_txtbox" id="cd_payee_name" name="cd[cd_payee_name]">
+			<input type="text"class="form-control empty_txtbx" id="cd_payee_name" name="cd[cd_payee_name]">
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Check Amount:</span>
-			<input type="text" class="form-control main_txtbox amount" id="cd_check_amount" name="cd[cd_check_amount]">
+			<input type="text" class="form-control empty_txtbx amount" id="cd_check_amount" name="cd[cd_check_amount]">
 		</div>
 		<div class="col-md-5">
 			<span class="txt">Particulars</span>
-			<input type="text" class="form-control main_txtbox" id="cd_particulars" name="cd[cd_particulars]">
+			<input type="text" class="form-control empty_txtbx" id="cd_particulars" name="cd[cd_particulars]">
 		</div>
 	</div>
 
@@ -284,8 +284,8 @@
 					<tfoot>
 						<tr class="row_total">
 							<td colspan="2">TOTAL</td>
-							<td><input type="text" class="form-control amount entry-debit-total main_txtbox" readonly="true" id="total_debit" name="cd[total_debit]"></td>
-							<td><input type="text" class="form-control amount entry-credit-total main_txtbox"  readonly="true" id="total_credit" name="cd[total_credit]"></td>
+							<td><input type="text" class="form-control amount entry-debit-total empty_txtbx" readonly="true" id="total_debit" name="cd[total_debit]"></td>
+							<td><input type="text" class="form-control amount entry-credit-total empty_txtbx"  readonly="true" id="total_credit" name="cd[total_credit]"></td>
 							<td></td>
 						</tr>
 					</tfoot>

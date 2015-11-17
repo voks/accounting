@@ -11,7 +11,7 @@ function accounts_payable_js(){
 			success: function (data) { 
 				if(data.success==1){
 					$('.ap-alert-success').slideDown().delay(2000).slideUp();
-					$('.main_txtbox').val("");
+					$('.empty_txtbx').val("");
 					$('.entry-list').empty(); 
 				}
 				else if(data.success==2){

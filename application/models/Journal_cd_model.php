@@ -63,4 +63,10 @@ class Journal_cd_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function get_last_vnum(){
+		$sql = "SELECT MAX(cd_voucher_no) + 1 AS v_num  from tb_journal_cd";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
 }

@@ -198,6 +198,11 @@ class Accounts_payable extends CI_Controller {
 		}
 	}
 
+	public function update_ap_trans(){
+		$this->load->model('journal_ap_model');
+		
+	}
+
 	public function view_trans(){
 		$this->load->model('general_ledger_model');
 		if ($this->session->userdata('islogged')) {

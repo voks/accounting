@@ -27,12 +27,12 @@
 			<input  type="hidden" value="<?=$this->session->userdata('project_id')?>" name="mainAccount[project_id]" >
 			<div class="col-md-3">
 				<span class="txt">Date:</span>
-				<input type="text" id="account_date" name="mainAccount[account_date]" class="form-control datepicker main_txtbox" date-format="mm/dd/yyyy" Placeholder="mm/dd/yyyy"/>
+				<input type="text" id="account_date" name="mainAccount[account_date]" class="form-control datepicker empty_txtbx" date-format="mm/dd/yyyy" Placeholder="mm/dd/yyyy"/>
 			</div>
 
 			<div class="col-md-2">
 				<span class="txt">Account Type:</span>
-				<select class="form-control main_txtbox accountype-placeholder select2-dropdown" id="account_type" name="mainAccount[account_type]">
+				<select class="form-control empty_txtbx accountype-placeholder select2-dropdown" id="account_type" name="mainAccount[account_type]">
 					<option value="Assets">Assets</option>
 					<option value="Liabilities">Liabilities</option>
 					<option value="Capital">Capital</option>
@@ -43,19 +43,19 @@
 
 			<div class="col-md-2 txt-account-code">
 				<span class="txt">Account Code</span>
-				<input type="text" class="form-control main_txtbox accountcode-placeholder" Placeholder="1000" id="account_code" name="mainAccount[account_code]" />
+				<input type="text" class="form-control empty_txtbx accountcode-placeholder" Placeholder="1000" id="account_code" name="mainAccount[account_code]" />
 			</div>
 
 			<div class="col-md-5">
 				<span class="txt">Account Title:</span>
-				<input type="text" class="form-control main_txtbox" id="account_title" name="mainAccount[account_title]" />
+				<input type="text" class="form-control empty_txtbx" id="account_title" name="mainAccount[account_title]" />
 			</div>
 		</div>
 		<!-- Second Row -->
 		<div class="row">
 			<div class="col-md-5">
 				<span class="txt">Account Group:</span>
-				<select class="form-control main_txtbox select2-dropdown " id="account_group" name="mainAccount[account_group]">
+				<select class="form-control empty_txtbx select2-dropdown " id="account_group" name="mainAccount[account_group]">
 					<option> -- Select Account Group -- </option>
 					<?php 
 						foreach ($account_group as $data) {
@@ -103,7 +103,7 @@
 
 		<div class="col-md-3">
 			<span class="txt">Account Code:</span>
-			<input type="text" class="form-control main_txtbox" Placeholder="1000" id="searchaccount_code" name="search_account[searchaccount_code]" />
+			<input type="text" class="form-control empty_txtbx" Placeholder="1000" id="searchaccount_code" name="search_account[searchaccount_code]" />
 		</div>
 		<div class="col-md-4">
 			<span class="txt">Account Tile:</span>

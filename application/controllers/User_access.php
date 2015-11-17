@@ -10,10 +10,13 @@ class User_access extends CI_Controller {
 				);
 			$this->load->view('parts/header',load_data($page_info));
 			$this->load->view('parts/sidebar',load_data($page_info));
-			$user_access_type = array('user_access_type' => $this->user_access_model->show_user_type()->result());
-			$user_access = array('user_access' => $this->user_access_model->show_user_access()->result());
-			$projects = array('project_list' => $this->user_access_model->project_list());
-			$this->load->view('modules/user_access', array_merge($user_access,$projects,$user_access_type));
+			$data = array(
+				'user_access_type' 	=> $this->user_access_model->show_user_type()->result(),
+				'u_id' 				=> $this->user_access_model->get_last_record(),
+				'user_access' 		=> $this->user_access_model->show_user_access()->result(),
+				'project_list' 		=> $this->user_access_model->project_list()
+				);
+			$this->load->view('modules/user_access', $data);
 			$this->load->view('parts/footer');
 		}
 		else{
@@ -24,13 +27,13 @@ class User_access extends CI_Controller {
 	public function load_page(){
 		if ($this->session->userdata('islogged')) {
 			$this->load->model("user_access_model");
-			$user_access_type = array('user_access_type' => $this->user_access_model->show_user_type()->result());
-			$user_access = array('user_access' => $this->user_access_model->show_user_access()->result());
-			$projects = array('project_list' => $this->user_access_model->project_list());
-			$this->session->set_userdata('page_tab', 'Administrator');
-			$this->session->set_userdata('page_title', 'User Access');
-			$this->session->set_userdata('current_page', 'user_access');
-			$this->load->view('modules/user_access', array_merge($user_access,$projects,$user_access_type));
+			$data = array(
+				'user_access_type' 	=> $this->user_access_model->show_user_type()->result(),
+				'u_id' 				=> $this->user_access_model->get_last_record(),
+				'user_access' 		=> $this->user_access_model->show_user_access()->result(),
+				'project_list' 		=> $this->user_access_model->project_list()
+				);
+			$this->load->view('modules/user_access', $data);
 		}
 		else{
 			echo jcode(array('success' => 1));
@@ -41,6 +44,7 @@ class User_access extends CI_Controller {
 
 		$this->load->model("user_access_model");
 		$user_access_data = $this->input->post('ua');
+		$tab_access = $this->input->post('tab');
 		$err = validates(array($user_access_data), array());
 
 		if (count($err)) {
@@ -57,7 +61,9 @@ class User_access extends CI_Controller {
 			if ($check_id) {
 				echo jcode(array('success' => 2));
 			} else {
+				
 				$id = $this->user_access_model->add_user_access($user_access_data);
+				$tb_id = $this->user_access_model->add_tab_access($tab_access);
 				$html = "
 				<tr>
 					<td>".$user_access_data['fname']."</td>
@@ -90,19 +96,19 @@ class User_access extends CI_Controller {
 			);
 		} else {
 			$this->user_access_model->update_user(
-													$user_access_data['utype'],
-													$user_access_data['fname'],
-													$user_access_data['lname'],
-													$user_access_data['uname'],
-													$user_access_data['pass'],
-													$user_access_data['user_id'],
-
-													$user_access_data['tab_transaction'],
-													$user_access_data['tab_ledger'],
-													$user_access_data['tab_report'],
-													$user_access_data['tab_admin'],
-													$user_access_data['tab_setup']
-												);
+				$user_access_data['utype'],
+				$user_access_data['fname'],
+				$user_access_data['lname'],
+				$user_access_data['uname'],
+				$user_access_data['pass'],
+				$user_access_data['user_id'],
+				$user_access_data['tab_transaction'],
+				$user_access_data['tab_ledger'],
+				$user_access_data['tab_report'],
+				$user_access_data['tab_admin'],
+				$user_access_data['tab_setup']
+				);
+			// print_r($this->db->last_query());
 			echo jcode(array('success' => 1));
 		}
 

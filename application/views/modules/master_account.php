@@ -26,19 +26,19 @@
 		<input  type="hidden" value="<?=$this->session->userdata('project_id')?>" name="master[project_id]" >
 		<div class="col-md-3">
 			<span class="txt">Date:</span>
-			<input type="text" placeholder="mm/dd/yyy" id="master_date" name="master[master_date]" class="form-control datepicker main_txtbox">
+			<input type="text" placeholder="mm/dd/yyy" id="master_date" name="master[master_date]" class="form-control datepicker empty_txtbx">
 		</div>
 		<div class="col-md-2">
 			<span class="txt">Code:</span>
-			<input type="text" id="master_code" name="master[master_code]" class="form-control main_txtbox" />
+			<input type="text" id="master_code" name="master[master_code]" class="form-control empty_txtbx" />
 		</div>
 		<div class="col-md-4">
 			<span class="txt">Name:</span>
-			<input type="text" id="master_name" name="master[master_name]" class="form-control main_txtbox" />
+			<input type="text" id="master_name" name="master[master_name]" class="form-control empty_txtbx" />
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Type:</span>
-			<select class="form-control main_txtbox select2-dropdown" id="master_type" name="master[master_type]">
+			<select class="form-control empty_txtbx select2-dropdown" id="master_type" name="master[master_type]">
 				<option value="Supplier">Supplier</option>
 				<option value="Customer">Customer</option>
 				<option value="Employee">Employee</option>
@@ -51,11 +51,11 @@
 	<div class="row">
 		<div class="col-md-9">
 			<span class="txt">Address:</span>
-			<textarea class="form-control main_txtbox" id="master_add" name="master[master_add]"></textarea>
+			<textarea class="form-control empty_txtbx" id="master_add" name="master[master_add]"></textarea>
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Terms of Payment:</span>
-			<select class="form-control main_txtbox select2-dropdown" id="master_terms" name="master[master_terms_payment]">
+			<select class="form-control empty_txtbx select2-dropdown" id="master_terms" name="master[master_terms_payment]">
 				<option value="0">0</option>
 				<option value="15">15</option>
 				<option value="30">30</option>
@@ -68,31 +68,31 @@
 	<div class="row">
 		<div class="col-md-6">
 			<span class="txt">Contact Person:</span>
-			<input type="text" class="form-control main_txtbox" id="master_contact_person" name="master[master_contact_person]" />
+			<input type="text" class="form-control empty_txtbx" id="master_contact_person" name="master[master_contact_person]" />
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Position:</span>
-			<input type="text" id="master_position" name="master[master_position]" class="form-control main_txtbox" />
+			<input type="text" id="master_position" name="master[master_position]" class="form-control empty_txtbx" />
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Tel No:</span>
-			<input type="text" id="master_tel_no" name="master[master_tel_no]" class="form-control main_txtbox" />
+			<input type="text" id="master_tel_no" name="master[master_tel_no]" class="form-control empty_txtbx" />
 		</div>
 	</div>
 	<!-- 4th Row Info -->
 	<div class="row">
 		<div class="col-md-6">
 			<span class="txt">Email Address:</span>
-			<input type="text" id="master_email" name="master[master_email]" class="form-control main_txtbox" />
+			<input type="text" id="master_email" name="master[master_email]" class="form-control empty_txtbx" />
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Fax No:</span>
-			<input type="text" class="form-control main_txtbox" id="master_fax_no" name="master[master_fax_no]"/>
+			<input type="text" class="form-control empty_txtbx" id="master_fax_no" name="master[master_fax_no]"/>
 		</div>
 
 		<div class="col-md-3">
 			<span class="txt">Auto Create in Subsidiary:</span>
-			<select class="form-control main_txtbox select2-dropdown" id="master_subsidiary" name="master[master_subsidiary]">
+			<select class="form-control empty_txtbx select2-dropdown" id="master_subsidiary" name="master[master_subsidiary]">
 				<option value="00000"> -- Select Account -- </option>
 				<?php
 				foreach ($account_title->result() as $data) {

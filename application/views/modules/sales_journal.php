@@ -215,15 +215,15 @@
 	<div class="row">
 		<div class="col-md-3">
 			<span class="txt">BI Date:</span>
-			<input type="text" placeholder="mm/dd/yyy" class="form-control datepicker main_txtbox" id="sj_si_date" name="sj[sj_si_date]">
+			<input type="text" placeholder="mm/dd/yyy" class="form-control datepicker empty_txtbx" id="sj_si_date" name="sj[sj_si_date]">
 		</div>
 		<div class="col-md-3">
 			<span class="txt">BI #:</span>
-			<input type="text" class="form-control main_txtbox" id="sj_si_no" name="sj[sj_si_no]" placeholder="0000">
+			<input type="text" class="form-control empty_txtbx" id="sj_si_no" name="sj[sj_si_no]" placeholder="0000">
 		</div>
 		<div class="col-md-4">
 			<span class="txt">Customer:</span>
-			<select class="form-control main_txtbox select2-dropdown show-customer-sj" id="sj_master_name" name="sj[sj_master_name]">
+			<select class="form-control empty_txtbx select2-dropdown show-customer-sj" id="sj_master_name" name="sj[sj_master_name]">
 				<option> -- Select Customer --</option>
 				<?php 
 				foreach ($journal_sj as $data) {
@@ -234,7 +234,7 @@
 		</div>
 		<div class="col-md-2">
 			<span class="txt">Terms:</span>
-			<select class="form-control main_txtbox select2-dropdown" id="sj_terms" name="sj[sj_terms]">
+			<select class="form-control empty_txtbx select2-dropdown" id="sj_terms" name="sj[sj_terms]">
 				<option value="0">0</option>
 				<option value="7">7</option>
 				<option value="15">15</option>
@@ -248,11 +248,11 @@
 	<div class="row">
 		<div class="col-md-3">
 			<span class="txt">BI Amount:</span>
-			<input type="text" class="form-control main_txtbox amount" id="sj_si_amount" name="sj[sj_si_amount]">
+			<input type="text" class="form-control empty_txtbx amount" id="sj_si_amount" name="sj[sj_si_amount]">
 		</div>
 		<div class="col-md-9">
 			<span class="txt">Particulars</span>
-			<input type="text" class="form-control main_txtbox" id="sj_particulars" name="sj[sj_particulars]">
+			<input type="text" class="form-control empty_txtbx" id="sj_particulars" name="sj[sj_particulars]">
 		</div>
 	</div>
 	<div class="row">
@@ -295,8 +295,8 @@
 					<tfoot>
 						<tr class="row_total">
 							<td colspan="2">TOTAL</td>
-							<td><input type="text" class="form-control main_txtbox amount entry-debit-total" readonly="true" id="total_debit" name="sj[total_debit]"></td>
-							<td><input type="text" class="form-control main_txtbox amount entry-credit-total"  readonly="true" id="total_credit" name="sj[total_credit]"></td>
+							<td><input type="text" class="form-control empty_txtbx amount entry-debit-total" readonly="true" id="total_debit" name="sj[total_debit]"></td>
+							<td><input type="text" class="form-control empty_txtbx amount entry-credit-total"  readonly="true" id="total_credit" name="sj[total_credit]"></td>
 							<td></td>
 						</tr>
 					</tfoot>

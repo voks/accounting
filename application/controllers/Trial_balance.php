@@ -12,8 +12,6 @@ class Trial_balance extends CI_Controller {
 				);
 			//$this->load->view('parts/header',load_data($page_info));
 			//$this->load->view('parts/sidebar',load_data($page_info));
-			
-
 			$ap = $this->trial_data('ap','09/09/2015','10/13/2015');
 			$cd = $this->trial_data('cd','09/09/2015','10/13/2015');
 			$sj = $this->trial_data('sj','09/09/2015','10/13/2015');
@@ -23,32 +21,32 @@ class Trial_balance extends CI_Controller {
 			$trial = array_merge($ap,$cd,$sj,$cr,$gj);
 
 			$sumd=0;
-					$sumc=0;
-					echo "<table><tbody>";
-					foreach ($trial as $key) {
-						echo "	
-								<tr>
-									<td>".element('subcode',$key)."</td>
-									<td class='title'>".element('title',$key)."</td>
-									<td>".element('debit',$key)."</td>
-									<td>".element('credit',$key)."</td>
-									<td>
-										<a href='#' data-ac='".element('code',$key)."' data-sb='".element('subcode',$key)."' class='btn-style-1 animate-4 viewLedger'><i class='fa fa-eye'></i></a>
-									</td>
-								</tr>
-							";
-							$sumd+=element('debit',$key);
-							$sumc+=element('credit',$key);
-					}
-						echo "
-								<tr>
-									<td></td>
-									<td class='title'>Total:</td>
-									<td>".$sumd."</td>
-									<td>".$sumc."</td>
-								</tr>"
-							;
-					echo "</tbody></table>";
+			$sumc=0;
+			echo "<table><tbody>";
+			foreach ($trial as $key) {
+				echo "	
+				<tr>
+					<td>".element('subcode',$key)."</td>
+					<td class='title'>".element('title',$key)."</td>
+					<td>".element('debit',$key)."</td>
+					<td>".element('credit',$key)."</td>
+					<td>
+						<a href='#' data-ac='".element('code',$key)."' data-sb='".element('subcode',$key)."' class='btn-style-1 animate-4 viewLedger'><i class='fa fa-eye'></i></a>
+					</td>
+				</tr>
+				";
+				$sumd+=element('debit',$key);
+				$sumc+=element('credit',$key);
+			}
+			echo "
+			<tr>
+				<td></td>
+				<td class='title'>Total:</td>
+				<td>".$sumd."</td>
+				<td>".$sumc."</td>
+			</tr>"
+			;
+			echo "</tbody></table>";
 			//print_r($trial);
 			//$test = array('trial' => $trial );			
 			//$this->load->view('modules/trial_balance', $test);
@@ -67,76 +65,76 @@ class Trial_balance extends CI_Controller {
 
 			
 			foreach ($accounts as $key) {
-					$sub = $this->trial_balance_model->get_sub($key->account_code);
-					if ($sub==0) {
-						if ($this->trial_balance_model->checktrans($key->account_code,$date_fr,$date_to,$type)>0) {
-							$account_code = $this->trial_balance_model->get_trans_main($key->account_code,$date_fr,$date_to,$type); 
+				$sub = $this->trial_balance_model->get_sub($key->account_code);
+				if ($sub==0) {
+					if ($this->trial_balance_model->checktrans($key->account_code,$date_fr,$date_to,$type)>0) {
+						$account_code = $this->trial_balance_model->get_trans_main($key->account_code,$date_fr,$date_to,$type); 
+						foreach ($account_code as $data) {
+							$trial[] = array(
+								'code'  	=> $key->account_code,
+								'subcode'	=> $data->sub_code,
+								'title'		=> $data->account_name,
+								'debit'		=> $data->sdebit,
+								'credit'	=> $data->scredit
+								);
+
+						}
+					}
+				}
+				else{
+					foreach ($sub as $subkey) {
+						if ($this->trial_balance_model->checktrans($subkey->sub_code,$date_fr,$date_to,$type)>0) {
+							$account_code = $this->trial_balance_model->get_trans_sub($subkey->sub_code,$date_fr,$date_to,$type); 
 							foreach ($account_code as $data) {
 								$trial[] = array(
-													'code'  	=> $key->account_code,
-													'subcode'	=> $data->sub_code,
-													'title'		=> $data->account_name,
-													'debit'		=> $data->sdebit,
-													'credit'	=> $data->scredit
-												);
-								
+									'code'  	=> $key->account_code,
+									'subcode'	=> $data->sub_code,
+									'title'		=> $data->account_name,
+									'debit'		=> $data->sdebit,
+									'credit'	=> $data->scredit
+									);
+
 							}
 						}
 					}
-					else{
-						foreach ($sub as $subkey) {
-							if ($this->trial_balance_model->checktrans($subkey->sub_code,$date_fr,$date_to,$type)>0) {
-								$account_code = $this->trial_balance_model->get_trans_sub($subkey->sub_code,$date_fr,$date_to,$type); 
-								foreach ($account_code as $data) {
-									$trial[] = array(
-														'code'  	=> $key->account_code,
-														'subcode'	=> $data->sub_code,
-														'title'		=> $data->account_name,
-														'debit'		=> $data->sdebit,
-														'credit'	=> $data->scredit
-													);
-									
-								}
-							}
-						}
-					}
+				}
 			}
 			return $trial;
 		}
 		else{
 			$sub = $this->trial_balance_model->get_sub($ac);
-					if ($sub==0) {
-						if ($this->trial_balance_model->checktrans($ac,$date_fr,$date_to,$type)>0) {
-							$account_code = $this->trial_balance_model->get_trans_main($ac,$date_fr,$date_to,$type); 
-							foreach ($account_code as $data) {
-								$trial[] = array(
-													'code'  	=> $ac,
-													'subcode'	=> $data->sub_code,
-													'title'		=> $data->account_name,
-													'debit'		=> $data->sdebit,
-													'credit'	=> $data->scredit
-												);
-								
-							}
+			if ($sub==0) {
+				if ($this->trial_balance_model->checktrans($ac,$date_fr,$date_to,$type)>0) {
+					$account_code = $this->trial_balance_model->get_trans_main($ac,$date_fr,$date_to,$type); 
+					foreach ($account_code as $data) {
+						$trial[] = array(
+							'code'  	=> $ac,
+							'subcode'	=> $data->sub_code,
+							'title'		=> $data->account_name,
+							'debit'		=> $data->sdebit,
+							'credit'	=> $data->scredit
+							);
+
+					}
+				}
+			}
+			else{
+				foreach ($sub as $subkey) {
+					if ($this->trial_balance_model->checktrans($subkey->sub_code,$date_fr,$date_to,$type)>0) {
+						$account_code = $this->trial_balance_model->get_trans_sub($subkey->sub_code,$date_fr,$date_to,$type); 
+						foreach ($account_code as $data) {
+							$trial[] = array(
+								'code'  	=> $ac,
+								'subcode'	=> $data->sub_code,
+								'title'		=> $data->account_name,
+								'debit'		=> $data->sdebit,
+								'credit'	=> $data->scredit
+								);
+
 						}
 					}
-					else{
-						foreach ($sub as $subkey) {
-							if ($this->trial_balance_model->checktrans($subkey->sub_code,$date_fr,$date_to,$type)>0) {
-								$account_code = $this->trial_balance_model->get_trans_sub($subkey->sub_code,$date_fr,$date_to,$type); 
-								foreach ($account_code as $data) {
-									$trial[] = array(
-														'code'  	=> $ac,
-														'subcode'	=> $data->sub_code,
-														'title'		=> $data->account_name,
-														'debit'		=> $data->sdebit,
-														'credit'	=> $data->scredit
-													);
-									
-								}
-							}
-						}
-					}
+				}
+			}
 			return $trial;
 		}
 	}
@@ -183,32 +181,32 @@ class Trial_balance extends CI_Controller {
 			$sumc=0;
 			foreach ($trial as $key) {
 				$html.= "	
-						<tr>
-							<td>".element('subcode',$key)."</td>
-							<td class='title'>".element('title',$key)."</td>
-							<td>".element('debit',$key)."</td>
-							<td>".element('credit',$key)."</td>
-							<td>
-								<a href='#' data-ac='".element('code',$key)."' data-sb='".element('subcode',$key)."' class='btn-style-1 animate-4 viewLedger'><i class='fa fa-eye'></i></a>
-							</td>
-						</tr>
-					";
-					$sumd+=element('debit',$key);
-					$sumc+=element('credit',$key);
+				<tr>
+					<td>".element('subcode',$key)."</td>
+					<td class='title'>".element('title',$key)."</td>
+					<td>".element('debit',$key)."</td>
+					<td>".element('credit',$key)."</td>
+					<td>
+						<a href='#' data-ac='".element('code',$key)."' data-sb='".element('subcode',$key)."' class='btn-style-1 animate-4 viewLedger'><i class='fa fa-eye'></i></a>
+					</td>
+				</tr>
+				";
+				$sumd+=element('debit',$key);
+				$sumc+=element('credit',$key);
 			}
-				$html.= "
-						<tr>
-							<td></td>
-							<td class='title'>Total:</td>
-							<td>".$sumd."</td>
-							<td>".$sumc."</td>
-						</tr>"
-					;
+			$html.= "
+			<tr>
+				<td></td>
+				<td class='title'>Total:</td>
+				<td>".$sumd."</td>
+				<td>".$sumc."</td>
+			</tr>"
+			;
 
 			echo jcode(array(
-								'success' => 1,
-								'html'	  => $html
-					));
+				'success' => 1,
+				'html'	  => $html
+				));
 		}
 
 		

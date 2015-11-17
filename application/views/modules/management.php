@@ -26,7 +26,7 @@
 
 			<!-- <div class="col-md-2">
 				<span class="txt">Sort by:</span>
-				<select class="form-control main_txtbox select2-dropdown" id="sel-opt" name="">
+				<select class="form-control empty_txtbx select2-dropdown" id="sel-opt" name="">
 					<option value="1">Monthly</option>
 					<option value="2">Quarterly</option>
 					<option value="3">Yearly</option>
@@ -34,7 +34,7 @@
 			</div>
 			<div class="col-md-2 month">
 				<span class="txt">Month:</span>
-				<select class="form-control main_txtbox select2-dropdown" id="" name="">
+				<select class="form-control empty_txtbx select2-dropdown" id="" name="">
 					<?php 
 					//for ($i = 1; $i <= 12; $i++)
 					//{
@@ -49,7 +49,7 @@
 
 			<div class="col-md-2 quarter" style="display:none;">
 				<span class="txt">Quarter:</span>
-				<select class="form-control main_txtbox select2-dropdown" id="" name="">
+				<select class="form-control empty_txtbx select2-dropdown" id="" name="">
 					<option value="1">First Quarter</option>
 					<option value="2">Second Quarter</option>
 					<option value="3">Third Quarter</option>
@@ -59,7 +59,7 @@
 
 			<div class="col-md-2">
 				<span class="txt">Year:</span>
-				<select class="form-control main_txtbox select2-dropdown" id="" name="">
+				<select class="form-control empty_txtbx select2-dropdown" id="" name="">
 					<?php
 					//foreach(range(2005, 2020) as $year) {
 					//	echo "\t<option value='".$year."'>".$year."</option>\n\r";
