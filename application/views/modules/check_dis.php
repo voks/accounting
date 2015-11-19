@@ -222,7 +222,7 @@
 		</div>
 		<div class="col-md-2">
 			<span class="txt">Voucher #:</span>
-			<input type="text" class="form-control empty_txtbx" readonly="true" placeholder="00-0000" id="cd_voucher_no" name="cd[cd_voucher_no]" value="<?=$v_num[0]->v_num?>">
+			<input type="text" class="form-control empty_txtbx" readonly="true" placeholder="00-0000" id="cd_voucher_no" name="cd[cd_voucher_no]" value="<?=substr(date("Y"),2).'-'.(strlen($v_num[0]->v_num==4)) ? substr(date("Y"),2).'-'.substr_replace('0000',$v_num[0]->v_num,1):substr(date("Y"),2).'-'.substr_replace('0000',$v_num[0]->v_num,0)?>">
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Check#:</span>
