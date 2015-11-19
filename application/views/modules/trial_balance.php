@@ -11,9 +11,9 @@
 	<div class="row dv-container">
 		<div class="col-md-6">
 			<span class="txt">Control Account:</span>
-			<input type="hidden" class="form-control entry-text" value="" id="ctr_acct" name="trial[ctr_acct]">
+			<input type="hidden" class="form-control entry-text" value="none" id="ctr_acct" name="trial[ctr_acct]">
 			<select class="form-control select2-dropdown entry-select" >
-				<option value=""> -- Select Account Title -- </option>
+				<option value="none"> -- Select Account Title -- </option>
 				<?php
 				foreach ($trial_balance as $title) {
 					echo "<option>".$title->account_code." - ".$title->account_title."</option>";
@@ -41,7 +41,7 @@
 				<option value="4">Check Disbursement</option>
 				<option value="6">General Journals</option>
 				<option value="5">Sales Journals</option> -->
-				<option value="">All Journals</option>
+				<option value="all">All Journals</option>
 				<option value="ap">Accounts Payable</option>
 				<option value="cr">Cash Receipts</option>
 				<option value="cd">Check Disbursement</option>

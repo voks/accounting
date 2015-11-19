@@ -58,12 +58,26 @@ class Trial_balance extends CI_Controller {
 
 	}
 
+	public function load_page(){
+		$this->load->model('trial_balance_model');
+		if ($this->session->userdata('islogged')) {
+			$this->session->set_userdata('page_tab', 'Ledger');
+			$this->session->set_userdata('page_title', 'Trial Balance');
+			$this->session->set_userdata('current_page', 'trial_balance');
+			$viewData = array(
+								'trial_balance' => $this->trial_balance_model->get_accounts()
+							);
+			$this->load->view('modules/trial_balance', $viewData);
+		}
+		else{
+			echo jcode(array('success' => 1));
+		}
+	}
+
 	public function trial_data($type,$date_fr,$date_to,$ac){
 		$trial = array();
-		if ($ac=='') {
+		if ($ac=='none') {
 			$accounts = $this->trial_balance_model->get_title($type);
-
-			
 			foreach ($accounts as $key) {
 				$sub = $this->trial_balance_model->get_sub($key->account_code);
 				if ($sub==0) {
@@ -139,18 +153,6 @@ class Trial_balance extends CI_Controller {
 		}
 	}
 
-	public function load_page(){
-		$this->load->model('trial_balance_model');
-		if ($this->session->userdata('islogged')) {
-			$this->session->set_userdata('page_tab', 'Ledger');
-			$this->session->set_userdata('page_title', 'Trial Balance');
-			$this->session->set_userdata('current_page', 'trial_balance');
-			$this->load->view('modules/trial_balance');
-		}
-		else{
-			echo jcode(array('success' => 1));
-		}
-	}
 
 	public function search_trial(){
 		$this->load->model('trial_balance_model');
@@ -162,54 +164,41 @@ class Trial_balance extends CI_Controller {
 		$html ='';
 		$trial = array();
 
-		if ($account_code==''&&$trans=='') {
-			# code...
-		}
-		elseif ($account_code=='') {
-			# code...
-		}
-		elseif ($trans=='') {
-			# code...
-		}
-		else{
-			$data = $this->trial_data($trans,$date_fr,$date_to,$account_code);
+		$data = $this->trial_data($trans,$date_fr,$date_to,$account_code);
 
-			$trial = array_merge($data);
+		$trial = array_merge($data);
 
 
-			$sumd=0;
-			$sumc=0;
-			foreach ($trial as $key) {
-				$html.= "	
-				<tr>
-					<td>".element('subcode',$key)."</td>
-					<td class='title'>".element('title',$key)."</td>
-					<td>".element('debit',$key)."</td>
-					<td>".element('credit',$key)."</td>
-					<td>
-						<a href='#' data-ac='".element('code',$key)."' data-sb='".element('subcode',$key)."' class='btn-style-1 animate-4 viewLedger'><i class='fa fa-eye'></i></a>
-					</td>
-				</tr>
-				";
-				$sumd+=element('debit',$key);
-				$sumc+=element('credit',$key);
-			}
-			$html.= "
+		$sumd=0;
+		$sumc=0;
+		foreach ($trial as $key) {
+			$html.= "	
 			<tr>
-				<td></td>
-				<td class='title'>Total:</td>
-				<td>".$sumd."</td>
-				<td>".$sumc."</td>
-			</tr>"
-			;
-
-			echo jcode(array(
-				'success' => 1,
-				'html'	  => $html
-				));
+				<td>".element('subcode',$key)."</td>
+				<td class='title'>".element('title',$key)."</td>
+				<td>".element('debit',$key)."</td>
+				<td>".element('credit',$key)."</td>
+				<td>
+					<a href='#' data-ac='".element('code',$key)."' data-sb='".element('subcode',$key)."' class='btn-style-1 animate-4 viewLedger'><i class='fa fa-eye'></i></a>
+				</td>
+			</tr>
+			";
+			$sumd+=element('debit',$key);
+			$sumc+=element('credit',$key);
 		}
+		$html.= "
+		<tr>
+			<td></td>
+			<td class='title'>Total:</td>
+			<td>".$sumd."</td>
+			<td>".$sumc."</td>
+		</tr>"
+		;
 
-		
+		echo jcode(array(
+			'success' => 1,
+			'html'	  => $html
+			));
 		
 	}
 
@@ -217,16 +206,22 @@ class Trial_balance extends CI_Controller {
 		$this->load->model("trial_balance_model");
 		if ($this->session->userdata('islogged')) {
 
-			$ctr_acct 	= $this->input->get('in');
-			$from_date 	= $this->input->get('invd');
-			$to_date 	= $this->input->get('mn');
-
 			$account_code = $this->input->get('in');
 			$date_fr = $this->input->get('invd');
 			$date_to = $this->input->get('mn');
 			$trans = $this->input->get('trans');
 
+			$html ='';
+
+			$data = $this->trial_data($trans,$date_fr,$date_to,$account_code);
+
+			$trial = array_merge($data);
 			$html = $this->config->item('report_header');
+			$viewData = array(
+				'trial' => $trial
+				);
+			$html.= $this->load->view('report/trial_balance', $viewData, true);
+
 			$html.= $this->config->item('report_footer');
 			pdf_create($html, 'filename');
 		}
