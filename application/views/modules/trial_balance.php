@@ -35,12 +35,6 @@
 		<div class="col-md-4">
 			<span class="txt">Journal:</span>
 			<select class="form-control select2-dropdown" id="journal_type" name="trial[journal_type]">
-				<!-- <option value="1">All Journals</option>
-				<option value="3">Accounts Payable</option>
-				<option value="2">Cash Receipts</option>
-				<option value="4">Check Disbursement</option>
-				<option value="6">General Journals</option>
-				<option value="5">Sales Journals</option> -->
 				<option value="all">All Journals</option>
 				<option value="ap">Accounts Payable</option>
 				<option value="cr">Cash Receipts</option>
@@ -48,6 +42,10 @@
 				<option value="gj">General Journals</option>
 				<option value="sj">Sales Journals</option>
 			</select>
+		</div>
+		<div class="col-md-2">
+			<span class="txt">&nbsp;</span>
+			<label><input type="checkbox" name="trial[listing]"  value="0" class="listing" id="trans"> Group by Title</label>
 		</div>
 		<div class="col-md-2">
 			<button class="btn btn-style-1 animate-4 margin-top-35"><i class="fa fa-search"></i> Search</button>
@@ -70,36 +68,6 @@
 				</tr>
 			</thead>
 			<tbody class="tbtran_data">
-				<?php 
-
-					// $sumd=0;
-					// $sumc=0;
-					// foreach ($trial as $key) {
-					// 	echo "	
-					// 			<tr>
-					// 				<td>".element('subcode',$key)."</td>
-					// 				<td class='title'>".element('title',$key)."</td>
-					// 				<td>".element('debit',$key)."</td>
-					// 				<td>".element('credit',$key)."</td>
-					// 				<td>
-					// 					<a href='#' data-ac='".element('code',$key)."' data-sb='".element('subcode',$key)."' class='btn-style-1 animate-4 viewLedger'><i class='fa fa-eye'></i></a>
-					// 				</td>
-					// 			</tr>
-					// 		";
-					// 		$sumd+=element('debit',$key);
-					// 		$sumc+=element('credit',$key);
-					// }
-					// 	echo "
-					// 			<tr>
-					// 				<td></td>
-					// 				<td class='title'>Total:</td>
-					// 				<td>".$sumd."</td>
-					// 				<td>".$sumc."</td>
-					// 			</tr>"
-					// 		;
-
-				// print_r($trials);
-				?>
 			</tbody>
 		</table>
 	</div>

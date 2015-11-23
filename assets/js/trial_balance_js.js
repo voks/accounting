@@ -31,4 +31,9 @@ function trial_balance_js(){
 	$('.print-trial-list').click(function(e){
 		window.open(site_url+"trial_balance/trial_summary_report?trans="+$('#journal_type').val()+"&in="+$('#ctr_acct').val()+"&invd="+$('#from_date').val()+"&mn="+$('#to_date').val(),'_blank');
 	});
+
+	// Listing toggle
+	$('.listing').click(function(){
+		($(this).val()>0) ? $(this).attr('value','0') : $(this).attr('value','1');
+	});
 }

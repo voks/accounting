@@ -7,8 +7,10 @@ $config['site_title'] = 'EPSI Accounting';
 
 $config['report_header'] = "<!DOCTYPE html>
 							<html>
-							
+							<head>
+							<link rel='icon' href='assets/img/icon/logo.ico' type='image/gif'>
 							<link href='assets/css/reports.css' rel='stylesheet'>
+							</head>
 							<body>
 								<div id='header'>
 									<div class='company-header'>
