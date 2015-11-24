@@ -82,7 +82,7 @@
 									<th class="col-md-2">Subsidiary Code</th>
 									<th class="col-md-2">Subsidiary Name</th>
 									<th class="col-md-2">
-										<a href="#" class="btn-style-1 pull-right"><i class="fa fa-refresh"></i> Reset</a>
+										<button id="btn_reset" class="btn btn-style-1 pull-right reset"><i class="fa fa-refresh"></i> Reset</button>
 									</th>
 								</tr>
 							</thead>
@@ -219,7 +219,7 @@
 		</div>
 		<div class="col-md-3">
 			<span class="txt">BI #:</span>
-			<input type="text" class="form-control empty_txtbx" id="sj_si_no" name="sj[sj_si_no]" placeholder="0000">
+			<input type="text" class="form-control empty_txtbx" id="sj_si_no" name="sj[sj_si_no]" readonly="true" value="<?=strlen($bi_num[0]->bi_num==4) ? substr_replace('0000',$bi_num[0]->bi_num,1):substr_replace('0000',$bi_num[0]->bi_num,3)?>">
 		</div>
 		<div class="col-md-4">
 			<span class="txt">Customer:</span>

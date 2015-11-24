@@ -1,24 +1,17 @@
 	<div class='jumbotron'>
-		<span>Accounts Payable</span>
+		<span>Billing Invoice</span>
 	</div>
 </div>
 <div class="content text-tbody">
 	<div class="row">
 		<div class="col-md-12 text-float-right">
-			<span class="txt padding-left">Invoice #: 
-				<?php
-					$inv_no = $ap_entries->row();
-					echo $inv_no->ap_invoice_no;
-				?>
+			<span class="txt padding-left">
 			</span>
 		</div>
 	</div>
 
 	<div class="container">
-		<div class="div-bordered div-wrap">
-			<div class="col-md-6">
-				<span class="txt padding-left-20">PAYMENT FOR:</span>
-			</div>
+		<div class="div-wrap2">
 			<div class="col-md-6">
 				<span class="txt padding-left-40">
 				<?php
@@ -28,9 +21,9 @@
 				</span>
 			</div>
 		</div>
-		<div class="div-bordered div-wrap">
+		<div class="div-wrap2">
 			<div class="col-md-6">
-				<span class="txt padding-left-20">Date:
+				<span class="txt padding-left-20">
 				<?php
 					$inv_no = $ap_entries->row();
 					echo $inv_no->ap_invoice_date;
@@ -38,7 +31,15 @@
 				</span>
 			</div>
 			<div class="col-md-6">
-				<span class="txt padding-left-20">PO #: 
+				<span class="txt padding-left-20"> 
+				<?php
+					$po = $ap_entries->row();
+					echo $po->ap_terms;
+				?>
+				</span>
+			</div>
+			<div class="col-md-6">
+				<span class="txt padding-left-20">
 				<?php
 					$po = $ap_entries->row();
 					echo $po->ap_po_no;
@@ -49,80 +50,40 @@
 	</div>
 	
 	<div class='row'>
-		<table class='table text-tbody table-header-bordered'>
-			<thead>
-				<tr >
-					<th class='one-fourth text-left text-center'>Account Code</th>
-					<th class='one-half text-left text-center'>Account Name</th>
-					<th class='text-left text-center'>Debit (DR)</th>
-					<th class='text-left text-center'>Credit (CR)</th>
-				</tr>
-			</thead>
+		<table class='table text-tbody'>
 			<tbody>
 				<!-- Showing of entries -->
 				<?php
 				foreach($ap_entries->result() as $key){
 					echo "<tr>";
-					echo "	<td class='padding-left-10 one-fourth text-left table-td-outline-left '>".$key->account_code." - ".$key->sub_code."</td>";
-					echo "	<td class='padding-left-10 one-half text-left table-td-outline-left '>".$key->account_name."</td>";
-					echo "	<td class='padding-left-10 table-td-outline-left text-right padding-right-5'>".number_format($key->trans_dr,2)."</td>";
-					echo "	<td class='padding-left-10 table-td-outline-left text-right table-td-outline-right padding-right-5'>".number_format($key->trans_cr,2)."</td>";
+					echo "	<td class='padding-left-10 one-fourth text-left '></td>";
+					echo "	<td class='padding-left-10 one-half text-left '>".$key->account_name."</td>";
+					echo "	<td class='padding-left-10 text-right padding-right-5'>".number_format($key->trans_dr,2)."</td>";
+					echo "	<td class='padding-left-10 text-right padding-right-5'>".number_format($key->trans_cr,2)."</td>";
 					echo "</tr>";
 				}
-				?>
-				<!-- Showing of TOTAL -->
-			
-				<?php
-					$total = $ap_entries->row();
-					echo "<tr>";
-					echo "	<td class='text-bold table-td-outline-bottom table-td-outline-top table-td-outline-left text-left'>TOTAL</td>";
-					echo "	<td class='table-td-outline-bottom table-td-outline-top table-td-outline-left text-right'>.</td>";
-					echo "	<td class='text-bold table-td-outline-bottom table-td-outline-top table-td-outline-left text-right padding-right-5'>".number_format($total->total_debit,2)."</td>";
-					echo "	<td class='text-bold table-td-outline-bottom table-td-outline-top table-td-outline-left text-right  padding-right-5 table-td-outline-right'>".number_format($total->total_credit,2)."</td>";
-					echo "</tr>";
 				?>
 				<!-- Showing of Particulars -->
 				<?php
 					$part = $ap_entries->row();
 					echo "<tr>";
-					echo "	<td colspan='4' class='table-td-outline-bottom table-td-outline-top table-td-outline-left table-td-outline-right text-left'><b><i>Particulars</i></b> : ".$part->ap_particulars."</td>";
+					echo "	<td class='padding-left-10'></td>";
+					echo "	<td colspan='4' class='padding-left-10 text-left'>".$part->ap_particulars."</td>";
+					echo "</tr>";
+				?>
+
+				<!-- Showing of TOTAL -->
+				<?php
+					$total = $ap_entries->row();
+					echo "<tr>";
+					echo "	<td class='text-bold text-left'></td>";
+					echo "	<td class='text-right'></td>";
+					echo "	<td class='text-bold text-right padding-right-5'>".number_format($total->total_debit,2)."</td>";
+					echo "	<td class='text-bold text-right  padding-right-5'>".number_format($total->total_credit,2)."</td>";
 					echo "</tr>";
 				?>
 			</tbody>
 		</table>
 	</div>
-	<div class="container">
-		<div class="div-bordered div-wrap-footer">
-			<div class="col-md-6">
-				<span class="txt">Prepared by:</span>
-			</div>
-			<div class="col-md-6">
-				<span class="txt">______________________</span>
-			</div>
-		</div>
-		<div class="div-bordered div-wrap-footer">
-			<div class="col-md-6">
-				<span class="txt">Checked\Approved by:</span>
-			</div>
-			<div class="col-md-6">
-				<span class="txt">______________________</span>
-			</div>
-		</div>
-		<div class="div-bordered div-wrap-footer">
-			<div class="col-md-6">
-				<span class="txt">Received by:</span>
-			</div>
-			<div class="col-md-6">
-				<span class="txt">______________________</span>
-			</div>
-		</div>
-		<div class="div-bordered div-wrap-footer">
-			<div class="col-md-6">
-				<span class="txt">POSTED BY:</span>
-			</div>
-			<div class="col-md-6">
-				<span class="txt"><div id="circle"></div> GL &nbsp;&nbsp;&nbsp; <div id="circle"></div> SL</span>
-			</div>
-		</div>
-	</div>
+	
 </div>

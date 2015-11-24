@@ -255,4 +255,12 @@ class Check_dis extends CI_Controller {
 				)
 			);
 	}
+
+	// Export Detailed Report into Excel
+	public function export(){
+		$this->load->model('journal_cd_model');
+		$this->load->helper('excel_report');
+		$data = $this->journal_cd_model->sample_data();
+		check_dis_detailed($data);
+	}
 }

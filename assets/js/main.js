@@ -1,6 +1,9 @@
 $(document).ready(function(){
 	side_panel_location();
 	page_padding();
+	scrollUp();
+	figure_format();
+	reset_accunts();
 	
 	$('.form-control').change(function(){
 		if ($(this).hasClass('error')){
@@ -12,9 +15,28 @@ $(document).ready(function(){
 		alert($(this).attr('data-item'));
 	});
 
-	scrollUp();
-	figure_format();
+	
+	
 });
+// Reset button for searching all accounts -mich
+function reset_accunts(){
+	$('#btn_reset').click(function(){
+		$.ajax({
+			type: 'POST',
+			url: site_url+'site/reset_all_accounts',
+			datatype: 'json',
+			data: {},
+			success: function(data){
+				if(data.success==1){
+					$('#tb_show_entries > tbody:last').empty().fadeIn(1000);
+					$(data.html).appendTo($('#tb_show_entries > tbody:last')).hide().fadeIn(1000);
+				}else{
+					alert('Nothing to show');
+				};
+			}
+		});
+	});
+}
 
 // Used to format the amount figure -mac
 function figure_format(){

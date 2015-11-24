@@ -1,8 +1,41 @@
 	<div class='jumbotron'>
-		<span>Accounts Record</span>
+		<span>CASH RECEIPTS - SUMMARY REPORT</span>
+		<p>As of October 20, 2012</p>
 	</div>
 </div>
 <div class='content row'>
+	<table class='table text-tbody table-bordered'>
+		<thead>
+			<tr >
+				<th class=''>BANK</th>
+				<th class=''>DEBIT</th>
+				<th class=''>CREDIT</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+			foreach($accounts as $key){
+				echo "<tr>";
+				echo "	<td class='padding-left-10'>".$key->cr_master_name_bank."</td>";
+				echo "	<td class='padding-right-5 text-right'>".number_format($key->total_debit,2)."</td>";
+				echo "	<td class='padding-right-5 text-right'>".number_format($key->total_credit,2)."</td>";
+				echo "</tr>";
+			}
+			?>
+
+			<?php
+			foreach($total->result() as $key){
+				echo "<tr>";
+				echo "	<td class='padding-left-10 text-bold'>TOTAL</td>";
+				echo "	<td class='padding-right-5 text-right'>".number_format($key->tot_amt,2)."</td>";
+				echo "	<td class='padding-right-5 text-right'>".number_format($key->tot_amt,2)."</td>";
+				echo "</tr>";
+			}
+			?>
+		</tbody>
+	</table>
+</div>
+<!-- <div class='content row'>
 	<table class='table text-tbody table-bordered'>
 		<thead>
 			<tr >
@@ -29,4 +62,4 @@
 			?>
 		</tbody>
 	</table>
-</div>
+</div> -->

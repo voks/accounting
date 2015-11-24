@@ -83,7 +83,7 @@
 									<th class="col-md-2">Subsidiary Code</th>
 									<th class="col-md-2">Subsidiary Name</th>
 									<th class="col-md-2">
-										<button class="btn btn-style-1 pull-right reset"><i class="fa fa-refresh"></i> Reset</button>
+										<button id="btn_reset" class="btn btn-style-1 pull-right reset"><i class="fa fa-refresh"></i> Reset</button>
 									</th>
 								</tr>
 							</thead>

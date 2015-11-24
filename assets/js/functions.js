@@ -19,6 +19,7 @@ function form_submit () {
 	user_access_js();
 	figure_format();
 	scrollUp();
+	reset_accunts();
 }
 
 function global_function(){

@@ -69,4 +69,12 @@ class Journal_cd_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function sample_data(){
+		$sql = "
+		SELECT * FROM tb_journal_cd
+		";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
 }

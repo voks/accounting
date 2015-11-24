@@ -167,7 +167,8 @@ class Site extends CI_Controller {
 				$viewData = array(
 					'journal_sj' => $this->journal_sj_model->show_customer(),
 					'account_title' => $this->subsidiary_account_model->get_accounts(),
-					'all_accounts' => $this->site_model->load_all_accounts()
+					'all_accounts' => $this->site_model->load_all_accounts(),
+					'bi_num' => $this->journal_sj_model->get_last_binum()
 					);
 				$this->load->view('modules/sales_journal', $viewData);
 				$this->load->view('parts/footer');
@@ -439,5 +440,24 @@ class Site extends CI_Controller {
 	public function reset_all_accounts(){
 		$this->load->model('site_model');
 		$data = $this->site_model->load_all_accounts();
+		$html = "";
+		foreach ($data->result() as $key) {
+			$html .= "
+			<tr>
+				<td class='col-md-1'><label><input type='checkbox' class='' value='0' id='check' data-subcode='".$key->sub_code."' data-subname='".$key->sub_name."'><label></td>
+				<td class='col-md-1'>".$key->account_code."</td>
+				<td class='col-md-3'>".$key->account_title."</td>
+				<td class='col-md-2'>".$key->sub_code."</td>
+				<td class='col-md-4' colspan='2'>".$key->sub_name."</td>
+			</tr>
+			";
+		}
+		echo jcode(
+			array(
+				'success' 	=> 1, 
+				'response' 	=> $data,
+				'html' 		=> $html 
+				)
+			);
 	}
 }

@@ -62,4 +62,10 @@ class Journal_sj_model extends CI_Model {
 		$query = $this->db->query($sql, array($id));
 		return $query->result();
 	}
+
+	public function get_last_binum(){
+		$sql = "SELECT MAX(sj_si_no) + 1 AS bi_num  from tb_journal_sj";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }

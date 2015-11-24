@@ -169,7 +169,7 @@ class Cash_receipts extends CI_Controller {
 			$id = (int)$this->input->get('id');
 			$html = $this->config->item('report_header');
 			$viewData = array(
-				'cr_entries' => $this->journal_cr_model->journal_get_entries($id)
+				'cr_entries' => $this->journal_cr_model->journal_get_entries($id),
 				);
 			$html.= $this->load->view('report/cr_entries', $viewData, true);
 			$html.= $this->config->item('report_footer');
@@ -187,7 +187,8 @@ class Cash_receipts extends CI_Controller {
 			$cr_or_date_to	= $this->input->get('ordto');
 			$html = $this->config->item('report_header');
 			$data = array(
-				'accounts' => $this->journal_cr_model->journal_cr_get($cr_or_no,$cr_or_date_frm,$cr_or_date_to)->result()
+				'accounts' => $this->journal_cr_model->journal_cr_get($cr_or_no,$cr_or_date_frm,$cr_or_date_to)->result(),
+				'total' => $this->journal_cr_model->journal_cr_get_total($cr_or_no,$cr_or_date_frm,$cr_or_date_to)
 				);
 			$html.= $this->load->view('report/cr_search_report', $data, true);
 			$html.= $this->config->item('report_footer');

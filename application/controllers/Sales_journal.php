@@ -17,7 +17,8 @@ class Sales_journal extends CI_Controller {
 			$viewData = array(
 				'journal_sj' => $this->journal_sj_model->show_customer(),
 				'account_title' => $this->subsidiary_account_model->get_accounts(),
-				'all_accounts' => $this->site_model->load_all_accounts()
+				'all_accounts' => $this->site_model->load_all_accounts(),
+				'bi_num' => $this->journal_sj_model->get_last_binum()
 				);
 			$this->load->view('modules/sales_journal', $viewData);
 			$this->load->view('parts/footer');
@@ -38,7 +39,8 @@ class Sales_journal extends CI_Controller {
 			$viewData = array(
 				'journal_sj' => $this->journal_sj_model->show_customer(),
 				'account_title' => $this->subsidiary_account_model->get_accounts(),
-				'all_accounts' => $this->site_model->load_all_accounts()
+				'all_accounts' => $this->site_model->load_all_accounts(),
+				'bi_num' => $this->journal_sj_model->get_last_binum()
 				);
 			$this->load->view('modules/sales_journal', $viewData);
 		}

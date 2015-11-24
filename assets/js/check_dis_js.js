@@ -102,6 +102,20 @@ function check_dis_js(){
 	$('.cd-print-list-result').click(function(e){
 		window.open(site_url+"check_dis/cd_summary_report?&cn"+$('#searchCD_checkNo').val()+"dfrm="+$('#searchCD_voucherDate_frm').val()+"&dto"+$('#searchCD_voucherDate_to').val(),'_blank');
 	});
+
+	// Export to Excel
+	$('#btn_export').click(function(){
+		$.ajax({
+			type: 'POST',
+			url: site_url+'check_dis/export',
+			datatype: 'json',
+			data: {},
+			success: function(data){
+				alert("Report successfully generated!");
+			}
+			});
+	});
+	
 }
 
 function view_trans_cd(){

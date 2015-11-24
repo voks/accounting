@@ -81,7 +81,7 @@
 									<th class="col-md-2">Subsidiary Code</th>
 									<th class="col-md-2">Subsidiary Name</th>
 									<th class="col-md-2">
-										<a href="#" class="btn-style-1 pull-right"><i class="fa fa-refresh"></i> Reset</a>
+										<button id="btn_reset" class="btn btn-style-1 pull-right reset"><i class="fa fa-refresh"></i> Reset</button>
 									</th>
 								</tr>
 							</thead>
@@ -222,7 +222,7 @@
 		</div>
 		<div class="col-md-2">
 			<span class="txt">Voucher #:</span>
-			<input type="text" class="form-control empty_txtbx" readonly="true" placeholder="00-0000" id="cd_voucher_no" name="cd[cd_voucher_no]" value="<?=substr(date("Y"),2).'-'.(strlen($v_num[0]->v_num==4)) ? substr(date("Y"),2).'-'.substr_replace('0000',$v_num[0]->v_num,1):substr(date("Y"),2).'-'.substr_replace('0000',$v_num[0]->v_num,0)?>">
+			<input type="text" class="form-control empty_txtbx" readonly="true" id="cd_voucher_no" name="cd[cd_voucher_no]" value="<?=substr(date("Y"),2).'-'.(strlen($v_num[0]->v_num==4)) ? substr(date("Y"),2).'-'.substr_replace('0000',$v_num[0]->v_num,1):substr(date("Y"),2).'-'.substr_replace('0000',$v_num[0]->v_num,0)?>">
 		</div>
 		<div class="col-md-3">
 			<span class="txt">Check#:</span>
@@ -365,7 +365,7 @@
 			<a href="#" class="btn btn-style-1 cd-print-list-result animate-4 pull-left"><i class="fa fa-print"></i> Print PDF Report</a>
 		</div>
 		<div class="col-md-2">
-			<a href="#" class="btn btn-style-1 animate-4"><i class="fa fa-download"></i> Download as Excel</a>
+			<a id="btn_export" class="btn btn-style-1 animate-4"><i class="fa fa-download"></i> Download as Excel</a>
 		</div>
 	</div>
 </form>

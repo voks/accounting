@@ -156,7 +156,6 @@ class Accounts_payable extends CI_Controller {
 			}
 
 		}
-		
 	}
 
 	public function ap_report(){
