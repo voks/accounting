@@ -192,6 +192,24 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div>
+<!--Alert modal for Downloading Report-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" id="alertmessage">
+	<div class="modal-dialog modal-s">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-9">
+						<span class="txt">Report successfully downloaded.</span>
+						<span class="txt">Location:<br/>C:\xampp\htdocs\accounting\Reports\Check_Dis\</span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> OK</button>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
 <form class="cd-form">
 	<!-- Title -->
 	<div class="row">
@@ -364,8 +382,15 @@
 		<div class="col-md-2">
 			<a href="#" class="btn btn-style-1 cd-print-list-result animate-4 pull-left"><i class="fa fa-print"></i> Print PDF Report</a>
 		</div>
+	</div>
+	<div class="row margin-top-5">
+		<div class="col-md-3">
+			<a id="btn_export" class="btn btn-style-1 animate-4"><i class="fa fa-download"></i> Detailed Report &nbsp;</a>
+		</div>
+	</div>
+	<div class="row margin-top-5">
 		<div class="col-md-2">
-			<a id="btn_export" class="btn btn-style-1 animate-4"><i class="fa fa-download"></i> Download as Excel</a>
+			<a id="btn_export_sum" class="btn btn-style-1 animate-4"><i class="fa fa-download"></i> Summary Report</a>
 		</div>
 	</div>
 </form>

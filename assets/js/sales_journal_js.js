@@ -100,6 +100,32 @@ function sales_journal_js(){
 	$('.sj-print-list-result').click(function(e){
 		window.open(site_url+"sales_journal/sj_summary_report?si="+$('#searchSJ_siNo').val()+"&sid="+$('#searchSJ_siDate_frm').val()+"&sid="+$('#searchSJ_siDate_to').val(),'_blank');
 	});
+
+	// Export Sales Summary Report
+	$('#btn_sales_export_sum').click(function(){
+		$.ajax({
+			type: 'POST',
+			url: site_url+'sales_journal/export_sales_summary',
+			datatype: 'json',
+			data: {},
+			success: function(data){
+				$('#alertmessage').modal('show');
+			}
+		});
+	});
+
+	// Export Sales Detailed Report
+	$('#btn_sales_export').click(function(){
+		$.ajax({
+			type: 'POST',
+			url: site_url+'sales_journal/export_sales_detailed',
+			datatype: 'json',
+			data: {},
+			success: function(data){
+				$('#alertmessage').modal('show');
+			}
+		});
+	});
 }
 
 function view_trans_sj(){

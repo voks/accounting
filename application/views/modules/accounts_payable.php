@@ -400,8 +400,10 @@
 		<div class="col-md-3">
 			<a href="#" class="btn-style-1 animate-4 pull-left print-list-result"><i class="fa fa-print"></i> Print PDF Report</a>
 		</div>
+	</div>
+	<div class="row margin-top-5">
 		<div class="col-md-3">
-			<a href="#" class="btn-style-1 animate-4 pull-left"><i class="fa fa-download"></i> Download as Excel</a>
+			<a id="" class="btn btn-style-1 animate-4"><i class="fa fa-download"></i> Detailed Report &nbsp;</a>
 		</div>
 	</div>
 </form>

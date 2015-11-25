@@ -155,7 +155,7 @@ function check_dis_detailed($data){
                   $callStartTime = microtime(true);
 
                   $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-                  $objWriter->save('Reports/check_dis.xls');
+                  $objWriter->save('Reports/Check_Dis/Detailed/detailed_'.date("Y-m-d").'.xls');
                   $callEndTime = microtime(true);
                   $callTime = $callEndTime - $callStartTime;
 

@@ -103,17 +103,30 @@ function check_dis_js(){
 		window.open(site_url+"check_dis/cd_summary_report?&cn"+$('#searchCD_checkNo').val()+"dfrm="+$('#searchCD_voucherDate_frm').val()+"&dto"+$('#searchCD_voucherDate_to').val(),'_blank');
 	});
 
-	// Export to Excel
+	// Export to Excel (Deatiled Check dis Report) -mich
 	$('#btn_export').click(function(){
 		$.ajax({
 			type: 'POST',
-			url: site_url+'check_dis/export',
+			url: site_url+'check_dis/export_detailed',
 			datatype: 'json',
 			data: {},
 			success: function(data){
-				alert("Report successfully generated!");
+				$('#alertmessage').modal('show');
 			}
 			});
+	});
+
+	// Export to Exel (Summmart chec dis report) -mich
+	$('#btn_export_sum').click(function(){
+		$.ajax({
+			type: 'POST',
+			url: 'check_dis/export_summary',
+			datatype: 'json',
+			data: {},
+			success: function(data){
+				$('#alertmessage').modal('show');
+			}
+		});
 	});
 	
 }

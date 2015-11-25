@@ -68,4 +68,14 @@ class Journal_sj_model extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+
+	public function export_sales_summary(){
+		$sql = "
+		select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr
+		from tb_journal_sj jtb left join tb_journal_trans jtr on jtb.sj_id=jtr.trans_id
+		where jtb.project_id=".$this->session->userdata('project_id')." and jtr.trans_journal = 'sj'
+		";
+		$query = $this->db->query($sql);
+		return $query;
+	}
 }

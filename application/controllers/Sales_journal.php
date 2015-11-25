@@ -241,4 +241,20 @@ class Sales_journal extends CI_Controller {
 				)
 			);
 	}
+
+	// Export Sales Summary (EXCEL) -mich
+	public function export_sales_summary(){
+		$this->load->model('journal_sj_model');
+		$this->load->helper('sales_summary');
+		$data = $this->journal_sj_model->export_sales_summary();
+		sales_summary($data);
+	}
+
+	// Export Sales Detailed (EXCEL) -mich
+	public function export_sales_detailed(){
+		$this->load->model('journal_sj_model');
+		$this->load->helper('sales_detailed');
+		$data = $this->journal_sj_model->export_sales_summary();
+		sales_detailed($data);
+	}
 }
