@@ -262,4 +262,16 @@ class Accounts_payable extends CI_Controller {
 			);
 	}
 
+	// Download Excel copy of PDF Report
+	public function ap_excel_report(){
+		$this->load->model('journal_ap_model');
+		$this->load->helper('ap_excel_report');
+		$account_search = $this->input->post('searchAP');
+		$data = array(
+			'accounts' => $this->journal_ap_model->journal_ap_get($account_search['searchAP_invNo'], $account_search['searchAP_date_frm'], $account_search['searchAP_date_to']),
+			'accounts_total' => $this->journal_ap_model->journal_ap_get_total($account_search['searchAP_invNo'], $account_search['searchAP_date_frm'], $account_search['searchAP_date_to'])
+			);
+		ap_excel_report($data);
+	}
+
 }

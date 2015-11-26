@@ -100,6 +100,19 @@ function accounts_payable_js(){
 	$('.print-list-result').click(function(e){
 		window.open(site_url+"accounts_payable/ap_summary_report?in="+$('#searchAP_invNo').val()+"&invd="+$('#searchAP_date_frm').val()+"&po"+$('#searchAP_date_to').val()+"&mn"+$('#searchAP_suppName').val(),'_blank');
 	});
+
+	// Export to Excel Report -mich
+	$('#btn_ap_excel').click(function(){
+		$.ajax({
+			type: 'POST',
+			url: site_url='accounts_payable/ap_excel_report',
+			datatype: 'json',
+			data: {},
+			success: function(data){
+				$('#alertmessage').modal('show');
+			}
+		});
+	});
 }
 
 

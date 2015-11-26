@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-function sales_summary($data){
+function ap_excel_report($data){
                   /**
                   * PHPExcel
                   *
@@ -78,9 +78,9 @@ function sales_summary($data){
                   //echo date('H:i:s') , " Set document properties" , EOL;
                   $objPHPExcel->getProperties()->setCreator("EPSI")
                   ->setLastModifiedBy("MAC")
-                  ->setTitle("Check Disbursement")
+                  ->setTitle("Accounts Payable")
                   ->setSubject("Report")
-                  ->setDescription("Deatiled Report");
+                  ->setDescription("Excel Report");
                    // ->setKeywords("Employee DTR Summary")
                    // ->setCategory("Employee DTR Summary");
 
@@ -97,7 +97,7 @@ function sales_summary($data){
 
                   //DESCRIPTION
                   $objRichText = new PHPExcel_RichText();
-                  $objPayable = $objRichText->createTextRun('CHECK DISBURSEMENT SUMMARY REPORT');
+                  $objPayable = $objRichText->createTextRun('ACCOUNTS PAYABLE EXCCEL REPORT');
                   $objPayable->getFont()->setBold(true);
                   $objPayable->getFont()->setSize(12);
                   $objPayable->getFont()->setColor( new PHPExcel_Style_Color( PHPExcel_Style_Color::COLOR_BLACK ) );
@@ -113,7 +113,6 @@ function sales_summary($data){
                   
                   // Put COntent in the cell. Declare first the cell location, then put the content. -mich
                   $objPHPExcel->setActiveSheetIndex(0);
-                  $newdata = $data->result_array();  
                   $sheet->setCellValue('A5', 'ACCOUNT TITLE');
                   $sheet->setCellValue('B5', '');
                   $sheet->setCellValue('C5', 'DEBIT');
@@ -121,10 +120,10 @@ function sales_summary($data){
 
                   // Put data (from the database) in the cell
                   $counts = 6;
-                  foreach ($data->result() as $key) {
-                        $sheet->setCellValue("A".$counts."", $key->account_name);
-                        $sheet->setCellValue("C".$counts."", $key->trans_dr);
-                        $sheet->setCellValue("D".$counts."", $key->trans_cr);
+                  foreach($data as $key) {
+                        $sheet->setCellValue("A".$counts."", $key->ap_invoice_no);
+                        $sheet->setCellValue("C".$counts."", $key->ap_master_name);
+                        $sheet->setCellValue("D".$counts."", $key->ap_invoice_amount);
                         $counts++;
                   }
 
@@ -156,7 +155,7 @@ function sales_summary($data){
                   $callStartTime = microtime(true);
 
                   $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-                  $objWriter->save('Reports/Sales_Journal/Summary/sales_summary_'.date("Y-m-d").'.xls');
+                  $objWriter->save('Reports/Accounts_Payable/ap_'.date("Y-m-d").'.xls');
                   $callEndTime = microtime(true);
                   $callTime = $callEndTime - $callStartTime;
 
