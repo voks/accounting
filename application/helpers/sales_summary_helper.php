@@ -120,13 +120,13 @@ function sales_summary($data){
                   $sheet->setCellValue('D5', 'CREDIT');
 
                   // Put data (from the database) in the cell
-                  $counts = 6;
-                  foreach ($data->result() as $key) {
-                        $sheet->setCellValue("A".$counts."", $key->account_name);
-                        $sheet->setCellValue("C".$counts."", $key->trans_dr);
-                        $sheet->setCellValue("D".$counts."", $key->trans_cr);
-                        $counts++;
-                  }
+                  // $counts = 6;
+                  // foreach ($data->result() as $key) {
+                  //       $sheet->setCellValue("A".$counts."", $key->account_name);
+                  //       $sheet->setCellValue("C".$counts."", $key->trans_dr);
+                  //       $sheet->setCellValue("D".$counts."", $key->trans_cr);
+                  //       $counts++;
+                  // }
 
                   // STYLING CELLS -mich
                   // FORMAT THE NUMBER IN SPECIFIC CELL
