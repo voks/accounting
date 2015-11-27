@@ -403,10 +403,27 @@
 	</div>
 	<div class="row margin-top-5">
 		<div class="col-md-3">
-			<a id="" class="btn btn-style-1 animate-4"><i class="fa fa-download"></i> Detailed Report &nbsp;</a>
+			<a id="btn_ap_excel" class="btn btn-style-1 animate-4"><i class="fa fa-download"></i> Detailed Report &nbsp;</a>
 		</div>
 	</div>
 </form>
-
+<!--Alert modal for Downloading Report-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" id="alertmessage">
+	<div class="modal-dialog modal-s">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-9">
+						<span class="txt">Report successfully downloaded.</span>
+						<span class="txt">Location:<br/>C:\xampp\htdocs\accounting\Reports\Accounts_Payable\</span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> OK</button>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
 
 <!-- Page content end
