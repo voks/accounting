@@ -44,4 +44,12 @@ class System_settings_model extends CI_Model {
 	public function account_group_get($type){
 		return $this->db->query("select * from tb_account_groups where account_type='".$type."'");
 	}
+
+	public function delete_group($id){
+		$sql = "
+		DELETE FROM tb_account_groups WHERE id = $id;
+		";
+		$query = $this->db->query($sql, $id);
+		return $query;
+	}
 }

@@ -113,17 +113,16 @@ function ap_excel_report($data){
                   
                   // Put COntent in the cell. Declare first the cell location, then put the content. -mich
                   $objPHPExcel->setActiveSheetIndex(0);
-                  $sheet->setCellValue('A5', 'ACCOUNT TITLE');
-                  $sheet->setCellValue('B5', '');
-                  $sheet->setCellValue('C5', 'DEBIT');
-                  $sheet->setCellValue('D5', 'CREDIT');
+                  $sheet->setCellValue('A5', 'INVOICE #');
+                  $sheet->setCellValue('B5', 'ACCOUNT TITLE');
+                  $sheet->setCellValue('C5', 'INVOICE AMOUNT');
 
                   // Put data (from the database) in the cell
                   $counts = 6;
                   foreach($data as $key) {
                         $sheet->setCellValue("A".$counts."", $key->ap_invoice_no);
-                        $sheet->setCellValue("C".$counts."", $key->ap_master_name);
-                        $sheet->setCellValue("D".$counts."", $key->ap_invoice_amount);
+                        $sheet->setCellValue("B".$counts."", $key->ap_master_name);
+                        $sheet->setCellValue("C".$counts."", $key->ap_invoice_amount);
                         $counts++;
                   }
 
@@ -137,10 +136,9 @@ function ap_excel_report($data){
                   $sheet->mergeCells('A3:E3');
 
                   // SET COLUMN WIDTH
-                  $sheet->getColumnDimension('A')->setWidth(60);
-                  $sheet->getColumnDimension('B')->setWidth(10);
+                  $sheet->getColumnDimension('A')->setWidth(20);
+                  $sheet->getColumnDimension('B')->setWidth(60);
                   $sheet->getColumnDimension('C')->setWidth(20);
-                  $sheet->getColumnDimension('D')->setWidth(20);
 
                   // Set active sheet index to the first sheet, so Excel opens this as the first sheet
                   $objPHPExcel->setActiveSheetIndex(0);

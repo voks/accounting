@@ -11,9 +11,9 @@ $(document).ready(function(){
 		}
 	});	
 
-	$(".accountgroup-item").click(function(e){
-		alert($(this).attr('data-item'));
-	});
+	// $(".accountgroup-item").click(function(e){
+	// 	alert($(this).attr('data-item'));
+	// });
 
 	
 	

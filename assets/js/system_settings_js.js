@@ -33,6 +33,32 @@ function system_settings_js(){
 		};
 	});
 
+	// Delete Account group
+	$('.accountgroup-item').click(function(){
+		var e = $(this);
+		var id = e.data('item');
+		// alert(id);
+		$('#deleteGroup').modal('show');
+		$('#btn_delgroup').click(function(){
+			$.ajax({
+				type: 'POST',
+				url: site_url+'system_settings/delete_group',
+				datatype: 'json',
+				data: {'id': id},
+				success: function(data){
+					if (data.success==1) {
+						$('#deleteGroup').modal('hide');
+						$('#del-success').modal('show');
+					} else{
+						alert('Cant delete!');
+					};
+
+				}
+			});
+		});
+		
+	});
+
 	// Adding of Copyrights
 	$('.form-copyrights').submit(function(e){
 		e.preventDefault();

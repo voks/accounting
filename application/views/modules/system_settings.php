@@ -155,4 +155,41 @@
 		</div>
 	</div>
 </form>
+
+<!--Delete Account group Modal-->
+<div class="modal fade deleteGroup" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" id="deleteGroup">
+	<div class="modal-dialog modal-s">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-offset-2 col-md-5">
+						<span class="txt">Are you sure to delete the user?</span>
+					</div>
+					<div class="col-md-3">
+						<button class="btn btn-style-1" type="button"  id="btn_delgroup">Yes</button>
+						<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> No</button>
+					</div>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<!--Confirmation Modal Modal-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" id="del-success">
+	<div class="modal-dialog modal-s">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-9">
+						<span class="txt"> Account group has been successfully deleted!</span>
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> OK</button>
+					</div>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
 <!-- Page content end -->

@@ -107,7 +107,7 @@ function accounts_payable_js(){
 			type: 'POST',
 			url: site_url='accounts_payable/ap_excel_report',
 			datatype: 'json',
-			data: {},
+			data: $('.searchAP-form').serialize(),
 			success: function(data){
 				$('#alertmessage').modal('show');
 			}

@@ -6,9 +6,9 @@ class System_settings extends CI_Controller {
 		$this->load->model("system_settings_model");
 		if ($this->session->userdata('islogged')) {
 			$page_info = array(
-									'page_tab' 		=> 'Administrator',
-									'page_title' 	=> 'System Settings'
-							  );
+				'page_tab' 		=> 'Administrator',
+				'page_title' 	=> 'System Settings'
+				);
 			$this->load->view('parts/header',load_data($page_info));
 			$this->load->view('parts/sidebar',load_data($page_info));
 			$copyright = array('copyright' => $this->system_settings_model->copyrights_show()->result_array());
@@ -49,12 +49,12 @@ class System_settings extends CI_Controller {
 		else{
 			$id = $this->system_settings_model->save_account($account_type,$account_group);
 			$html = "
-						<tr>
-							<td>".$account_type."</td>
-							<td>".$account_group."</td>
-							<td><i class='fa fa-trash-o btn-style-2 animate-4 accountgroup-item' data-item='".$id."'></i></td>
-						</tr>
-					";
+			<tr>
+				<td>".$account_type."</td>
+				<td>".$account_group."</td>
+				<td><i  class='fa fa-trash-o btn-style-2 animate-4 accountgroup-item btn_delgroup' data-item='".$id."'></i></td>
+			</tr>
+			";
 			echo jcode(array('success' => 1,'response' => $html));
 		}
 	}
@@ -74,10 +74,10 @@ class System_settings extends CI_Controller {
 
 		if (count($err)) {
 			echo jcode(array(
-								'success' => 3, 
-								'err' 	  => $err
-							)
-					);
+				'success' => 3, 
+				'err' 	  => $err
+				)
+			);
 		} 
 		else {
 			$this->system_settings_model->copyrights_add($copyrights_data);
@@ -94,11 +94,23 @@ class System_settings extends CI_Controller {
 			$response .="<option>".$key->account_groupname."</option>";
 		}
 		echo jcode(
-					array(
-							'success' => 1,
-							'response' => $response
-						 )
-				  );
+			array(
+				'success' => 1,
+				'response' => $response
+				)
+			);
+	}
+
+	public function delete_group(){
+		$this->load->model('system_settings_model');
+		$id = $this->input->post('id');
+		$data = $this->system_settings_model->delete_group($id);
+		// print_r($this->db->last_query());
+		echo jcode(array(
+			'success' => 1,
+			'response' => $data
+			));
+
 	}
 
 }

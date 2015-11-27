@@ -266,11 +266,13 @@ class Accounts_payable extends CI_Controller {
 	public function ap_excel_report(){
 		$this->load->model('journal_ap_model');
 		$this->load->helper('ap_excel_report');
-		$account_search = $this->input->post('searchAP');
-		$data = array(
-			'accounts' => $this->journal_ap_model->journal_ap_get($account_search['searchAP_invNo'], $account_search['searchAP_date_frm'], $account_search['searchAP_date_to']),
-			'accounts_total' => $this->journal_ap_model->journal_ap_get_total($account_search['searchAP_invNo'], $account_search['searchAP_date_frm'], $account_search['searchAP_date_to'])
-			);
+		$search 			= $this->input->post('searchAP');
+		$ap_invoice_no 		= $this->input->post($search['searchAP_invNo']);
+		$ap_inv_date_frm 	= $this->input->post($search['searchAP_date_frm']);
+		$ap_inv_date_to 	= $this->input->post($search['searchAP_date_to']);
+		$data = $this->journal_ap_model->journal_ap_get($ap_invoice_no,$ap_inv_date_frm,$ap_inv_date_to)->result();
+		// 'accounts_total' => $this->journal_ap_model->journal_ap_get_total($ap_invoice_no,$ap_invoice_date,$ap_master_name,$ap_po_no)->result()
+		// print_r($this->db->last_query());
 		ap_excel_report($data);
 	}
 
