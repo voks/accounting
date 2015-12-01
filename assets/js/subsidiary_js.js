@@ -101,6 +101,7 @@ function subsidiary_js(){
 		$('.deleteConfirmation').modal('hide');
 	});
 
+
 }
 
 function auto_fill_sub(){

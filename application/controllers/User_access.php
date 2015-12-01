@@ -73,7 +73,7 @@ class User_access extends CI_Controller {
 					<td>".$user_access_data['user_type']."</td>
 					<td>
 						<span class='action'><a href='#' class='' id='alert' data-toggle='modal' data-target='.userAccess'><i class='fa fa-edit' data-item='".$id."'></i> Update</a></span> |
-						<span class='action'><i class='fa fa-trash-o' data-item='".$id."'></i> <a href='#' class='' id='alert' data-toggle='modal' data-target='.deleteAccess'>Delete</a></span>
+						<span class='action'> <a href='#' class='btn_deluser' data-id='".$id."' ><i class='fa fa-trash-o' data-item=''></i> Delete</a></span>
 					</td>
 				</tr>
 				";
@@ -112,5 +112,42 @@ class User_access extends CI_Controller {
 			echo jcode(array('success' => 1));
 		}
 
+	}
+
+	public function del_user_access(){
+		$this->load->model('user_access_model');
+		$user_id = $this->input->post('id');
+		$data = $this->user_access_model->delete_user($user_id);
+		echo jcode(array(
+			'success' => 1,
+			'response' => $data
+			));
+	}
+
+	public function load_all_user(){
+		$this->load->model('user_access_model');
+		$data = $this->user_access_model->show_user_access();
+		$html = "";
+		foreach ($data->result() as $key) {
+			$html .= "
+			<tr>
+				<td>".$key->fname."</td>
+				<td>".$key->lname."</td>
+				<td>".$key->uname."</td>
+				<td>".$key->pwd."</td>
+				<td>".$key->user_type."</td>
+				<td>
+					<span class='action'><a href='#' class='' id='alert' data-toggle='modal' data-target='.userAccess'><i class='fa fa-edit' data-item='".$key->id."'></i> Update</a></span> |
+					<span class='action'> <a href='#' class='btn_deluser' data-id='".$key->id."' ><i class='fa fa-trash-o' data-item=''></i> Delete</a></span>
+				</td>
+			</tr>
+			";
+		}
+		echo jcode(
+			array(
+				'success' 	=> 1,
+				'response' 	=> $html
+				)
+			);
 	}
 }

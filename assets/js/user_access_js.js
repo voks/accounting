@@ -91,4 +91,46 @@ function user_access_js(){
 	$('.check_access').click(function(){
 		($(this).val()>0) ? $(this).attr('value','0') : $(this).attr('value','1');
 	});
+
+	// Delete user
+	$('.btn_deluser').click(function(){
+		var e = $(this);
+		var id = e.data('id');
+		$('#deleteAccess').modal('show');
+		$('#btn_delyes').click(function(){
+			$.ajax({
+				type: 'POST',
+				url: site_url+'user_access/del_user_access',
+				datatype: 'json',
+				data: {'id': id},
+				success: function(data){
+					if (data.success==1) {
+						$('#deleteAccess').modal('hide');
+						$('#del-success').modal('show');
+					} else{
+						alert('Cant delete!');
+					};
+				}
+			});
+		});		
+	});
+
+	// Load all user after deleting some data
+	$('#btn_ok').click(function(){
+		$.ajax({
+			type: 'POST',
+			url: site_url+'user_access/load_all_user',
+			datatype: 'json',
+			data: {},
+			success: function(data){
+				if(data.success==1){
+					$('.userlist > tbody:last').empty().fadeIn(1000);
+					$(data.response).appendTo($('.userlist > tbody:last')).hide().fadeIn(1000);
+				}
+				else{
+					console.log('Cantload account group');
+				}
+			}
+		});
+	});
 }

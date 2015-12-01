@@ -94,7 +94,7 @@
 	</form>
 </div>
 <!--Delete User access Modal-->
-<div class="modal fade deleteAccess" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" id="deleteAccess">
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" id="deleteAccess">
 	<div class="modal-dialog modal-s">
 		<div class="modal-content">
 			<div class="modal-body">
@@ -103,7 +103,7 @@
 						<span class="txt">Are you sure to delete the user?</span>
 					</div>
 					<div class="col-md-3">
-						<button class="btn btn-style-1" type="button"  onclick="">Yes</button>
+						<button id="btn_delyes" class="btn btn-style-1" type="button"  onclick="">Yes</button>
 						<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> No</button>
 					</div>
 				</div>
@@ -284,7 +284,7 @@
 								data-admin='".$data->tab_admin."'
 								data-setup='".$data->tab_setup."'
 								class='edit_user'><i class='fa fa-edit' data-item=''></i> Update</a></span> |
-								<span class='action'><i class='fa fa-trash-o' data-item=''></i> <a href='#' class='' id='alert' data-toggle='modal' data-target='.deleteAccess'>Delete</a></span>
+								<span class='action'> <a href='#' class='btn_deluser' data-id='".$data->user_id."' ><i class='fa fa-trash-o' data-item=''></i> Delete</a></span>
 							</td>
 						</tr>
 						";
@@ -295,4 +295,22 @@
 
 		</div>
 	</div>
+
+<!--Confirmation Modal Modal-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" id="del-success">
+	<div class="modal-dialog modal-s">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-9">
+						<span class="txt"> Account group has been successfully deleted!</span>
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-style2" id="btn_ok" data-dismiss="modal" aria-label="Close"> OK</button>
+					</div>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
 <!-- Page content end -->

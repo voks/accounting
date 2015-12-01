@@ -59,7 +59,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<span class="txt">Subsidairy Code:</span>
-			<input type="text" data-inputmask-clearmaskonlostfocus="false" class="form-control empty_txtbx sub-input-masked" id="sub_code" name="subsidiary[sub_code]" />
+			<input type="text" data-inputmask-clearmaskonlostfocus="false" class="form-control empty_txtbx sub-input-masked" id="sub_code" readonly="true" name="subsidiary[sub_code]" value="<?=strlen($sub_code[0]->sub_code==4) ? substr_replace('0000',$sub_code[0]->sub_code,1):substr_replace('0000',$sub_code[0]->sub_code,3)?>" />
 		</div>
 		<div class="col-md-4">
 			<span class="txt">Subdiary Name:</span>

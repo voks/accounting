@@ -57,4 +57,10 @@ class Subsidiary_account_model extends CI_Model {
 		return $query = $this->db->query($sql, array($sub_code));
 	}
 
+	public function get_last_subnum(){
+		$sql = "SELECT MAX(RIGHT(sub_code, 5)) + 1 AS sub_code  from tb_account_subsidiary";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
 }

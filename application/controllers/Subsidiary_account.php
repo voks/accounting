@@ -11,8 +11,11 @@ class Subsidiary_account extends CI_Controller {
 				);
 			$this->load->view('parts/header',load_data($page_info));
 			$this->load->view('parts/sidebar',load_data($page_info));
-			$master_name = array('master_name' => $this->main_account_model->show_master_name()->result());
-			$this->load->view('modules/subsidiary_account',$master_name);
+			$data = array(
+				'master_name' => $this->main_account_model->show_master_name()->result(),
+				'sub_code' => $this->subsidiary_account_model->get_last_subnum()
+				);
+			$this->load->view('modules/subsidiary_account',$data);
 			$this->load->view('parts/footer');
 			
 		}
@@ -29,10 +32,13 @@ class Subsidiary_account extends CI_Controller {
 			$this->session->set_userdata('page_tab', 'Set Up');
 			$this->session->set_userdata('page_title', 'Subsidiary Account');
 			$this->session->set_userdata('current_page', 'subsidiary_account');
-			$account_list = array('account_list' => $this->system_settings_model->account_group_get('Assets')->result());
-			$account_title = array('account_title' => $this->subsidiary_account_model->get_accounts()->result());
-			$master_name = array('master_name' => $this->main_account_model->show_master_name()->result());
-			$this->load->view('modules/subsidiary_account',array_merge($account_list,$account_title,$master_name));
+			$data = array(
+				'account_list' => $this->system_settings_model->account_group_get('Assets')->result(),
+				'account_title' => $this->subsidiary_account_model->get_accounts()->result(),
+				'master_name' => $this->main_account_model->show_master_name()->result(),
+				'sub_code' => $this->subsidiary_account_model->get_last_subnum()
+				);
+			$this->load->view('modules/subsidiary_account',$data);
 		}
 		else{
 			echo jcode(array('success' => 1));

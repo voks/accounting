@@ -55,8 +55,7 @@ function system_settings_js(){
 
 				}
 			});
-		});
-		
+		});	
 	});
 
 	// Adding of Copyrights
@@ -79,6 +78,25 @@ function system_settings_js(){
 					for (i=0;i<=data.err.length;i++) {
 						jQuery("#"+data.err[i]).addClass('error');
 					};
+				}
+			}
+		});
+	});
+
+	// Load all account group after deleting some data
+	$('#btn_ok').click(function(){
+		$.ajax({
+			type: 'POST',
+			url: site_url+'system_settings/load_acct_group',
+			datatype: 'json',
+			data: {},
+			success: function(data){
+				if(data.success==1){
+					$('.accountgroup-table > tbody:last').empty().fadeIn(1000);
+					$(data.response).appendTo($('.accountgroup-table > tbody:last')).hide().fadeIn(1000);
+				}
+				else{
+					console.log('Cantload account group');
 				}
 			}
 		});

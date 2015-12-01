@@ -185,7 +185,7 @@
 						<span class="txt"> Account group has been successfully deleted!</span>
 					</div>
 					<div class="col-md-2">
-						<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> OK</button>
+						<button class="btn btn-style2" id="btn_ok" data-dismiss="modal" aria-label="Close"> OK</button>
 					</div>
 				</div>
 			</div>

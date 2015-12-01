@@ -54,7 +54,7 @@ class User_access_model extends CI_Model {
 		$sql = "
 			DELETE u.*, a.* 
 			FROM tb_users u, tb_user_access a 
-			WHERE u.user_id = a.user_id AND a.user_id ?
+			WHERE u.user_id = a.user_id AND a.user_id = ?
 		";
 		$this->db->query($sql, $user_id);
 	}

@@ -110,7 +110,29 @@ class System_settings extends CI_Controller {
 			'success' => 1,
 			'response' => $data
 			));
+	}
 
+	public function load_acct_group(){
+		$this->load->model('system_settings_model');
+		$data = $this->system_settings_model->account_group_show();
+		$html = "";
+
+		foreach ($data->result() as $key) {
+			$html .= "
+			<tr>
+				<td>".$key->account_type."</td>
+				<td>".$key->account_groupname."</td>
+				<td><i  class='fa fa-trash-o btn-style-2 animate-4 accountgroup-item btn_delgroup' data-item='".$key->id."'></i></td>
+			</tr>
+			";
+		}
+
+		echo jcode(
+			array(
+				'success' 	=> 1,
+				'response' 	=> $html
+			)
+			);
 	}
 
 }
