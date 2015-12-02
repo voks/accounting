@@ -33,7 +33,7 @@ function trial_balance_js(){
 	});
 
 	// Listing toggle
-	$('.listing').click(function(){
-		($(this).val()>0) ? $(this).attr('value','0') : $(this).attr('value','1');
-	});
+	// $('.listing').click(function(){
+	// 	($(this).val()>0) ? $(this).attr('value','0') : $(this).attr('value','1');
+	// });
 }

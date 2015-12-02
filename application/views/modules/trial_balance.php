@@ -43,10 +43,10 @@
 				<option value="sj">Sales Journals</option>
 			</select>
 		</div>
-		<div class="col-md-2">
+		<!-- <div class="col-md-2">
 			<span class="txt">&nbsp;</span>
 			<label><input type="checkbox" name="trial[listing]"  value="0" class="listing" id="trans"> Group by Title</label>
-		</div>
+		</div> -->
 		<div class="col-md-2">
 			<button class="btn btn-style-1 animate-4 margin-top-35"><i class="fa fa-search"></i> Search</button>
 		</div>
