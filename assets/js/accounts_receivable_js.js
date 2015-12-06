@@ -27,11 +27,11 @@ function accounts_receivable_js(){
 		});
 	});
 
-	// Printing of AR Summary
-	$('.print-ar-list').click(function(e){
-		window.open(site_url+"accounts_receivable/ar_summary_report?ar="+$('#ar_customer').val(),'_blank');
-	});
 }
+	// Printing of AR Summary
+	// $('.print-ar-list').click(function(e){
+	// 	window.open(site_url+"accounts_receivable/ar_summary_report?ar="+$('#ar_customer').val(),'_blank');
+	// });
 
 // Printing of Billing
 function print_billing(){

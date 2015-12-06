@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2015 at 05:25 PM
--- Server version: 5.6.24
--- PHP Version: 5.5.24
+-- Generation Time: Dec 06, 2015 at 08:04 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.5.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `tb_account_groups` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `account_type` varchar(225) NOT NULL,
   `account_groupname` varchar(225) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
@@ -94,7 +94,7 @@ INSERT INTO `tb_account_groups` (`id`, `account_type`, `account_groupname`) VALU
 --
 
 CREATE TABLE IF NOT EXISTS `tb_account_subsidiary` (
-  `sub_id` int(11) NOT NULL,
+`sub_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `sub_date` varchar(255) NOT NULL,
   `account_code` int(11) NOT NULL,
@@ -128,14 +128,14 @@ INSERT INTO `tb_account_subsidiary` (`sub_id`, `project_id`, `sub_date`, `accoun
 --
 
 CREATE TABLE IF NOT EXISTS `tb_account_title` (
-  `account_id` int(11) NOT NULL,
+`account_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `account_date` varchar(255) NOT NULL,
   `account_code` varchar(255) NOT NULL,
   `account_title` varchar(255) NOT NULL,
   `account_type` varchar(255) NOT NULL,
   `account_group` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_account_title`
@@ -160,7 +160,7 @@ INSERT INTO `tb_account_title` (`account_id`, `project_id`, `account_date`, `acc
 --
 
 CREATE TABLE IF NOT EXISTS `tb_bank_recon` (
-  `bank_id` int(11) NOT NULL,
+`bank_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `bank_name` varchar(255) NOT NULL,
   `bank_month` varchar(255) NOT NULL,
@@ -186,7 +186,7 @@ INSERT INTO `tb_bank_recon` (`bank_id`, `project_id`, `bank_name`, `bank_month`,
 --
 
 CREATE TABLE IF NOT EXISTS `tb_copyrights` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `company_name` varchar(255) NOT NULL,
   `year` varchar(255) NOT NULL,
   `footer` varchar(1000) NOT NULL
@@ -206,7 +206,7 @@ INSERT INTO `tb_copyrights` (`id`, `company_name`, `year`, `footer`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tb_journal_ap` (
-  `ap_id` int(11) NOT NULL,
+`ap_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `ap_invoice_no` varchar(255) NOT NULL,
   `ap_invoice_date` varchar(255) NOT NULL,
@@ -239,7 +239,7 @@ INSERT INTO `tb_journal_ap` (`ap_id`, `project_id`, `ap_invoice_no`, `ap_invoice
 --
 
 CREATE TABLE IF NOT EXISTS `tb_journal_cd` (
-  `cd_id` int(11) NOT NULL,
+`cd_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `cd_date` varchar(255) NOT NULL,
   `cd_voucher_no` varchar(255) NOT NULL,
@@ -272,7 +272,7 @@ INSERT INTO `tb_journal_cd` (`cd_id`, `project_id`, `cd_date`, `cd_voucher_no`, 
 --
 
 CREATE TABLE IF NOT EXISTS `tb_journal_cr` (
-  `cr_id` int(11) NOT NULL,
+`cr_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `cr_or_no` varchar(255) NOT NULL,
   `cr_or_date` varchar(255) NOT NULL,
@@ -302,7 +302,7 @@ INSERT INTO `tb_journal_cr` (`cr_id`, `project_id`, `cr_or_no`, `cr_or_date`, `c
 --
 
 CREATE TABLE IF NOT EXISTS `tb_journal_gj` (
-  `gj_id` int(11) NOT NULL,
+`gj_id` int(11) NOT NULL,
   `project_id` varchar(255) NOT NULL,
   `gj_code` varchar(255) NOT NULL,
   `gj_date` varchar(255) NOT NULL,
@@ -322,7 +322,7 @@ CREATE TABLE IF NOT EXISTS `tb_journal_gj` (
 --
 
 CREATE TABLE IF NOT EXISTS `tb_journal_sj` (
-  `sj_id` int(11) NOT NULL,
+`sj_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `sj_si_no` varchar(255) NOT NULL,
   `sj_si_date` varchar(255) NOT NULL,
@@ -349,7 +349,7 @@ INSERT INTO `tb_journal_sj` (`sj_id`, `project_id`, `sj_si_no`, `sj_si_date`, `s
 --
 
 CREATE TABLE IF NOT EXISTS `tb_journal_trans` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `trans_id` int(11) NOT NULL,
   `account_code` varchar(100) NOT NULL,
@@ -393,7 +393,7 @@ INSERT INTO `tb_journal_trans` (`id`, `project_id`, `trans_id`, `account_code`, 
 --
 
 CREATE TABLE IF NOT EXISTS `tb_master` (
-  `master_id` int(11) NOT NULL,
+`master_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `master_code` varchar(255) NOT NULL,
   `master_date` varchar(255) NOT NULL,
@@ -425,7 +425,7 @@ INSERT INTO `tb_master` (`master_id`, `project_id`, `master_code`, `master_date`
 --
 
 CREATE TABLE IF NOT EXISTS `tb_project` (
-  `project_id` int(11) NOT NULL,
+`project_id` int(11) NOT NULL,
   `project_name` varchar(225) NOT NULL,
   `project_location` varchar(225) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -443,11 +443,23 @@ INSERT INTO `tb_project` (`project_id`, `project_name`, `project_location`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_recon_history`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_recon_history` (
+`id` int(11) NOT NULL,
+  `recon_date` varchar(225) NOT NULL,
+  `recon_balance` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_users`
 --
 
 CREATE TABLE IF NOT EXISTS `tb_users` (
-  `user_id` int(11) NOT NULL,
+`user_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `user_type` varchar(225) NOT NULL,
   `fname` varchar(225) NOT NULL,
@@ -474,7 +486,7 @@ INSERT INTO `tb_users` (`user_id`, `project_id`, `user_type`, `fname`, `lname`, 
 --
 
 CREATE TABLE IF NOT EXISTS `tb_user_access` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `tab_transaction` int(11) NOT NULL,
   `tab_ledger` int(11) NOT NULL,
@@ -498,7 +510,7 @@ INSERT INTO `tb_user_access` (`id`, `user_id`, `tab_transaction`, `tab_ledger`, 
 --
 
 CREATE TABLE IF NOT EXISTS `tb_user_type` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `userType` varchar(255) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
@@ -520,97 +532,103 @@ INSERT INTO `tb_user_type` (`id`, `userType`) VALUES
 -- Indexes for table `tb_account_groups`
 --
 ALTER TABLE `tb_account_groups`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_account_subsidiary`
 --
 ALTER TABLE `tb_account_subsidiary`
-  ADD PRIMARY KEY (`sub_id`);
+ ADD PRIMARY KEY (`sub_id`);
 
 --
 -- Indexes for table `tb_account_title`
 --
 ALTER TABLE `tb_account_title`
-  ADD PRIMARY KEY (`account_id`);
+ ADD PRIMARY KEY (`account_id`);
 
 --
 -- Indexes for table `tb_bank_recon`
 --
 ALTER TABLE `tb_bank_recon`
-  ADD PRIMARY KEY (`bank_id`);
+ ADD PRIMARY KEY (`bank_id`);
 
 --
 -- Indexes for table `tb_copyrights`
 --
 ALTER TABLE `tb_copyrights`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_journal_ap`
 --
 ALTER TABLE `tb_journal_ap`
-  ADD PRIMARY KEY (`ap_id`);
+ ADD PRIMARY KEY (`ap_id`);
 
 --
 -- Indexes for table `tb_journal_cd`
 --
 ALTER TABLE `tb_journal_cd`
-  ADD PRIMARY KEY (`cd_id`);
+ ADD PRIMARY KEY (`cd_id`);
 
 --
 -- Indexes for table `tb_journal_cr`
 --
 ALTER TABLE `tb_journal_cr`
-  ADD PRIMARY KEY (`cr_id`);
+ ADD PRIMARY KEY (`cr_id`);
 
 --
 -- Indexes for table `tb_journal_gj`
 --
 ALTER TABLE `tb_journal_gj`
-  ADD PRIMARY KEY (`gj_id`);
+ ADD PRIMARY KEY (`gj_id`);
 
 --
 -- Indexes for table `tb_journal_sj`
 --
 ALTER TABLE `tb_journal_sj`
-  ADD PRIMARY KEY (`sj_id`);
+ ADD PRIMARY KEY (`sj_id`);
 
 --
 -- Indexes for table `tb_journal_trans`
 --
 ALTER TABLE `tb_journal_trans`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_master`
 --
 ALTER TABLE `tb_master`
-  ADD PRIMARY KEY (`master_id`);
+ ADD PRIMARY KEY (`master_id`);
 
 --
 -- Indexes for table `tb_project`
 --
 ALTER TABLE `tb_project`
-  ADD PRIMARY KEY (`project_id`);
+ ADD PRIMARY KEY (`project_id`);
+
+--
+-- Indexes for table `tb_recon_history`
+--
+ALTER TABLE `tb_recon_history`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  ADD PRIMARY KEY (`user_id`);
+ ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indexes for table `tb_user_access`
 --
 ALTER TABLE `tb_user_access`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_user_type`
 --
 ALTER TABLE `tb_user_type`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -620,82 +638,87 @@ ALTER TABLE `tb_user_type`
 -- AUTO_INCREMENT for table `tb_account_groups`
 --
 ALTER TABLE `tb_account_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `tb_account_subsidiary`
 --
 ALTER TABLE `tb_account_subsidiary`
-  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tb_account_title`
 --
 ALTER TABLE `tb_account_title`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tb_bank_recon`
 --
 ALTER TABLE `tb_bank_recon`
-  MODIFY `bank_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `bank_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_copyrights`
 --
 ALTER TABLE `tb_copyrights`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tb_journal_ap`
 --
 ALTER TABLE `tb_journal_ap`
-  MODIFY `ap_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `ap_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tb_journal_cd`
 --
 ALTER TABLE `tb_journal_cd`
-  MODIFY `cd_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `cd_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_journal_cr`
 --
 ALTER TABLE `tb_journal_cr`
-  MODIFY `cr_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `cr_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_journal_gj`
 --
 ALTER TABLE `tb_journal_gj`
-  MODIFY `gj_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `gj_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_journal_sj`
 --
 ALTER TABLE `tb_journal_sj`
-  MODIFY `sj_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `sj_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_journal_trans`
 --
 ALTER TABLE `tb_journal_trans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `tb_master`
 --
 ALTER TABLE `tb_master`
-  MODIFY `master_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `master_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tb_project`
 --
 ALTER TABLE `tb_project`
-  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `tb_recon_history`
+--
+ALTER TABLE `tb_recon_history`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tb_user_access`
 --
 ALTER TABLE `tb_user_access`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_user_type`
 --
 ALTER TABLE `tb_user_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
