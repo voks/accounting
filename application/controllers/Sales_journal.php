@@ -261,7 +261,7 @@ class Sales_journal extends CI_Controller {
 		$this->load->model('journal_sj_model');
 		$this->load->helper('sales_detailed');
 		$data = $this->journal_sj_model->export_sales_summary();
-		auditrecord("Export Sales Detailed Report (Excel)")
+		auditrecord("Export Sales Detailed Report (Excel)");
 		sales_detailed($data);
 	}
 }
