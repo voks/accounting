@@ -19,7 +19,7 @@
 				echo "	<td class='padding-left-5'>".$key->gj_code."</td>";
 				echo "	<td class='padding-left-5'>".$key->gj_date."</td>";
 				echo "	<td class='padding-left-5'>".$key->gj_particulars."</td>";
-				echo "	<td class='padding-right-5 text-right'>".number_format($key->gj_amount)."</td>";
+				echo "	<td class='padding-right-5 text-right'>".number_format($key->gj_amount, 2)."</td>";
 				echo "</tr>";
 			}
 
@@ -28,7 +28,7 @@
 				echo "	<td class='padding-left-5'></td>";
 				echo "	<td class='padding-left-5'></td>";
 				echo "	<td class='padding-right-5 text-right text-bold'>TOTAL</td>";
-				echo "	<td class='padding-right-5 text-right'>".number_format($key->tot_amt)."</td>";
+				echo "	<td class='padding-right-5 text-right'>".number_format($key->tot_amt, 2)."</td>";
 				echo "</tr>";
 			}
 			?>

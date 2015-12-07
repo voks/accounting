@@ -162,7 +162,8 @@ function ap_bind_print(){
 	$('.account-report-print').click(function (event) {
 		event.preventDefault();
 		var id = $(this).data('id');
+		var invno = $(this).data('invno');
 	   //alert(id);
-	   window.open(site_url+"accounts_payable/ap_report?id="+id,'_blank');
+	   window.open(site_url+"accounts_payable/ap_report?id="+id+"&invno="+invno,'_blank');
 	});
 }

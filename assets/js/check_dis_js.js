@@ -176,8 +176,9 @@ function cd_bind_print(){
 	$('.account-report-print').click(function (event) {
 		event.preventDefault();
 		var id = $(this).data('id');
+		var vn = $(this).data('vn');
 	   //alert(id);
-	   window.open(site_url+"check_dis/cd_report?id="+id,'_blank');
+	   window.open(site_url+"check_dis/cd_report?id="+id+"&vn="+vn,'_blank');
 	});
 }
 
@@ -186,7 +187,8 @@ function cd_check_print(){
 	$('.print-check').click(function (event) {
 		event.preventDefault();
 		var id = $(this).data('id');
+		var cn = $(this).data('cn');
 	   //alert(id);
-	   window.open(site_url+"check_dis/cd_check?id="+id,'_blank');
+	   window.open(site_url+"check_dis/cd_check?id="+id+"&cn="+cn,'_blank');
 	});
 }

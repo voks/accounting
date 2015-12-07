@@ -4,26 +4,28 @@
 </div>
 </div>
 <div class="content row">
-	<table class="table table-outline table-header-bordered">
+	<table class="table">
 		<thead>
-			<tr >
-				<th class="tbl-small-size text-center">Account Code</th>
-				<th class="tbl-wide-size text-center">Account Description</th>
-				<th class="tbl-small-size text-center">Debit</th>
-				<th class="tbl-small-size text-center">Credit</th>
+			<tr class="text-12">
+				<th class="tbl-wide-size text-left">Account</th>
+				<th class="tbl-small-size text-right">Debit</th>
+				<th class="tbl-small-size text-right">Credit</th>
+				<th class="tbl-small-size text-right">YTD Debit</th>
+				<th class="tbl-small-size text-right">YTD Credit</th>
 			</tr>
 		</thead>
-		<tbody class="text-tbody">
+		<tbody class="text-tbody text-12">
 			<?php 
 				$sumd=0;
 				$sumc=0;
 				foreach ($trial as $key) {
 					echo  "	
 					<tr>
-						<td class='table-td-outline-right' style='text-align:center'>".element('subcode',$key)."</td>
-						<td class='table-td-outline-right' class='title' style='padding-left:10px'>".element('title',$key)."</td>
-						<td class='table-td-outline-right text-right' style='text-align:center'>".element('debit',$key)."</td>
-						<td class='table-td-outline-right text-right' style='text-align:center'>".element('credit',$key)."</td>
+						<td class='title''>".element('title',$key)."</td>
+						<td class='text-right padding-right-5'>".number_format(element('debit',$key), 2)."</td>
+						<td class='text-right padding-right-5'>".number_format(element('credit',$key), 2)."</td>
+						<td class='text-right padding-right-5'>".number_format(10, 2)."</td>
+						<td class='text-right padding-right-5'>".number_format(10, 2)."</td>
 					</tr>
 					";
 					$sumd+=element('debit',$key);
@@ -31,10 +33,11 @@
 				}
 				echo  "
 				<tr class='text-red'>
-					<td class='text-bold table-td-outline-right' style='text-align:center'>TOTAL</td>
-					<td class='text-bold table-td-outline-right'></td>
-					<td class='table-td-outline-right text-right' style='text-align:center'>".$sumd."</td>
-					<td class='table-td-outline-right text-right' style='text-align:center'>".$sumc."</td>
+					<td class='text-bold'>TOTAL</td>
+					<td class='text-right padding-right-5'>".number_format($sumd, 2)."</td>
+					<td class='text-right padding-right-5'>".number_format($sumc, 2)."</td>
+					<td class='text-right padding-right-5'>".number_format(1, 2)."</td>
+					<td class='text-right padding-right-5'>".number_format(1, 2)."</td>
 				</tr>";
 			?>
 		</tbody>

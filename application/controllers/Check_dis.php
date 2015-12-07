@@ -102,6 +102,7 @@ class Check_dis extends CI_Controller {
 						);
 					$this->journal_cd_model->journal_cd_trans_add($data);
 				}
+				auditrecord("Added New Check Disbursement Record. Voucher#:".$journal_cd_data['cd_voucher_no']."");
 				echo jcode(array('success' => 1));
 			}
 		}
@@ -136,9 +137,9 @@ class Check_dis extends CI_Controller {
 						<td class='col-md-3'>".$key->cd_master_name."</td>
 						<td class='col-md-3'>".$key->cd_particulars."</td>
 						<td class='col-md-2 text-right'>".number_format($key->cd_check_amount,2)."</td>
-						<td class='col-md-1'><a href='#' data-id='$key->cd_id' class='btn-style-1 account-report-print animate-4 pull-left'><i class='fa fa-print'></i></a></td>
-						<td class='col-md-1'><a href='#' data-id='$key->cd_id' class='btn-style-1 print-check animate-4 pull-left'><i class='fa fa-check-square-o'></i></a></td>
-						<td class='col-md-1'><a href='#' data-id='$key->cd_id' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
+						<td class='col-md-1'><a href='#' data-id='$key->cd_id' data-vn='$key->cd_voucher_no' class='btn-style-1 account-report-print animate-4 pull-left'><i class='fa fa-print'></i></a></td>
+						<td class='col-md-1'><a href='#' data-id='$key->cd_id' data-cn='$key->cd_check_no' class='btn-style-1 print-check animate-4 pull-left'><i class='fa fa-check-square-o'></i></a></td>
+						<td class='col-md-1'><a href='#' data-id='$key->cd_id' data-vn='$key->cd_voucher_no' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
 					</tr>
 					";
 				}
@@ -154,6 +155,7 @@ class Check_dis extends CI_Controller {
 					</tr>
 					";
 				}
+				auditrecord("Searched Records in Check Disbursement.");
 				echo jcode(array('success' => 1,'response' => $html));
 			}
 		}
@@ -163,12 +165,14 @@ class Check_dis extends CI_Controller {
 		$this->load->model('journal_cd_model');
 		if ($this->session->userdata('islogged')) {
 			$id = (int)$this->input->get('id');
+			$vn = $this->input->get('vn');
 			$html = $this->config->item('report_header');
 			$viewData = array(
 				'cd_entries' => $this->journal_cd_model->journal_get_entries($id)
 				);
 			$html.= $this->load->view('report/cd_entries', $viewData, true);
 			$html.= $this->config->item('report_footer');
+			auditrecord("Generated Check Voucher (".$vn.")");
 			pdf_create($html, 'EPS-Accounting-Report');
 		}else {
 			echo jcode(array('success' => 1));
@@ -179,11 +183,13 @@ class Check_dis extends CI_Controller {
 		$this->load->model('journal_cd_model');
 		if ($this->session->userdata('islogged')) {
 			$id = (int)$this->input->get('id');
+			$cn = $this->input->get('cn');
 			$html ="";
 			$viewData = array(
 				'cd_entries' => $this->journal_cd_model->journal_get_entries($id)
 				);
 			$html.= $this->load->view('report/cd_check', $viewData, true);
+			auditrecord("Generated Check (".$cn.")");
 			pdf_create($html, 'EPS-Accounting-Report');
 		}else {
 			echo jcode(array('success' => 1));
@@ -203,6 +209,7 @@ class Check_dis extends CI_Controller {
 				);
 			$html.= $this->load->view('report/cd_search_report', $data, true);
 			$html.= $this->config->item('report_footer');
+			auditrecord("Generated Check Disbursement Summary(PDF)");
 			pdf_create($html, 'filename');
 		}
 		else{
@@ -260,6 +267,7 @@ class Check_dis extends CI_Controller {
 		$this->load->model('journal_cd_model');
 		$this->load->helper('check_dis_detailed');
 		$data = $this->journal_cd_model->detailed_report_data();
+		auditrecord("Export Detailed Check Disbursement (Excel)");
 		check_dis_detailed($data);
 	}
 	// Export SummaryReport into Excel
@@ -267,6 +275,7 @@ class Check_dis extends CI_Controller {
 		$this->load->model('journal_cd_model');
 		$this->load->helper('check_dis_summary');
 		$data = $this->journal_cd_model->summary_report_data();
+		auditrecord("Export Summary Check Disbursement (Excel)");
 		check_dis_summary($data);
 	}
 }

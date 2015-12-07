@@ -148,7 +148,8 @@ function cr_bind_print(){
 	$('.account-report-print').click(function (event) {
 		event.preventDefault();
 		var id = $(this).data('id');
+		var cr = $(this).data('cr');
 	   //alert(id);
-	   window.open(site_url+"cash_receipts/cr_report?id="+id,'_blank');
+	   window.open(site_url+"cash_receipts/cr_report?id="+id+"&cr="+cr,'_blank');
 	});
 }

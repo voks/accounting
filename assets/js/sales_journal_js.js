@@ -173,7 +173,8 @@ function sj_bind_print(){
 		event.preventDefault();
 		var e  = $(this);
 		var id = e.data('id');
+		var bi = e.data('bi');
 	   //alert(id);
-	   window.open(site_url+"sales_journal/sj_report?id="+id,'_blank');
+	   window.open(site_url+"sales_journal/sj_report?id="+id+"&bi="+bi,'_blank');
 	});
 }

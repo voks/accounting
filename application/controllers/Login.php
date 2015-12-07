@@ -26,6 +26,7 @@ class Login extends CI_Controller {
 			$data = $this->login_model->login_process($this->input->post('username'),$this->input->post('pwd'),$this->input->post('project_id'))->result_array();	
 			$sessiondata = $this->login_model->session_data($data[0]['project_id'],$data[0]['user_id']);
 			$this->session->set_userdata($sessiondata);
+			auditrecord("System Login");
 			echo jcode(array('success' => 1));
 		}
 		else{
@@ -34,6 +35,7 @@ class Login extends CI_Controller {
 	}
 
 	public function logout(){
+		auditrecord("System Logout");
 		$this->session->sess_destroy();
 		redirect(base_url());
 	}

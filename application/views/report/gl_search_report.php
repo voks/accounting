@@ -23,8 +23,8 @@
 					<td>".$key->mastername."</td>
 					<td>".$key->particulars."</td>
 					<td>".$key->transcode."</td>
-					<td class='text-right'>".$key->dr."</td>
-					<td class='text-right'>".$key->cr."</td>
+					<td class='text-right'>".number_format($key->dr, 2)."</td>
+					<td class='text-right'>".number_format($key->cr, 2)."</td>
 				</tr>
 				";
 			}

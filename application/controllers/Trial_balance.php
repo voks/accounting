@@ -28,8 +28,8 @@ class Trial_balance extends CI_Controller {
 				<tr>
 					<td>".element('subcode',$key)."</td>
 					<td class='title'>".element('title',$key)."</td>
-					<td>".element('debit',$key)."</td>
-					<td>".element('credit',$key)."</td>
+					<td>".number_format(element('debit',$key), 2)."</td>
+					<td>".number_format(element('credit',$key), 2)."</td>
 					<td>
 						<a href='#' data-ac='".element('code',$key)."' data-sb='".element('subcode',$key)."' class='btn-style-1 animate-4 viewLedger'><i class='fa fa-eye'></i></a>
 					</td>
@@ -42,8 +42,8 @@ class Trial_balance extends CI_Controller {
 			<tr>
 				<td></td>
 				<td class='title'>Total:</td>
-				<td>".$sumd."</td>
-				<td>".$sumc."</td>
+				<td>".number_format($sumd, 2)."</td>
+				<td>".number_format($sumc, 2)."</td>
 			</tr>"
 			;
 			echo "</tbody></table>";
@@ -176,8 +176,8 @@ class Trial_balance extends CI_Controller {
 			<tr>
 				<td>".element('subcode',$key)."</td>
 				<td class='title'>".element('title',$key)."</td>
-				<td>".element('debit',$key)."</td>
-				<td>".element('credit',$key)."</td>
+				<td class='text-right'>".number_format(element('debit',$key), 2)."</td>
+				<td class='text-right'>".number_format(element('credit',$key), 2)."</td>
 				<td>
 					<a href='#' data-ac='".element('code',$key)."' data-sb='".element('subcode',$key)."' class='btn-style-1 animate-4 viewLedger'><i class='fa fa-eye'></i></a>
 				</td>
@@ -189,9 +189,9 @@ class Trial_balance extends CI_Controller {
 		$html.= "
 		<tr>
 			<td></td>
-			<td class='title'>Total:</td>
-			<td>".$sumd."</td>
-			<td>".$sumc."</td>
+			<td class='title text-right'>Total:</td>
+			<td class='text-right'>".number_format($sumd, 2)."</td>
+			<td class='text-right'>".number_format($sumc, 2)."</td>
 		</tr>"
 		;
 

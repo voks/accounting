@@ -105,6 +105,7 @@ class Sales_journal extends CI_Controller {
 						);
 					$this->journal_sj_model->journal_sj_trans_add($data);
 				}
+				auditrecord("Added New Sales Journal Record. BI#:".$journal_sj_data['sj_si_no']."");
 				echo jcode(array('success' => 1));
 			}
 		}
@@ -138,7 +139,7 @@ class Sales_journal extends CI_Controller {
 							<td class='col-md-3'>".$key->sj_master_name."</td>
 							<td class='col-md-4'>".$key->sj_particulars."</td>
 							<td class='col-md-1'>".number_format($key->sj_si_amount,2)."</td>
-							<td class='col-md-1'><a href='#' data-id='$key->sj_id' class='btn-style-1 account-report-print animate-4 pull-right'><i class='fa fa-print'></i></a></td>
+							<td class='col-md-1'><a href='#' data-id='$key->sj_id' data-bi='$key->sj_si_no' class='btn-style-1 account-report-print animate-4 pull-right'><i class='fa fa-print'></i></a></td>
 							<td class='col-md-1'><a href='#' data-id='$key->sj_id' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
 						</tr>
 						";
@@ -154,6 +155,7 @@ class Sales_journal extends CI_Controller {
 						</tr>
 						";
 					}
+					auditrecord("Searched Record in Sales Journal");
 					echo jcode(array('success' => 1,'response' => $html));
 				}
 				
@@ -164,12 +166,14 @@ class Sales_journal extends CI_Controller {
 		$this->load->model('journal_sj_model');
 		if ($this->session->userdata('islogged')) {
 			$id = (int)$this->input->get('id');
+			$bi = $this->input->get('bi');
 			$html = $this->config->item('report_header');
 			$viewData = array(
 				'sj_entries' => $this->journal_sj_model->journal_get_entries($id)
 				);
 			$html.= $this->load->view('report/sj_entries', $viewData, true);
 			$html.= $this->config->item('report_footer');
+			auditrecord("Generated Billing Invoice(".$bi.")");
 			pdf_create($html, 'EPS-Accounting-Report');
 		}else {
 			echo jcode(array('success' => 1));
@@ -189,6 +193,7 @@ class Sales_journal extends CI_Controller {
 				);
 			$html.= $this->load->view('report/sj_search_report', $data, true);
 			$html.= $this->config->item('report_footer');
+			auditrecord("Generated Sales Summary Report (PDF Format)");
 			pdf_create($html, 'filename');
 		}
 		else{
@@ -247,6 +252,7 @@ class Sales_journal extends CI_Controller {
 		$this->load->model('journal_sj_model');
 		$this->load->helper('sales_summary');
 		$data = $this->journal_sj_model->export_sales_summary();
+		auditrecord("Export Sales Summary Report (Excel)");
 		sales_summary($data);
 	}
 
@@ -255,6 +261,7 @@ class Sales_journal extends CI_Controller {
 		$this->load->model('journal_sj_model');
 		$this->load->helper('sales_detailed');
 		$data = $this->journal_sj_model->export_sales_summary();
+		auditrecord("Export Sales Detailed Report (Excel)")
 		sales_detailed($data);
 	}
 }

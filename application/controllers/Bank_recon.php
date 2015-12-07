@@ -54,6 +54,7 @@ class Bank_recon extends CI_Controller {
 				echo jcode(array('success' => 2));
 			} else {
 				$this->bank_recon_model->bank_recon_add($bank_recon_data);
+				auditrecord("Added New Bank Record");
 				echo jcode(array('success' => 1));
 			}
 			

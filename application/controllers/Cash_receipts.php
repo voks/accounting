@@ -108,6 +108,7 @@ class Cash_receipts extends CI_Controller {
 						);
 					$this->journal_cr_model->journal_cr_trans_add($data);
 				}
+				auditrecord("Added New Cash Receipts Record. OR#:".$journal_cr_data['cr_or_no']."");
 				echo jcode(array('success' => 1));
 			}
 			
@@ -142,7 +143,7 @@ class Cash_receipts extends CI_Controller {
 						<td class='col-md-3'>".$key->cr_master_name_customer."</td>
 						<td class='col-md-3'>".$key->cr_particulars."</td>
 						<td class='col-md-1'>".number_format($key->cr_or_amount,2)."</td>
-						<td class='col-md-1'><a href='#' data-id='$key->cr_id' class='btn-style-1 account-report-print animate-4 pull-right'><i class='fa fa-print'></i></a></td>
+						<td class='col-md-1'><a href='#' data-id='$key->cr_id' data-cr='$key->cr_or_no' class='btn-style-1 account-report-print animate-4 pull-right'><i class='fa fa-print'></i></a></td>
 						<td class='col-md-1'><a href='#' data-id='$key->cr_id' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
 					</tr>
 					";
@@ -158,6 +159,7 @@ class Cash_receipts extends CI_Controller {
 					</tr>
 					";
 				}
+				auditrecord("Searched Records in Cash Receipts.");
 				echo jcode(array('success' => 1,'response' => $html));
 			}	
 		}
@@ -167,12 +169,14 @@ class Cash_receipts extends CI_Controller {
 		$this->load->model('journal_cr_model');
 		if ($this->session->userdata('islogged')) {
 			$id = (int)$this->input->get('id');
+			$cr = $this->input->get('cr');
 			$html = $this->config->item('report_header');
 			$viewData = array(
 				'cr_entries' => $this->journal_cr_model->journal_get_entries($id),
 				);
 			$html.= $this->load->view('report/cr_entries', $viewData, true);
 			$html.= $this->config->item('report_footer');
+			auditrecord("Generated Cash Receipt Report(".$cr.")");
 			pdf_create($html, 'EPS-Accounting-Report');
 		}else {
 			echo jcode(array('success' => 1));
@@ -192,6 +196,7 @@ class Cash_receipts extends CI_Controller {
 				);
 			$html.= $this->load->view('report/cr_search_report', $data, true);
 			$html.= $this->config->item('report_footer');
+			auditrecord("Generated Cash Receipts Summary Report (PDF)");
 			pdf_create($html, 'filename');
 		}
 		else{

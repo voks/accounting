@@ -101,7 +101,7 @@ class Accounts_payable extends CI_Controller {
 						);
 					$this->journal_ap_model->journal_ap_trans_add($data);
 				}
-				
+				auditrecord("Added New Accounts Payable Record. Invoice#:".$journal_ap_data['ap_invoice_no']."");
 				echo jcode(array('success' => 1));
 			}
 			
@@ -136,7 +136,7 @@ class Accounts_payable extends CI_Controller {
 						<td class='col-md-3'>".$key->ap_master_name."</td>
 						<td class='col-md-4'>".$key->ap_particulars."</td>
 						<td class='col-md-2 text-right'>".number_format($key->ap_invoice_amount,2)."</td>
-						<td class='col-md-1'><a href='#' data-id='".$key->ap_id."' class='btn-style-1 animate-4 pull-right account-report-print'><i class='fa fa-print'></i></a></td>
+						<td class='col-md-1'><a href='#' data-id='".$key->ap_id."' data-invno='".$key->ap_invoice_no."' class='btn-style-1 animate-4 pull-right account-report-print'><i class='fa fa-print'></i></a></td>
 						<td class='col-md-1'><a href='#' data-id='".$key->ap_id."' data-invdate='".$key->ap_invoice_date."' data-invno='".$key->ap_invoice_no."' data-po='".$key->ap_po_no."' data-terms='".$key->ap_terms."' data-supp='".$key->ap_master_name."' data-invamt='".$key->ap_invoice_amount."' data-part='".$key->ap_particulars."' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
 					</tr>
 					";
@@ -152,6 +152,7 @@ class Accounts_payable extends CI_Controller {
 					</tr>
 					";
 				}
+				auditrecord("Searched Records in Accounts Payable.");
 				echo jcode(array('success' => 1,'response' => $html));
 			}
 
@@ -162,12 +163,14 @@ class Accounts_payable extends CI_Controller {
 		$this->load->model('journal_ap_model');
 		if ($this->session->userdata('islogged')) {
 			$id = (int)$this->input->get('id');
+			$invno = $this->input->get('invno');
 			$html = $this->config->item('report_header');
 			$viewData = array(
 				'ap_entries' => $this->journal_ap_model->journal_get_entries($id)
 				);
 			$html.= $this->load->view('report/ap_entries', $viewData, true);
 			$html.= $this->config->item('report_footer');
+			auditrecord("Generated Billing Invoice(".$invno.")");
 			pdf_create($html, 'EPS-Accounting-Report');
 		}else {
 			echo jcode(array('success' => 1));
@@ -190,6 +193,7 @@ class Accounts_payable extends CI_Controller {
 				);
 			$html.= $this->load->view('report/ap_search_report', $data, true);
 			$html.= $this->config->item('report_footer');
+			auditrecord("Generated Billing Summary Report (PDF)");
 			pdf_create($html, 'filename');
 		}
 		else{
@@ -273,6 +277,7 @@ class Accounts_payable extends CI_Controller {
 		$data = $this->journal_ap_model->journal_ap_get($ap_invoice_no,$ap_inv_date_frm,$ap_inv_date_to)->result();
 		// 'accounts_total' => $this->journal_ap_model->journal_ap_get_total($ap_invoice_no,$ap_invoice_date,$ap_master_name,$ap_po_no)->result()
 		// print_r($this->db->last_query());
+		auditrecord("Export AP Detailed Report (Excel)");
 		ap_excel_report($data);
 	}
 

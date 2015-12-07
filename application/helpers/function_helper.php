@@ -8,7 +8,7 @@ function load_data($data = array()){
 
 	$audit_actions = array(
 							 //Working in progress for setting of audit messages - MHON 
-						  );
+		);
 
 	$user_info = array(
 		'fullname' 			=> ci()->session->userdata('fullname'),
@@ -103,4 +103,14 @@ function validates($param,$exemption){
 		}
 		return strrev($retVal);
 	}
-?>
+
+	function auditrecord($action){
+		$data = array(
+			'project_id'=> ci()->session->userdata('project_id'),
+			'user_id'	=> ci()->session->userdata('user_id'),
+			'a_action' 	=> $action,
+			'a_date' 	=> date('Y/m/d')
+			);
+		ci()->db->insert("tb_audit_trail",$data);
+	}
+	?>

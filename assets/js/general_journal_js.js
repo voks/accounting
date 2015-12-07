@@ -143,7 +143,8 @@ function gj_bind_print(){
 	$('.account-report-print').click(function (event) {
 		event.preventDefault();
 		var id = $(this).data('id');
+		var jn = $(this).data('jn');
 	   //alert(id);
-	   window.open(site_url+"general_journal/gj_report?id="+id,'_blank');
+	   window.open(site_url+"general_journal/gj_report?id="+id+"&jn="+jn,'_blank');
 	});
 }
