@@ -96,13 +96,14 @@ function user_access_js(){
 	$('.btn_deluser').click(function(){
 		var e = $(this);
 		var id = e.data('id');
+		var fname = e.data('fname');
 		$('#deleteAccess').modal('show');
 		$('#btn_delyes').click(function(){
 			$.ajax({
 				type: 'POST',
 				url: site_url+'user_access/del_user_access',
 				datatype: 'json',
-				data: {'id': id},
+				data: {'id': id, 'fname': fname},
 				success: function(data){
 					if (data.success==1) {
 						$('#deleteAccess').modal('hide');
@@ -128,7 +129,7 @@ function user_access_js(){
 					$(data.response).appendTo($('.userlist > tbody:last')).hide().fadeIn(1000);
 				}
 				else{
-					console.log('Cantload account group');
+					console.log('Cant load account group');
 				}
 			}
 		});

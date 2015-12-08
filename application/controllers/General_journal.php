@@ -165,7 +165,7 @@ class General_journal extends CI_Controller {
 				);
 			$html.= $this->load->view('report/gj_entries', $viewData, true);
 			$html.= $this->config->item('report_footer');
-			auditrecord("Generated Jouranl Report(".$jn.")");
+			auditrecord("Generated Journal Report(JV#:".$jn.")");
 			pdf_create($html, 'EPS-Accounting-Report');
 		}else {
 			echo jcode(array('success' => 1));

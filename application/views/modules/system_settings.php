@@ -101,7 +101,7 @@
 								<tr class='animate-6'>
 								<td>".$data->account_type."</td>
 								<td>".$data->account_groupname."</td>
-								<td><i class='fa fa-trash-o btn-style-2 animate-4 pointer accountgroup-item' data-item='".$data->id."'></i></td>
+								<td><i class='fa fa-trash-o btn-style-2 animate-4 pointer accountgroup-item btn_delgroup' data-item='".$data->id."'></i></td>
 								</tr>
 							 ";
 					}

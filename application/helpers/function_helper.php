@@ -107,7 +107,8 @@ function validates($param,$exemption){
 	function auditrecord($action){
 		$data = array(
 			'project_id'=> ci()->session->userdata('project_id'),
-			'user_id'	=> ci()->session->userdata('user_id'),
+			'full_name'	=> ci()->session->userdata('fullname'),
+			'user_type'	=> ci()->session->userdata('u_type'),
 			'a_action' 	=> $action,
 			'a_date' 	=> date('Y/m/d')
 			);

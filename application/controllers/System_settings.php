@@ -55,6 +55,7 @@ class System_settings extends CI_Controller {
 				<td><i  class='fa fa-trash-o btn-style-2 animate-4 accountgroup-item btn_delgroup' data-item='".$id."'></i></td>
 			</tr>
 			";
+			auditrecord("Added New Accunt Group named ".$account_group."");
 			echo jcode(array('success' => 1,'response' => $html));
 		}
 	}
@@ -63,6 +64,7 @@ class System_settings extends CI_Controller {
 	public function save_copyrights(){
 		$this->load->model("system_settings_model");
 		$copyrights_data = $this->input->post('copyrights');
+
 		if ($this->system_settings_model->copyrights_exist()) {
 			
 		}
@@ -71,7 +73,7 @@ class System_settings extends CI_Controller {
 			$exemption 		 = array();
 			$err 			 = validates($validation, $exemption);
 		}
-
+		
 		if (count($err)) {
 			echo jcode(array(
 				'success' => 3, 
@@ -81,6 +83,7 @@ class System_settings extends CI_Controller {
 		} 
 		else {
 			$this->system_settings_model->copyrights_add($copyrights_data);
+			auditrecord("Updated System's Copyright");
 			echo jcode(array('success' => 1));
 		}	
 	}
@@ -105,7 +108,7 @@ class System_settings extends CI_Controller {
 		$this->load->model('system_settings_model');
 		$id = $this->input->post('id');
 		$data = $this->system_settings_model->delete_group($id);
-		// print_r($this->db->last_query());
+		auditrecord("Deleted Account Group");
 		echo jcode(array(
 			'success' => 1,
 			'response' => $data
@@ -126,7 +129,7 @@ class System_settings extends CI_Controller {
 			</tr>
 			";
 		}
-
+		auditrecord("Searched Record in Account Group");
 		echo jcode(
 			array(
 				'success' 	=> 1,

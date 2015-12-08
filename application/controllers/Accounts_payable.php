@@ -155,7 +155,6 @@ class Accounts_payable extends CI_Controller {
 				auditrecord("Searched Records in Accounts Payable.");
 				echo jcode(array('success' => 1,'response' => $html));
 			}
-
 		}
 	}
 

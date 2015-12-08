@@ -73,10 +73,11 @@ class User_access extends CI_Controller {
 					<td>".$user_access_data['user_type']."</td>
 					<td>
 						<span class='action'><a href='#' class='' id='alert' data-toggle='modal' data-target='.userAccess'><i class='fa fa-edit' data-item='".$id."'></i> Update</a></span> |
-						<span class='action'> <a href='#' class='btn_deluser' data-id='".$id."' ><i class='fa fa-trash-o' data-item=''></i> Delete</a></span>
+						<span class='action'> <a href='#' class='btn_deluser' data-id='".$id."' data-fname='".$user_access_data['fname']."' ><i class='fa fa-trash-o' data-item=''></i> Delete</a></span>
 					</td>
 				</tr>
 				";
+				auditrecord("Added New System User (".$user_access_data['fname'].")");
 				echo jcode(array('success' => 1,'response' => $html));
 			}
 			
@@ -108,7 +109,7 @@ class User_access extends CI_Controller {
 				$user_access_data['tab_admin'],
 				$user_access_data['tab_setup']
 				);
-			// print_r($this->db->last_query());
+			auditrecord("Updated User Access for User ".$user_access_data['fname']."");
 			echo jcode(array('success' => 1));
 		}
 
@@ -117,7 +118,9 @@ class User_access extends CI_Controller {
 	public function del_user_access(){
 		$this->load->model('user_access_model');
 		$user_id = $this->input->post('id');
+		$fname = $this->input->post('fname');
 		$data = $this->user_access_model->delete_user($user_id);
+		auditrecord("Deleted User ".$fname."");
 		echo jcode(array(
 			'success' => 1,
 			'response' => $data
@@ -138,7 +141,7 @@ class User_access extends CI_Controller {
 				<td>".$key->user_type."</td>
 				<td>
 					<span class='action'><a href='#' class='' id='alert' data-toggle='modal' data-target='.userAccess'><i class='fa fa-edit' data-item='".$key->id."'></i> Update</a></span> |
-					<span class='action'> <a href='#' class='btn_deluser' data-id='".$key->id."' ><i class='fa fa-trash-o' data-item=''></i> Delete</a></span>
+					<span class='action'> <a href='#' class='btn_deluser' data-id='".$key->id."' data-id='".$key->fname."'><i class='fa fa-trash-o' data-item=''></i> Delete</a></span>
 				</td>
 			</tr>
 			";

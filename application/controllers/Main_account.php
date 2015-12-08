@@ -60,6 +60,7 @@ class Main_account extends CI_Controller {
 				echo jcode(array('success' => 2));
 			} else {
 				$this->main_account_model->main_account_add($main_account_data);
+				auditrecord("Added New Chart of Account (Acct-code:".$main_account_data['account_code'].")");
 				echo jcode(array('success' => 1));
 			}
 			
@@ -99,7 +100,7 @@ class Main_account extends CI_Controller {
 						</tr>
 						";
 					}
-
+					auditrecord("Searched Records in Chart of Account.");
 					echo jcode(array('success' => 1,'response' => $html));
 				}
 			}
@@ -116,6 +117,7 @@ class Main_account extends CI_Controller {
 		$this->load->model('main_account_model');
 		$account_code = $this->input->post('account_code');
 		$data = $this->main_account_model->delete_acctinfo($account_code);
+		auditrecord("Deleted Chart of Account (Acct-code:".$account_code.")");
 		echo jcode(
 			array(
 				'success' 	=> 1,
@@ -138,6 +140,7 @@ class Main_account extends CI_Controller {
 				);
 			$html.= $this->load->view('report/main_account_search', $data, true);
 			$html.= $this->config->item('report_footer');
+			auditrecord("Generated Chart of Account Summary Report");
 			pdf_create($html, 'filename');
 		}
 		else{

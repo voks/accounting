@@ -93,7 +93,7 @@ function chart_accounts_js(){
 			type: 'POST', 
 			datatype:'json',
 			url: site_url+'main_account/get_accountinfo', 
-			data: {'account_code' : accountId},
+			data: {'account_code' : acctCode},
 			success: function (data) { 
 				if(data.success==1){
 				}

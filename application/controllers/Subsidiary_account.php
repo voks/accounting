@@ -71,6 +71,7 @@ class Subsidiary_account extends CI_Controller {
 				$sub_account_data['sub_name'] = $sub_account_data['account_title'].' - '.$sub_account_data['sub_name'];
 				//}
 				$this->subsidiary_account_model->sub_account_add($sub_account_data);
+				auditrecord("Added New Subsidiary Account (".$sub_account_data['account_code']." - ".$sub_account_data['sub_code'].")");
 				echo jcode(array('success' => 1));
 			}
 			
@@ -125,7 +126,7 @@ class Subsidiary_account extends CI_Controller {
 						</tr>
 						";
 					}
-
+					auditrecord("Search Records in Subsidiary.");
 					echo jcode(array('success' => 1,'response' => $html));
 				}
 			}
@@ -147,7 +148,7 @@ class Subsidiary_account extends CI_Controller {
 		$this->load->model('subsidiary_account_model');
 		$sub_code = $this->input->post('sub_code');
 		$data = $this->subsidiary_account_model->delete_subinfo($sub_code);
-		// print_r($this->db->last_query());
+		auditrecord("Deleted Subsidiary Account(Sub-code:".$sub_code.")");
 		echo jcode(
 			array('success' => 1,
 				'response' => $data 
@@ -168,6 +169,7 @@ class Subsidiary_account extends CI_Controller {
 				);
 			$html.= $this->load->view('report/sub_search_result', $data, true);
 			$html.= $this->config->item('report_footer');
+			auditrecord("Generated Subsidiary Summary Report");
 			pdf_create($html, 'filename');
 		}
 		else{

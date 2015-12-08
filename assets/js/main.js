@@ -3,8 +3,8 @@ $(document).ready(function(){
 	page_padding();
 	scrollUp();
 	figure_format();
-	reset_accunts();
-	
+	reset_accounts();
+	audit_trail_js();
 	$('.form-control').change(function(){
 		if ($(this).hasClass('error')){
 			($(this).val().length>0) ? ($(this).removeClass('error')):($(this).addClass('error'));
@@ -19,7 +19,7 @@ $(document).ready(function(){
 	
 });
 // Reset button for searching all accounts -mich
-function reset_accunts(){
+function reset_accounts(){
 	$('#btn_reset').click(function(){
 		$.ajax({
 			type: 'POST',

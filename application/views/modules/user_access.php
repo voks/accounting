@@ -284,7 +284,7 @@
 								data-admin='".$data->tab_admin."'
 								data-setup='".$data->tab_setup."'
 								class='edit_user'><i class='fa fa-edit' data-item=''></i> Update</a></span> |
-								<span class='action'> <a href='#' class='btn_deluser' data-id='".$data->user_id."' ><i class='fa fa-trash-o' data-item=''></i> Delete</a></span>
+								<span class='action'> <a href='#' class='btn_deluser' data-id='".$data->user_id."' data-fname='".$data->fname."'><i class='fa fa-trash-o' data-item=''></i> Delete</a></span>
 							</td>
 						</tr>
 						";
@@ -303,7 +303,7 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-offset-1 col-md-9">
-						<span class="txt"> Account group has been successfully deleted!</span>
+						<span class="txt"> System User has been successfully deleted!</span>
 					</div>
 					<div class="col-md-2">
 						<button class="btn btn-style2" id="btn_ok" data-dismiss="modal" aria-label="Close"> OK</button>

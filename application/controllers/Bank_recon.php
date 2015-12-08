@@ -125,15 +125,15 @@ class Bank_recon extends CI_Controller {
 
 	public function test_journal(){
 		echo "
-				<table class='table fixed-table table-condensed search-table'>
-				<tbody class='tran_data'>	
-		";
+		<table class='table fixed-table table-condensed search-table'>
+			<tbody class='tran_data'>	
+				";
 
-		$data_trans = $this->db->query("select * from tb_journal_trans where sub_code='10001 - 10000' and trans_journal='cd'")->result();
-		foreach ($data_trans as $data_trans) {
-			$data_entry = $this->db->query("select cd_check_no,cd_date,cd_master_name from tb_journal_cd where cd_id=".$data_trans->trans_id."")->result();
-			foreach ($data_entry as $data_entry) {
-				echo "
+				$data_trans = $this->db->query("select * from tb_journal_trans where sub_code='10001 - 10000' and trans_journal='cd'")->result();
+				foreach ($data_trans as $data_trans) {
+					$data_entry = $this->db->query("select cd_check_no,cd_date,cd_master_name from tb_journal_cd where cd_id=".$data_trans->trans_id."")->result();
+					foreach ($data_entry as $data_entry) {
+						echo "
 						<tr>
 							<td><input type='checkbox'/></td>
 							<td>".$data_entry->cd_check_no."</td>
@@ -143,35 +143,35 @@ class Bank_recon extends CI_Controller {
 							<td>".$data_trans->trans_dr."</td>
 							<td>".$data_trans->trans_cr."</td>
 						</tr>
-				";
-			}
-		}
+						";
+					}
+				}
 
-		echo "
-				</tbody>
-			</table>	
+				echo "
+			</tbody>
+		</table>	
 		";
 	}
 
 	public function test_all(){
 		$html =  "
-				<table class='table fixed-table table-condensed search-table'>
-				<tbody class='tran_data'>	
-		";
+		<table class='table fixed-table table-condensed search-table'>
+			<tbody class='tran_data'>	
+				";
 
-		$data_trans = $this->db->query("select * from tb_journal_trans where sub_code='10001 - 10000'")->result();
-		foreach ($data_trans as $data_trans) {
-			if ($data_trans->trans_journal='cd') {
-				$data_entry = $this->db->query("select cd_check_no as code,cd_date as trans_date,cd_master_name as payee from tb_journal_cd where cd_id=".$data_trans->trans_id."")->result();
-			}
-			elseif ($data_trans->trans_journal='cr') {
-				$data_entry = $this->db->query("select cr_or_no as code,cr_date as trans_date,cr_master_name_customer as payee from tb_journal_cr where cr_id=".$data_trans->trans_id."")->result();
-			}
-			elseif ($data_trans->trans_journal='gj') {
-				$data_entry = $this->db->query("select gj_code as code,gj_date as trans_date,gj_particulars as payee from tb_journal_gj where gj_id=".$data_trans->trans_id."")->result();
-			}
-			foreach ($data_entry as $data_entry) {
-				$html.= "
+				$data_trans = $this->db->query("select * from tb_journal_trans where sub_code='10001 - 10000'")->result();
+				foreach ($data_trans as $data_trans) {
+					if ($data_trans->trans_journal='cd') {
+						$data_entry = $this->db->query("select cd_check_no as code,cd_date as trans_date,cd_master_name as payee from tb_journal_cd where cd_id=".$data_trans->trans_id."")->result();
+					}
+					elseif ($data_trans->trans_journal='cr') {
+						$data_entry = $this->db->query("select cr_or_no as code,cr_date as trans_date,cr_master_name_customer as payee from tb_journal_cr where cr_id=".$data_trans->trans_id."")->result();
+					}
+					elseif ($data_trans->trans_journal='gj') {
+						$data_entry = $this->db->query("select gj_code as code,gj_date as trans_date,gj_particulars as payee from tb_journal_gj where gj_id=".$data_trans->trans_id."")->result();
+					}
+					foreach ($data_entry as $data_entry) {
+						$html.= "
 						<tr>
 							<td><input type='checkbox'/></td>
 							<td>".$data_entry->code."</td>
@@ -181,13 +181,13 @@ class Bank_recon extends CI_Controller {
 							<td>".$data_trans->trans_dr."</td>
 							<td>".$data_trans->trans_cr."</td>
 						</tr>
-				";
-			}
-		}
+						";
+					}
+				}
 
-		$html.= "
-				</tbody>
-			</table>	
+				$html.= "
+			</tbody>
+		</table>	
 		";
 
 		echo $html;

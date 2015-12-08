@@ -65,5 +65,6 @@
 		<script src="<?=base_url()?>assets/js/system_settings_js.js" type="text/javascript"></script>
 		<script src="<?=base_url()?>assets/js/trial_balance_js.js" type="text/javascript"></script>
 		<script src="<?=base_url()?>assets/js/user_access_js.js" type="text/javascript"></script>
+		<script src="<?=base_url()?>assets/js/audit_trail.js" type="text/javascript"></script>
     </body>
 </html>

@@ -61,7 +61,7 @@ class Site extends CI_Controller {
 					'account_title' => $this->subsidiary_account_model->get_accounts()->result(),
 					'master_name' => $this->main_account_model->show_master_name()->result(),
 					'sub_code' => $this->subsidiary_account_model->get_last_subnum()
-				);
+					);
 				$this->load->view('modules/subsidiary_account',$data);
 				$this->load->view('parts/footer');
 				break;
@@ -261,6 +261,22 @@ class Site extends CI_Controller {
 					'accounts_receivable' => $this->accounts_receivable_model->show_customer_name()
 					);
 				$this->load->view('modules/accounts_receivable', $viewData);
+				$this->load->view('parts/footer');
+				break;
+
+				case 'audit_trail':
+				$this->load->model('audit_trail_model');
+				$page_info = array(
+					'page_tab' 		=> 'Administrator',
+					'page_title'	=> 'Audit Trail' 
+					);
+				$this->load->view('parts/header',load_data($page_info));
+				$this->load->view('parts/sidebar');
+				$data = array(
+					'audit_data' 	=> $this->audit_trail_model->load_records(),
+					'user' 			=> $this->audit_trail_model->load_users()
+					);
+				$this->load->view('modules/audit_trail', $data);
 				$this->load->view('parts/footer');
 				break;
 				

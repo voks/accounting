@@ -33,6 +33,7 @@ class Login_model extends CI_Model {
 								'project_id' 	=> $data[0]['project_id'],
 								'project_name'	=> $data[0]['project_name'],
 								'fullname'		=> $data[0]['fname'].' '.$data[0]['lname'],
+								'u_type'		=> $data[0]['user_type'],
 								'user_id'		=> $data[0]['user_id'],
 								'islogged'		=> 1,
 								'current_page'	=> 'accounts_payable',

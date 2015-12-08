@@ -5,9 +5,9 @@ class Master_account extends CI_Controller {
 	public function index(){
 		if ($this->session->userdata('islogged')) {
 			$page_info = array(
-								'page_tab' 		=> 'Set Up',
-								'page_title' 	=> 'Master Account'
-							);
+				'page_tab' 		=> 'Set Up',
+				'page_title' 	=> 'Master Account'
+				);
 			$this->load->view('parts/header',load_data($page_info));
 			$this->load->view('parts/sidebar',load_data($page_info));
 			$this->load->model('master_account_model');
@@ -41,10 +41,10 @@ class Master_account extends CI_Controller {
 
 		if (count($err)) {
 			echo jcode(array(
-								'success' => 3, 
-								'err' 	  => $err
-							)
-					);
+				'success' => 3, 
+				'err' 	  => $err
+				)
+			);
 		} else {
 
 			$masterCode = isset($master_account_data['master_code']) ? $master_account_data['master_code']: '';
@@ -57,49 +57,51 @@ class Master_account extends CI_Controller {
 				$account_info = $this->master_account_model->get_account_title($master_account_data['master_subsidiary'])->row();
 				if ($account_info) {
 					$data = array(
-									'project_id' 			=> $master_account_data['project_id'],
-									'master_code'			=> $master_account_data['master_code'],
-									'master_date'			=> $master_account_data['master_date'],
-									'master_name'			=> $master_account_data['master_name'],
-									'master_type'			=> $master_account_data['master_type'],
-									'master_add'			=> $master_account_data['master_add'],
-									'master_terms_payment'  => $master_account_data['master_terms_payment'],
-									'master_contact_person' => $master_account_data['master_contact_person'],
-									'master_position'		=> $master_account_data['master_position'],
-									'master_tel_no'			=> $master_account_data['master_tel_no'],
-									'master_email'			=> $master_account_data['master_email'],
-									'master_fax_no'			=> $master_account_data['master_fax_no']
-								);
+						'project_id' 			=> $master_account_data['project_id'],
+						'master_code'			=> $master_account_data['master_code'],
+						'master_date'			=> $master_account_data['master_date'],
+						'master_name'			=> $master_account_data['master_name'],
+						'master_type'			=> $master_account_data['master_type'],
+						'master_add'			=> $master_account_data['master_add'],
+						'master_terms_payment'  => $master_account_data['master_terms_payment'],
+						'master_contact_person' => $master_account_data['master_contact_person'],
+						'master_position'		=> $master_account_data['master_position'],
+						'master_tel_no'			=> $master_account_data['master_tel_no'],
+						'master_email'			=> $master_account_data['master_email'],
+						'master_fax_no'			=> $master_account_data['master_fax_no']
+						);
 					$this->master_account_model->master_account_add($data);
 					
 					$sub_data = array(
-										'project_id' 		=> $master_account_data['project_id'],
-										'sub_date'			=> $master_account_data['master_date'],
-										'account_code'		=> $master_account_data['master_subsidiary'],
-										'account_title'		=> $account_info->account_title,
-										'account_type'		=> $account_info->account_type,
-										'sub_code'			=> $master_account_data['master_subsidiary'].' - '.$master_account_data['master_code'],
-										'sub_name'			=> $account_info->account_title. ' - ' . $master_account_data['master_name'],
-										'master_link'		=> $master_account_data['master_code']
-									 );
+						'project_id' 		=> $master_account_data['project_id'],
+						'sub_date'			=> $master_account_data['master_date'],
+						'account_code'		=> $master_account_data['master_subsidiary'],
+						'account_title'		=> $account_info->account_title,
+						'account_type'		=> $account_info->account_type,
+						'sub_code'			=> $master_account_data['master_subsidiary'].' - '.$master_account_data['master_code'],
+						'sub_name'			=> $account_info->account_title. ' - ' . $master_account_data['master_name'],
+						'master_link'		=> $master_account_data['master_code']
+						);
 					$this->master_account_model->create_sub($sub_data);
+					auditrecord("Created New Master Record and Subsidiary Record for ".$master_account_data['master_name']."");
 					echo jcode(array('success' => 1));					
 				} else {
 					$data = array(
-									'project_id' 			=> $master_account_data['project_id'],
-									'master_code'			=> $master_account_data['master_code'],
-									'master_date'			=> $master_account_data['master_date'],
-									'master_name'			=> $master_account_data['master_name'],
-									'master_type'			=> $master_account_data['master_type'],
-									'master_add'			=> $master_account_data['master_add'],
-									'master_terms_payment'  => $master_account_data['master_terms_payment'],
-									'master_contact_person' => $master_account_data['master_contact_person'],
-									'master_position'		=> $master_account_data['master_position'],
-									'master_tel_no'			=> $master_account_data['master_tel_no'],
-									'master_email'			=> $master_account_data['master_email'],
-									'master_fax_no'			=> $master_account_data['master_fax_no']
-								);
+						'project_id' 			=> $master_account_data['project_id'],
+						'master_code'			=> $master_account_data['master_code'],
+						'master_date'			=> $master_account_data['master_date'],
+						'master_name'			=> $master_account_data['master_name'],
+						'master_type'			=> $master_account_data['master_type'],
+						'master_add'			=> $master_account_data['master_add'],
+						'master_terms_payment'  => $master_account_data['master_terms_payment'],
+						'master_contact_person' => $master_account_data['master_contact_person'],
+						'master_position'		=> $master_account_data['master_position'],
+						'master_tel_no'			=> $master_account_data['master_tel_no'],
+						'master_email'			=> $master_account_data['master_email'],
+						'master_fax_no'			=> $master_account_data['master_fax_no']
+						);
 					$this->master_account_model->master_account_add($data);
+					auditrecord("Added New Master Record (".$master_account_data['master_name'].")");
 					echo jcode(array('success' => 1));	
 				}
 				
@@ -119,29 +121,29 @@ class Master_account extends CI_Controller {
 		if (count($err)) {
 			if ($err<1) {
 				echo jcode(array(
-									'success' => 3, 
-									'err' 	  => $err
-								)
-						);
+					'success' => 3, 
+					'err' 	  => $err
+					)
+				);
 			}
 			else {
 				if (!$data->num_rows()) {
-						echo jcode(array('success' => 2));
+					echo jcode(array('success' => 2));
 				}
 				else{
-						foreach ($data->result() as $key) {
+					foreach ($data->result() as $key) {
 						$html .="
-									<tr>
-										<td>".$key->master_name."</td>
-										<td>".$key->master_add."</td>
-										<td>".$key->master_contact_person."</td>
-										<td>".$key->master_tel_no."</td>
-										<td><i class='fa fa-eye btn btn-style-1 showModal' data-mastercode='".$key->master_code."' data-date='".$key->master_date."' data-name='".$key->master_name."' data-type='".$key->master_type."' data-add='".$key->master_add."' data-term='".$key->master_terms_payment."' data-person='".$key->master_contact_person."' data-tel='".$key->master_tel_no."' data-email='".$key->master_email."' data-position='".$key->master_position."' data-fax='".$key->master_fax_no."' style='font-size:16px;margin-left:38px;'></i></td>
-									</tr>
-								";
-						}
-
-						echo jcode(array('success' => 1,'response' => $html));
+						<tr>
+							<td>".$key->master_name."</td>
+							<td>".$key->master_add."</td>
+							<td>".$key->master_contact_person."</td>
+							<td>".$key->master_tel_no."</td>
+							<td><i class='fa fa-eye btn btn-style-1 showModal' data-mastercode='".$key->master_code."' data-date='".$key->master_date."' data-name='".$key->master_name."' data-type='".$key->master_type."' data-add='".$key->master_add."' data-term='".$key->master_terms_payment."' data-person='".$key->master_contact_person."' data-tel='".$key->master_tel_no."' data-email='".$key->master_email."' data-position='".$key->master_position."' data-fax='".$key->master_fax_no."' style='font-size:16px;margin-left:38px;'></i></td>
+						</tr>
+						";
+					}
+					auditrecord("Searched Records in Master Accounts");
+					echo jcode(array('success' => 1,'response' => $html));
 				}
 			}
 		}
@@ -158,10 +160,11 @@ class Master_account extends CI_Controller {
 			$html = $this->config->item('report_header');
 
 			$data = array(
-					'master_account' => $this->master_account_model->master_account_get($master_name,$master_add,$master_con_person,$master_con_num)->result()
+				'master_account' => $this->master_account_model->master_account_get($master_name,$master_add,$master_con_person,$master_con_num)->result()
 				);
 			$html.= $this->load->view('report/master_account_search', $data, true);
 			$html.= $this->config->item('report_footer');
+			auditrecord("Generated Master Account Summary Report");
 			pdf_create($html, 'filename');
 		}
 		else{
