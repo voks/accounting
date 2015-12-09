@@ -278,4 +278,31 @@ class Check_dis extends CI_Controller {
 		auditrecord("Export Summary Check Disbursement (Excel)");
 		check_dis_summary($data);
 	}
+
+	// Update Transaction
+	public function update_cd_trans(){
+		$this->load->model('journal_cd_model');
+		$u_cd = $this->input->post('u_cd');
+		$err = validates(array($u_cd), array());
+		if (count($err)) {
+			echo jcode(array(
+				'success' => 3, 
+				'err' 	  => $err
+				)
+			);
+		} else {
+			$this->journal_ap_model->update_ap(
+				$u_cd['vdate'], 
+				$u_cd['vnum'],
+				$u_cd['chckno'], 
+				$u_cd['master'],
+				$u_cd['payee'],
+				$u_cd['chckamt'], 
+				$u_cd['part'],
+				$u_cd['cd_id']
+				);
+			// print_r($this->db->last_query());
+			echo jcode(array('success' 	=> 1));
+		}
+	}
 }

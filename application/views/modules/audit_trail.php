@@ -45,28 +45,33 @@
 <!--Table List Result-->
 <div class="row">
 	<div class="col-md-12">
-		<table class="table search-table">
+		<table class="table fixed-table margin-top-30 table-condensed">
 			<thead>
 				<tr>
-					<th>User</th>
-					<th>User Type</th>
-					<th>Action</th>
-					<th>Date</th>
+					<th class="col-md-3">User</th>
+					<th class="col-md-3">User Type</th>
+					<th class="col-md-3">Action</th>
+					<th class="col-md-3">Date</th>
 				</tr>
 			</thead>
-			<tbody>
-				<?php
-				foreach($audit_data->result() as $key){
-					echo "<tr>
-					<td class=''>".$key->full_name."</td>
-					<td class=''>".$key->user_type."</td>
-					<td class=''>".$key->a_action."</td>
-					<td class=''>".$key->a_date."</td>
-				</tr>";
-			}
-			?>
-		</tbody>
-	</table>
-</div>
+		</table>
+		<div class="div-table-content">
+			<table id="" class="table search-table fixed-table table-condensed">
+				<tbody>
+					<?php
+					foreach($audit_data->result() as $key){
+						echo "
+						<tr>
+							<td class=''>".$key->full_name."</td>
+							<td class=''>".$key->user_type."</td>
+							<td class=''>".$key->a_action."</td>
+							<td class=''>".$key->a_date."</td>
+						</tr>";
+					}
+					?>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
 <!-- Page content end -->

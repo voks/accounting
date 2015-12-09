@@ -123,72 +123,77 @@
 				<h4 class="modal-title" id="">Edit Transaction</h4>
 			</div>
 			<div class="modal-body">
-				<!-- First Row -->
-				<div class="row">
-					<div class="col-md-2">
-						<span class="txt">Date:</span>
-						<input type="text" class="form-control cd_date">
-					</div>
-					<div class="col-md-2">
-						<span class="txt">Voucher #:</span>
-						<input type="text" class="form-control cd_vnum">
-					</div>
-					<div class="col-md-3">
-						<span class="txt">Check#:</span>
-						<input type="text" class="form-control cd_chcknum">
-					</div>
-					<div class="col-md-5">
-						<span class="txt">Bank:</span>
-						<input type="text" class="form-control cd_bank">
-					</div>
-				</div>
-				<!-- Second Row -->
-				<div class="row">
-					<div class="col-md-4">
-						<span class="txt">Payee Name:</span>
-						<input type="text" class="form-control cd_name">
-					</div>
-					<div class="col-md-3">
-						<span class="txt">Check Amount:</span>
-						<input type="text" class="form-control cd_chckamt">
-					</div>
-					<div class="col-md-5">
-						<span class="txt">Particulars</span>
-						<input type="text" class="form-control cd_part">
-					</div>
-				</div>
-				<!-- fourth Row: Adding Accounts -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="table" >
-							<table class="table" id="edit_table">
-								<thead>
-									<tr>
-										<th>Account Code</th>
-										<th>Title</th>
-										<th>Debit (DR)</th>
-										<th>Credit (CR)</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-								</tbody>
-								<tfoot>
-									<tr>
-										<td>TOTAL</td><td ></td>
-										<td><input type="text" class="form-control entry-debit-total totdr" readonly="true" value=""></td>
-										<td><input type="text" class="form-control entry-credit-total totcr" readonly="true" value=""></td>
-										<td></td>
-									</tr>
-								</tfoot>
-							</table>
+				<form class="updateCD-form">
+					<!-- First Row -->
+					<div class="row">
+						<div class="col-md-2">
+							<span class="txt">Date:</span>
+							<input type="text" class="form-control cd_date">
+						</div>
+						<div class="col-md-2">
+							<span class="txt">Voucher #:</span>
+							<input type="text" class="form-control cd_vnum">
+						</div>
+						<div class="col-md-3">
+							<span class="txt">Check#:</span>
+							<input type="text" class="form-control cd_chcknum">
+						</div>
+						<div class="col-md-5">
+							<span class="txt">Bank:</span>
+							<input type="text" class="form-control cd_bank">
 						</div>
 					</div>
-				</div>
+					<!-- Second Row -->
+					<div class="row">
+						<div class="col-md-4">
+							<span class="txt">Payee Name:</span>
+							<input type="text" class="form-control cd_name">
+						</div>
+						<div class="col-md-3">
+							<span class="txt">Check Amount:</span>
+							<input type="text" class="form-control cd_chckamt">
+						</div>
+						<div class="col-md-5">
+							<span class="txt">Particulars</span>
+							<input type="text" class="form-control cd_part">
+						</div>
+					</div>
+					<!-- fourth Row: Adding Accounts -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="table" >
+								<table class="table" id="edit_table">
+									<thead>
+										<tr>
+											<th>Account Code</th>
+											<th>Title</th>
+											<th>Debit (DR)</th>
+											<th>Credit (CR)</th>
+										</tr>
+									</thead>
+									<tbody>
+
+									</tbody>
+									<tfoot>
+										<tr>
+											<td>TOTAL</td><td ></td>
+											<td><input type="text" class="form-control entry-debit-total totdr" readonly="true" value=""></td>
+											<td><input type="text" class="form-control entry-credit-total totcr" readonly="true" value=""></td>
+											<td></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="modal-footer">
+							<button class="btn btn-style-1"><i class="fa fa-save"></i> Update Transaction</button>
+						</div>
+					</div>
+				</form>
 			</div>
-			<div class="modal-footer">
-				<button class="btn btn-style-1"><i class="fa fa-save"></i> Update Transaction</button>
-			</div>
+			
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div>

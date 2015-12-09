@@ -47,8 +47,7 @@ class General_ledger extends CI_Controller {
 			$subs = $search['sub_account'];
 			$main = $search['account'];
 			if ($search_type == 1) { 
-			//Search Journal: ALL Journals
-
+				//Search Journal: ALL Journals
 				$search = $this->input->post('gl-search');
 				$data = $this->general_ledger_model->search_gl_all($main,$subs,$search['from_date'],$search['to_date']);
 				// print_r($this->db->last_query());
@@ -76,9 +75,9 @@ class General_ledger extends CI_Controller {
 										<td>".$key->account_name."</td>
 										<td>".$key_ap->ap_particulars."</td>
 										<td>".$key_ap->ap_invoice_no."</td>
-										<td class='text-right'>".$key_ap->total_debit."</td>
-										<td class='text-right'>".$key_ap->total_credit."</td>
-
+										<td class='text-right'>".number_format($key_ap->total_debit, 2)."</td>
+										<td class='text-right'>".number_format($key_ap->total_credit, 2)."</td>
+										<td><a href='#' class='btn-style-1'><i class='fa fa-eye'></i></a></td>
 									</tr>";
 								}
 							}
@@ -91,9 +90,9 @@ class General_ledger extends CI_Controller {
 										<td>".$key->account_name."</td>
 										<td>".$key_cd->cd_particulars."</td>
 										<td>".$key_cd->cd_voucher_no."</td>
-										<td class='text-right'>".$key_cd->total_debit."</td>
-										<td class='text-right'>".$key_cd->total_credit."</td>
-
+										<td class='text-right'>".number_format($key_cd->total_debit, 2)."</td>
+										<td class='text-right'>".number_format($key_cd->total_credit,2)."</td>
+										<td><a href='#' class='btn-style-1'><i class='fa fa-eye'></i></a></td>
 									</tr>";
 								}
 							}
@@ -106,9 +105,9 @@ class General_ledger extends CI_Controller {
 										<td>".$key->account_name."</td>
 										<td>".$key_cr->cr_particulars."</td>
 										<td>".$key_cr->cr_or_no."</td>
-										<td class='text-right'>".$key_cr->total_debit."</td>
-										<td class='text-right'>".$key_cr->total_credit."</td>
-
+										<td class='text-right'>".number_format($key_cr->total_debit, 2)."</td>
+										<td class='text-right'>".number_format($key_cr->total_credit,2)."</td>
+										<td><a href='#' class='btn-style-1'><i class='fa fa-eye'></i></a></td>
 									</tr>";
 								}
 							}
@@ -121,9 +120,9 @@ class General_ledger extends CI_Controller {
 										<td>".$key->account_name."</td>
 										<td>".$key_cr->cr_particulars."</td>
 										<td>".$key_cr->cr_or_no."</td>
-										<td class='text-right'>".$key_cr->total_debit."</td>
-										<td class='text-right'>".$key_cr->total_credit."</td>
-
+										<td class='text-right'>".number_format($key_cr->total_debit, 2)."</td>
+										<td class='text-right'>".number_format($key_cr->total_credit,2)."</td>
+										<td><a href='#' class='btn-style-1'><i class='fa fa-eye'></i></a></td>
 									</tr>";
 								}
 							}
@@ -136,9 +135,9 @@ class General_ledger extends CI_Controller {
 										<td>".$key->account_name."</td>
 										<td>".$key_gj->gj_particulars."</td>
 										<td>".$key_gj->gj_code."</td>
-										<td class='text-right'>".$key_gj->total_debit."</td>
-										<td class='text-right'>".$key_gj->total_credit."</td>
-
+										<td class='text-right'>".number_format($key_gj->total_debit, 2)."</td>
+										<td class='text-right'>".number_format($key_gj->total_credit,2)."</td>
+										<td><a href='#' class='btn-style-1'><i class='fa fa-eye'></i></a></td>
 									</tr>";
 								}
 							}
@@ -151,8 +150,9 @@ class General_ledger extends CI_Controller {
 										<td>".$key->account_name."</td>
 										<td>".$key_sj->sj_particulars."</td>
 										<td>".$key_sj->sj_si_no."</td>
-										<td class='text-right'>".$key_sj->total_debit."</td>
-										<td class='text-right'>".$key_sj->total_credit."</td>
+										<td class='text-right'>".number_format($key_sj->total_debit, 2)."</td>
+										<td class='text-right'>".number_format($key_sj->total_credit,2)."</td>
+										<td><a href='#' class='btn-style-1'><i class='fa fa-eye'></i></a></td>
 									</tr>";
 								}
 							}
@@ -191,7 +191,7 @@ class General_ledger extends CI_Controller {
 								<td>".$key->cr_or_no."</td>
 								<td class='text-right'>".$key->trans_dr."</td>
 								<td class='text-right'>".$key->trans_cr."</td>
-								<td><a href=# data-id='".$key->cr_id."' data-journal='".$search['journal']."' class='btn btn-style-1 view_account'><i class='fa fa-file-text'></i></a></td>
+								<td><a href=# data-id='".$key->cr_id."' data-journal='".$search['journal']."' class='btn btn-style-1 view_account'><i class='fa fa-eye'></i></a></td>
 							</tr>";
 						}
 
@@ -239,7 +239,7 @@ class General_ledger extends CI_Controller {
 								<td>".$key->ap_invoice_no."</td>
 								<td class='text-right'>".$key->trans_dr."</td>
 								<td class='text-right'>".$key->trans_cr."</td>
-								<td><a href=# data-id='".$key->ap_id."' data-journal='".$search['journal']."' class='btn btn-style-1 view_account'><i class='fa fa-file-text'></i></a></td>
+								<td><a href=# data-id='".$key->ap_id."' data-journal='".$search['journal']."' class='btn btn-style-1 view_account'><i class='fa fa-eye'></i></a></td>
 							</tr>";
 						}
 						foreach ($tot_data->result() as $key) {
@@ -285,7 +285,7 @@ class General_ledger extends CI_Controller {
 								<td>".$key->cd_voucher_no."</td>
 								<td class='text-right'>".$key->trans_dr."</td>
 								<td class='text-right'>".$key->trans_cr."</td>
-								<td><a href=# data-id='".$key->cd_id."' data-journal='".$search['journal']."' class='btn btn-style-1 view_account'><i class='fa fa-file-text'></i></a></td>
+								<td><a href=# data-id='".$key->cd_id."' data-journal='".$search['journal']."' class='btn btn-style-1 view_account'><i class='fa fa-eye'></i></a></td>
 							</tr>";
 						}
 
@@ -332,7 +332,7 @@ class General_ledger extends CI_Controller {
 								<td>".$key->sj_si_no."</td>
 								<td class='text-right'>".$key->trans_dr."</td>
 								<td class='text-right'>".$key->trans_cr."</td>
-								<td><a href=# data-id='".$key->sj_id."' data-journal='".$search['journal']."' class='btn btn-style-1 view_account'><i class='fa fa-file-text'></i></a></td>
+								<td><a href=# data-id='".$key->sj_id."' data-journal='".$search['journal']."' class='btn btn-style-1 view_account'><i class='fa fa-eye'></i></a></td>
 							</tr>";
 						}
 
@@ -380,7 +380,7 @@ class General_ledger extends CI_Controller {
 								<td>".$key->gj_code."</td>
 								<td class='text-right'>".$key->trans_dr."</td>
 								<td class='text-right'>".$key->trans_cr."</td>
-								<td><a href=# data-id='".$key->gj_id."' data-journal='".$search['journal']."' class='btn btn-style-1 view_account'><i class='fa fa-file-text'></i></a></td>
+								<td><a href=# data-id='".$key->gj_id."' data-journal='".$search['journal']."' class='btn btn-style-1 view_account'><i class='fa fa-eye'></i></a></td>
 							</tr>";
 						}
 
@@ -532,7 +532,7 @@ class General_ledger extends CI_Controller {
 			$to = $this->input->get('to');
 			$html = $this->config->item('report_header');
 			$data = array(
-				'ledger' => $this->general_ledger_model->search_gl_cash($account_title,$cr_trans_sub_name, $from_date,$to_date)->result()
+				'ledger' => $this->general_ledger_model->search_gl_cash($ctr_acct,$sub_acct, $from,$to)->result()
 				);
 			$html.= $this->load->view('report/gl_search_report', $data, true);
 			$html.= $this->config->item('report_footer');

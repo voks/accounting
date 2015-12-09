@@ -223,6 +223,7 @@ class Trial_balance extends CI_Controller {
 			$html.= $this->load->view('report/trial_balance', $viewData, true);
 
 			$html.= $this->config->item('report_footer');
+			auditrecord("Generated Trial Balance Report.");
 			pdf_create($html, 'filename');
 		}
 		else{

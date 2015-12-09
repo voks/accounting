@@ -113,6 +113,36 @@ function accounts_payable_js(){
 			}
 		});
 	});
+
+	// Update AP Transaction
+	$('.updateAP-form').submit(function(e){
+		e.preventDefault();
+		$.ajax({ 
+			type: 'POST', 
+			datatype:'json',
+			url: site_url+'accounts_payable/update_ap_trans', 
+			data: $('.updateAP-form').serialize(),
+			success: function (data) { 
+				if(data.success==1){
+					$('#editTrans').modal('hide');
+					$('#update-success').modal('show');
+				}
+				else if(data.success==2){
+					$('.editAP-alert-warning').slideDown().delay(2000).slideUp();
+				}
+				else if(data.success==3){
+					for (i=0;i<=data.err.length;i++) {
+						jQuery("#"+data.err[i]).addClass('error');
+					};
+				}
+			}
+		});
+	});
+	// To reload the search table after updating ap info -mich
+	$('#btn_ok').click(function(){
+		search_ap();
+	});
+
 }
 
 
@@ -138,12 +168,14 @@ function view_trans_ap(){
 					var totdr 		= Number(data_totDr).toLocaleString('en-US', {minimumFractionDigits: 2});
 					var data_totCr 	= data.response[0].total_credit;
 					var totcr 		= Number(data_totCr).toLocaleString('en-US', {minimumFractionDigits: 2});
+					$('.ap_id').val(data.response[0].ap_id);
 					$('.invdate').val(data.response[0].ap_invoice_date);
 					$('.invno').val(data.response[0].ap_invoice_no);
 					$('.pono').val(data.response[0].ap_po_no);
 					$('.terms').val(data.response[0].ap_terms);
 					$('.supp').val(data.response[0].ap_master_name);
 					$('.invamt').val(invamt);
+					$('.noformat').val(data_amt);
 					$('.part').val(data.response[0].ap_particulars);
 					$('.totdr').val(totdr);
 					$('.totcr').val(totcr);
@@ -151,6 +183,11 @@ function view_trans_ap(){
 					$(data.html).appendTo($('#edit_table > tbody:last')).hide().fadeIn(1000);
 				};
 			}
+		});
+		// Remove the comma in the invoice amount before saving to database
+		$('.invamt').change(function(){
+			var amt = $('.invamt').val().replace(/\,/g, "");
+			$('.noformat').val(amt);
 		});
 	    // alert(id);
 	   // window.open(site_url+"accounts_payable/view_trans?id="+id,'_blank');
@@ -166,4 +203,30 @@ function ap_bind_print(){
 	   //alert(id);
 	   window.open(site_url+"accounts_payable/ap_report?id="+id+"&invno="+invno,'_blank');
 	});
+}
+
+function search_ap(){
+	$.ajax({ 
+			type: 'POST', 
+			datatype:'json',
+			url: site_url+'accounts_payable/search_ap', 
+			data: $('.searchAP-form').serialize(),
+			success: function (data) { 
+				if(data.success==1){
+					$('.search-table > tbody:last').empty().fadeIn(1000);
+					$(data.response).appendTo($('.search-table > tbody:last')).hide().fadeIn(1000);
+					ap_bind_print();
+					view_trans_ap();
+				}
+				else if(data.success==2){
+					$('.search-alert-warning').slideDown().delay(2000).slideUp();
+					$('.search-table tbody').html('');
+				}
+				else if(data.success==3){
+					for (i=0;i<=data.err.length;i++) {
+						jQuery("#"+data.err[i]).addClass('error');
+					};
+				}
+			}
+		});
 }

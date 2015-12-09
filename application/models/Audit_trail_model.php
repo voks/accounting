@@ -17,7 +17,7 @@ class Audit_trail_model extends CI_Model {
 
 	public function search($uname, $date_fr, $date_to){
 		$sql = "SELECT * FROM tb_audit_trail 
-		WHERE full_name = ? and project_id = ".$this->session->userdata('project_id')."
+		WHERE project_id = ".$this->session->userdata('project_id')." and full_name = ?
 		and a_date BETWEEN ? and ?";
 		return $query = $this->db->query($sql, array($uname, $date_fr, $date_to));
 	}

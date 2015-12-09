@@ -88,4 +88,19 @@ class Journal_cd_model extends CI_Model {
 		return $query;
 	}
 
+	public function u_cd($date, $vnum, $payee, $chckno, $master, $part, $cd_id){
+		$sql = "
+		UPDATE tb_journal_cd 
+		SET cd_date = ?,
+		cd_voucher_no = ?,
+		cd_payee_name = ?,
+		cd_check_no = ?,
+		cd_master_name = ?,
+		cd_check_no = ?,
+		cd_particuars= ?
+		WHERE cd_id = ?
+		";
+		$query = $this->db->query($sql, array($date, $vnum, $payee, $chckno, $master, $part, $cd_id));
+	}
+
 }

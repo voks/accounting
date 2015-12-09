@@ -135,7 +135,7 @@ class Accounts_payable extends CI_Controller {
 						<td class='col-md-2'>".$key->ap_invoice_date."</td>
 						<td class='col-md-3'>".$key->ap_master_name."</td>
 						<td class='col-md-4'>".$key->ap_particulars."</td>
-						<td class='col-md-2 text-right'>".number_format($key->ap_invoice_amount,2)."</td>
+						<td class='col-md-2 text-right'>".number_format($key->ap_invoice_amount, 2)."</td>
 						<td class='col-md-1'><a href='#' data-id='".$key->ap_id."' data-invno='".$key->ap_invoice_no."' class='btn-style-1 animate-4 pull-right account-report-print'><i class='fa fa-print'></i></a></td>
 						<td class='col-md-1'><a href='#' data-id='".$key->ap_id."' data-invdate='".$key->ap_invoice_date."' data-invno='".$key->ap_invoice_no."' data-po='".$key->ap_po_no."' data-terms='".$key->ap_terms."' data-supp='".$key->ap_master_name."' data-invamt='".$key->ap_invoice_amount."' data-part='".$key->ap_particulars."' class='btn-style-1 animate-4 pull-left account-report-edit'><i class='fa fa-edit'></i></a></td>
 					</tr>
@@ -202,7 +202,28 @@ class Accounts_payable extends CI_Controller {
 
 	public function update_ap_trans(){
 		$this->load->model('journal_ap_model');
-		
+		$u_ap = $this->input->post('u_ap');
+		$err = validates(array($u_ap), array());
+		if (count($err)) {
+			echo jcode(array(
+				'success' => 3, 
+				'err' 	  => $err
+				)
+			);
+		} else {
+			$this->journal_ap_model->update_ap(
+				$u_ap['invnum'], 
+				$u_ap['invdate'],
+				$u_ap['pono'], 
+				$u_ap['terms'], 
+				$u_ap['master'], 
+				$u_ap['invamt'], 
+				$u_ap['part'],
+				$u_ap['ap_id']
+				);
+			// print_r($this->db->last_query());
+			echo jcode(array('success' 	=> 1));
+		}
 	}
 
 	public function view_trans(){
@@ -251,8 +272,12 @@ class Accounts_payable extends CI_Controller {
 			<tr>
 				<td>".$key->sub_code."</td>
 				<td>".$key->account_name."</td>
-				<td><input type='text' class='form-control text-right' value='".number_format($key->trans_dr,2)."'></td>
-				<td><input type='text' class='form-control text-right' value='".number_format($key->trans_cr,2)."'></td>
+				<td>
+					<input type='text' class='form-control text-right u_ap_dr' value='".number_format($key->trans_dr,2)."'>
+				</td>
+				<td>
+					<input type='text' class='form-control text-right u_ap_cr' value='".number_format($key->trans_cr,2)."'>
+				</td>
 			</tr>
 			";
 		}

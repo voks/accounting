@@ -126,72 +126,87 @@
 				<h4 class="modal-title" id="">Edit Transaction</h4>
 			</div>
 			<div class="modal-body">
-				<!-- First Row -->
-				<div class="row">
-					<div class="col-md-3">
-						<span class="txt">Invoice Date:</span>
-						<input type="text" class="form-control invdate" value="">
-					</div>
-					<div class="col-md-3">
-						<span class="txt">Invoice #:</span>
-						<input type="text" class="form-control invno" value="">
-					</div>
-					<div class="col-md-3">
-						<span class="txt">PO #:</span>
-						<input type="text" class="form-control pono" value="">
-					</div>
-					<div class="col-md-1">
-						<span class="txt">Terms:</span>
-						<input type="text" class="form-control terms" value="">
-					</div>
-					<div class="col-md-2">
-						<span class="txt">Invoice Amount:</span>
-						<input type="text" class="form-control invamt" value="">
-					</div>
-				</div>
-				<!-- Second Row -->
-				<div class="row">
-					<div class="col-md-6">
-						<span class="txt">Supplier:</span>
-						<input type="text" readonly="true" class="form-control supp" value="">
-					</div>
-					<div class="col-md-6">
-						<span class="txt">Particulars:</span>
-						<input type="text" class="form-control part" value="">
-					</div>
-				</div>
-
-				<!-- fourth Row: Adding Accounts -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="table" >
-							<table class="table" id="edit_table">
-								<thead>
-									<tr>
-										<th>Account Code</th>
-										<th>Title</th>
-										<th>Debit (DR)</th>
-										<th>Credit (CR)</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-								</tbody>
-								<tfoot>
-									<tr>
-										<td>TOTAL</td><td ></td>
-										<td><input type="text" class="form-control entry-debit-total totdr" readonly="true" value=""></td>
-										<td><input type="text" class="form-control entry-credit-total totcr" readonly="true" value=""></td>
-										<td></td>
-									</tr>
-								</tfoot>
-							</table>
+				<form class="updateAP-form">
+					<!-- Alerts -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="alert alert-warning alert-dismissible fade in  editAP-alert-warning" role="alert">
+								<button type="button" class="close"  aria-label="Close"><span aria-hidden="true">×</span></button>
+								<strong>Warning!</strong>Accounts Payable details can't be updated.
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-style-1"><i class="fa fa-save"></i> Update Transaction</button>
+					<!-- First Row -->
+					<div class="row">
+						<div class="col-md-3">
+							<input type="hidden" class="ap_id" name="u_ap[ap_id]" id="ap_id">
+							<span class="txt">Invoice Date:</span>
+							<input type="text" class="form-control invdate" value="" id="invdate" name="u_ap[invdate]">
+						</div>
+						<div class="col-md-3">
+							<span class="txt">Invoice #:</span>
+							<input type="text" class="form-control invno" value="" id="invnum" name="u_ap[invnum]">
+						</div>
+						<div class="col-md-3">
+							<span class="txt">PO #:</span>
+							<input type="text" class="form-control pono" value="" id="pono" name="u_ap[pono]">
+						</div>
+						<div class="col-md-1">
+							<span class="txt">Terms:</span>
+							<input type="text" class="form-control terms" value="" id="terms" name="u_ap[terms]">
+						</div>
+						<div class="col-md-2">
+							<span class="txt">Invoice Amount:</span>
+							<input type="hidden" class="form-control noformat" id="invamt" name="u_ap[invamt]">
+							<input type="text" class="form-control invamt">
+						</div>
+					</div>
+					<!-- Second Row -->
+					<div class="row">
+						<div class="col-md-6">
+							<span class="txt">Supplier:</span>
+							<input type="text" readonly="true" class="form-control supp" id="master" name="u_ap[master]">
+						</div>
+						<div class="col-md-6">
+							<span class="txt">Particulars:</span>
+							<input type="text" class="form-control part" id="part" name="u_ap[part]">
+						</div>
+					</div>
+					<!-- fourth Row: Adding Accounts -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="table" >
+								<table class="table" id="edit_table">
+									<thead>
+										<tr>
+											<th>Account Code</th>
+											<th>Title</th>
+											<th>Debit (DR)</th>
+											<th>Credit (CR)</th>
+										</tr>
+									</thead>
+									<tbody>
+
+									</tbody>
+									<tfoot>
+										<tr>
+											<td>TOTAL</td><td ></td>
+											<td><input type="text" class="form-control entry-debit-total totdr" readonly="true" value=""></td>
+											<td><input type="text" class="form-control entry-credit-total totcr" readonly="true" value=""></td>
+											<td></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="modal-footer">
+							<button id="btn_updateAP" class="btn btn-style-1"><i class="fa fa-save"></i> Update Transaction</button>
+							<button class="btn btn-style2" data-dismiss="modal" aria-label="Close"> OK</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -420,6 +435,24 @@
 				</div>
 				<div class="modal-footer">
 					<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> OK</button>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<!--Confirmation of Update Modal-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" id="update-success">
+	<div class="modal-dialog modal-s">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-9">
+						<span class="txt"> <strong>Success!</strong> Accounts Payable details has been updated.</span>
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-style2" id="btn_ok" data-dismiss="modal" aria-label="Close"> OK</button>
+					</div>
 				</div>
 			</div>
 		</div><!-- /.modal-content -->

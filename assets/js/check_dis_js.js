@@ -128,6 +128,36 @@ function check_dis_js(){
 			}
 		});
 	});
+
+	// Update CD Trans
+	// Update AP Transaction
+	$('.updateCD-form').submit(function(e){
+		e.preventDefault();
+		$.ajax({ 
+			type: 'POST', 
+			datatype:'json',
+			url: site_url+'accounts_payable/update_cd_trans', 
+			data: $('.updateCD-form').serialize(),
+			success: function (data) { 
+				if(data.success==1){
+					$('#editTrans').modal('hide');
+					$('#update-success').modal('show');
+				}
+				else if(data.success==2){
+					$('.editAP-alert-warning').slideDown().delay(2000).slideUp();
+				}
+				else if(data.success==3){
+					for (i=0;i<=data.err.length;i++) {
+						jQuery("#"+data.err[i]).addClass('error');
+					};
+				}
+			}
+		});
+	});
+	// To reload the search table after updating ap info -mich
+	$('#btn_ok').click(function(){
+		search_ap();
+	});
 	
 }
 

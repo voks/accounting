@@ -68,4 +68,18 @@ class Journal_ap_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function update_ap($invnum, $invdate, $pono, $terms, $master, $invamt, $part, $ap_id){
+		$sql = "
+		UPDATE tb_journal_ap 
+		SET ap_invoice_no = ?, 
+		ap_invoice_date = ?, 
+		ap_po_no = ?, 
+		ap_terms = ?, 
+		ap_master_name = ?, 
+		ap_invoice_amount = ?,
+		ap_particulars = ? 
+		WHERE ap_id = ?";
+		$query = $this->db->query($sql, array($invnum, $invdate, $pono, $terms, $master, $invamt, $part, $ap_id));
+	}
+
 }
