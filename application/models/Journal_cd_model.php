@@ -88,7 +88,7 @@ class Journal_cd_model extends CI_Model {
 		return $query;
 	}
 
-	public function u_cd($date, $vnum, $payee, $chckno, $master, $part, $cd_id){
+	public function update_cd($date, $vnum, $payee, $chckno, $master,  $chckamt, $part, $cd_id){
 		$sql = "
 		UPDATE tb_journal_cd 
 		SET cd_date = ?,
@@ -96,11 +96,11 @@ class Journal_cd_model extends CI_Model {
 		cd_payee_name = ?,
 		cd_check_no = ?,
 		cd_master_name = ?,
-		cd_check_no = ?,
-		cd_particuars= ?
+		cd_check_amount = ?,
+		cd_particulars= ?
 		WHERE cd_id = ?
 		";
-		$query = $this->db->query($sql, array($date, $vnum, $payee, $chckno, $master, $part, $cd_id));
+		$query = $this->db->query($sql, array($date, $vnum, $payee, $chckno, $master, $chckamt, $part, $cd_id));
 	}
 
 }

@@ -126,6 +126,36 @@ function sales_journal_js(){
 			}
 		});
 	});
+
+	// Update Sales Journal Transaction
+	$('.updateSJ-form').submit(function(e){
+		e.preventDefault();
+		$.ajax({ 
+			type: 'POST', 
+			datatype:'json',
+			url: site_url+'sales_journal/update_sj_trans', 
+			data: $('.updateSJ-form').serialize(),
+			success: function (data) { 
+				if(data.success==1){
+					$('#editTrans').modal('hide');
+					$('#update-success').modal('show');
+				}
+				else if(data.success==2){
+					$('.editAP-alert-warning').slideDown().delay(2000).slideUp();
+				}
+				else if(data.success==3){
+					for (i=0;i<=data.err.length;i++) {
+						jQuery("#"+data.err[i]).addClass('error');
+					};
+				}
+			}
+		});
+	});
+	// To reload the search table after updating ap info -mich
+	$('#btn_sj_ok').click(function(){
+		search_sj();
+	});
+
 }
 
 function view_trans_sj(){
@@ -149,11 +179,13 @@ function view_trans_sj(){
 					var totdr 		= Number(data_totDr).toLocaleString('en-US', {minimumFractionDigits: 2});
 					var data_totCr 	= data.response[0].total_credit;
 					var totcr 		= Number(data_totCr).toLocaleString('en-US', {minimumFractionDigits: 2});
+					$('.sj_id').val(data.response[0].sj_id);
 					$('.sj_date').val(data.response[0].sj_si_date);
 					$('.sj_num').val(data.response[0].sj_si_no);
 					$('.sj_cust').val(data.response[0].sj_master_name);
 					$('.sj_terms').val(data.response[0].sj_terms);
 					$('.sj_amt').val(bill_amt);
+					$('.noformat').val(data_amt);
 					$('.sj_part').val(data.response[0].sj_particulars);
 					$('.totdr').val(totdr)
 					$('.totcr').val(totcr);
@@ -161,6 +193,11 @@ function view_trans_sj(){
 					$(data.html).appendTo($('#edit_table > tbody:last')).hide().fadeIn(1000);
 				};
 			}
+		});
+		// Remove the comma in the sales jounal amount before saving to database
+		$('.sj_amt').change(function(){
+			var amt = $('.sj_amt').val().replace(/\,/g, "");
+			$('.noformat').val(amt);
 		});
 	    // alert(id);
 	   // window.open(site_url+"sales_journal/view_trans?id="+id,'_blank');
@@ -176,5 +213,31 @@ function sj_bind_print(){
 		var bi = e.data('bi');
 	   //alert(id);
 	   window.open(site_url+"sales_journal/sj_report?id="+id+"&bi="+bi,'_blank');
+	});
+}
+
+function search_sj(){
+	$.ajax({ 
+		type: 'POST', 
+		datatype:'json',
+		url: site_url+'sales_journal/search_sj', 
+		data: $('.searchSJ-form').serialize(),
+		success: function (data) { 
+			if(data.success==1){
+				$('.search-table > tbody:last').empty().fadeIn(1000);
+				$(data.response).appendTo($('.search-table > tbody:last')).hide().fadeIn(1000);
+				sj_bind_print();
+				view_trans_sj();
+			}
+			else if(data.success==2){
+				$('.search-alert-warning').slideDown().delay(2000).slideUp();
+				$('.search-table tbody').html('');
+			}
+			else if(data.success==3){
+				for (i=0;i<=data.err.length;i++) {
+					jQuery("#"+data.err[i]).addClass('error');
+				};
+			}
+		}
 	});
 }

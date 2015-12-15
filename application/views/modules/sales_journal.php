@@ -124,68 +124,72 @@
 				<h4 class="modal-title" id="">Edit Transaction</h4>
 			</div>
 			<div class="modal-body">
-				<!-- First Row -->
-				<div class="row">
-					<div class="col-md-3">
-						<span class="txt">BI Date:</span>
-						<input type="text" class="form-control sj_date">
+				<form class="updateSJ-form">
+					<!-- First Row -->
+					<div class="row">
+						<div class="col-md-3">
+							<span class="txt">BI Date:</span>
+							<input type="hidden" class="form-control sj_id" id="sj_id" name="u_sj[sj_id]">
+							<input type="text" class="form-control sj_date" id="sjdate" name="u_sj[sjdate]">
+						</div>
+						<div class="col-md-3">
+							<span class="txt">BI #:</span>
+							<input type="text" class="form-control sj_num" id="sjnum" name="u_sj[sjnum]">
+						</div>
+						<div class="col-md-4">
+							<span class="txt">Customer:</span>
+							<input type="text" class="form-control sj_cust" id="sjcust" name="u_sj[sjcust]">
+						</div>
+						<div class="col-md-2">
+							<span class="txt">Terms:</span>
+							<input type="text" class="form-control sj_terms" id="sjterms" name="u_sj[sjterms]">
+						</div>
 					</div>
-					<div class="col-md-3">
-						<span class="txt">BI #:</span>
-						<input type="text" class="form-control sj_num">
+					<!-- Second Row -->
+					<div class="row">
+						<div class="col-md-3">
+							<span class="txt">BI Amount:</span>
+							<input type="hidden" class="form-control noformat" id="sjamt" name="u_sj[sjamt]">
+							<input type="text" class="form-control sj_amt amount">
+						</div>
+						<div class="col-md-9">
+							<span class="txt">Particulars</span>
+							<input type="text" class="form-control sj_part" id="sjpart" name="u_sj[sjpart]">
+						</div>
 					</div>
-					<div class="col-md-4">
-						<span class="txt">Customer:</span>
-						<input type="text" class="form-control sj_cust">
-					</div>
-					<div class="col-md-2">
-						<span class="txt">Terms:</span>
-						<input type="text" class="form-control sj_terms">
-					</div>
-				</div>
-				<!-- Second Row -->
-				<div class="row">
-					<div class="col-md-3">
-						<span class="txt">BI Amount:</span>
-						<input type="text" class="form-control sj_amt">
-					</div>
-					<div class="col-md-9">
-						<span class="txt">Particulars</span>
-						<input type="text" class="form-control sj_part">
-					</div>
-				</div>
-				<!-- fourth Row: Adding Accounts -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="table" >
-							<table class="table" id="edit_table">
-								<thead>
-									<tr>
-										<th>Account Code</th>
-										<th>Title</th>
-										<th>Debit (DR)</th>
-										<th>Credit (CR)</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-								</tbody>
-								<tfoot>
-									<tr>
-										<td>TOTAL</td><td ></td>
-										<td><input type="text" class="form-control entry-debit-total totdr" readonly="true" value=""></td>
-										<td><input type="text" class="form-control entry-credit-total totcr" readonly="true" value=""></td>
-										<td></td>
-									</tr>
-								</tfoot>
-							</table>
+					<!-- fourth Row: Adding Accounts -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="table" >
+								<table class="table" id="edit_table">
+									<thead>
+										<tr>
+											<th>Account Code</th>
+											<th>Title</th>
+											<th>Debit (DR)</th>
+											<th>Credit (CR)</th>
+										</tr>
+									</thead>
+									<tbody>
+
+									</tbody>
+									<tfoot>
+										<tr>
+											<td>TOTAL</td><td ></td>
+											<td><input type="text" class="form-control entry-debit-total totdr" readonly="true" value=""></td>
+											<td><input type="text" class="form-control entry-credit-total totcr" readonly="true" value=""></td>
+											<td></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-style-1"><i class="fa fa-save"></i> Update Transaction</button>
-			</div>
+				<div class="modal-footer">
+					<button class="btn btn-style-1"><i class="fa fa-save"></i> Update Transaction</button>
+				</div>
+			</form>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div>
@@ -398,6 +402,24 @@
 				</div>
 				<div class="modal-footer">
 					<button class="btn btn-style2 " data-dismiss="modal" aria-label="Close"> OK</button>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<!--Confirmation of Update Modal-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" id="update-success">
+	<div class="modal-dialog modal-s">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-9">
+						<span class="txt"> <strong>Success!</strong> Sales Journal details has been updated.</span>
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-style2" id="btn_sj_ok" data-dismiss="modal" aria-label="Close"> OK</button>
+					</div>
 				</div>
 			</div>
 		</div><!-- /.modal-content -->

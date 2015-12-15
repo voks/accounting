@@ -162,6 +162,32 @@ class Sales_journal extends CI_Controller {
 			}
 	}
 
+	public function update_sj_trans(){
+		$this->load->model('journal_sj_model');
+		$u_sj = $this->input->post('u_sj');
+		$err = validates(array($u_sj), array());
+		if (count($err)) {
+			echo jcode(array(
+				'success' => 3, 
+				'err' 	  => $err
+				)
+			);
+		} else {
+			$this->journal_sj_model->update_sj(
+				$u_sj['sjdate'], 
+				$u_sj['sjnum'],
+				$u_sj['sjcust'], 
+				$u_sj['sjterms'], 
+				$u_sj['sjamt'], 
+				$u_sj['sjpart'], 
+				$u_sj['sj_id']
+				);
+			// print_r($this->db->last_query());
+			echo jcode(array('success' 	=> 1));
+		}
+
+	}
+
 	public function sj_report(){
 		$this->load->model('journal_sj_model');
 		if ($this->session->userdata('islogged')) {

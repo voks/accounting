@@ -138,9 +138,15 @@ function accounts_payable_js(){
 			}
 		});
 	});
+	
 	// To reload the search table after updating ap info -mich
 	$('#btn_ok').click(function(){
 		search_ap();
+	});
+
+	// To reload the search table after updating cd info -mich
+	$('#btn_ok').click(function(){
+		search_cd();
 	});
 
 }

@@ -291,12 +291,12 @@ class Check_dis extends CI_Controller {
 				)
 			);
 		} else {
-			$this->journal_ap_model->update_ap(
+			$this->journal_cd_model->update_cd(
 				$u_cd['vdate'], 
 				$u_cd['vnum'],
-				$u_cd['chckno'], 
-				$u_cd['master'],
 				$u_cd['payee'],
+				$u_cd['chcknum'], 
+				$u_cd['master'],
 				$u_cd['chckamt'], 
 				$u_cd['part'],
 				$u_cd['cd_id']

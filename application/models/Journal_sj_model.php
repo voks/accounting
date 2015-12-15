@@ -78,4 +78,19 @@ class Journal_sj_model extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query;
 	}
+
+
+	public function update_sj($sidate, $sinum, $master, $terms, $siamt, $part, $sj_id){
+		$sql = "
+		UPDATE tb_journal_sj SET
+		sj_si_date = ?,
+		sj_si_no = ?,
+		sj_master_name = ?,
+		sj_terms = ?,
+		sj_si_amount = ?,
+		sj_particulars =?
+		where sj_id = ?
+		";
+		$query = $this->db->query($sql, array($sidate, $sinum, $master, $terms, $siamt, $part, $sj_id));
+	}
 }

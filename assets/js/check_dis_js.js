@@ -113,7 +113,7 @@ function check_dis_js(){
 			success: function(data){
 				$('#alertmessage').modal('show');
 			}
-			});
+		});
 	});
 
 	// Export to Exel (Summmart chec dis report) -mich
@@ -129,14 +129,13 @@ function check_dis_js(){
 		});
 	});
 
-	// Update CD Trans
-	// Update AP Transaction
+	// Update CD Transaction
 	$('.updateCD-form').submit(function(e){
 		e.preventDefault();
 		$.ajax({ 
 			type: 'POST', 
 			datatype:'json',
-			url: site_url+'accounts_payable/update_cd_trans', 
+			url: site_url+'check_dis/update_cd_trans', 
 			data: $('.updateCD-form').serialize(),
 			success: function (data) { 
 				if(data.success==1){
@@ -155,8 +154,8 @@ function check_dis_js(){
 		});
 	});
 	// To reload the search table after updating ap info -mich
-	$('#btn_ok').click(function(){
-		search_ap();
+	$('#btn_cd_ok').click(function(){
+		search_cd();
 	});
 	
 }
@@ -182,12 +181,14 @@ function view_trans_cd(){
 					var totdr 		= Number(data_totDr).toLocaleString('en-US', {minimumFractionDigits: 2});
 					var data_totCr 	= data.response[0].total_credit;
 					var totcr 		= Number(data_totCr).toLocaleString('en-US', {minimumFractionDigits: 2});
+					$('.cd_id').val(data.response[0].cd_id);
 					$('.cd_date').val(data.response[0].cd_date);
 					$('.cd_vnum').val(data.response[0].cd_voucher_no);
 					$('.cd_chcknum').val(data.response[0].cd_check_no);
 					$('.cd_bank').val(data.response[0].cd_master_name);
 					$('.cd_name').val(data.response[0].cd_payee_name);
 					$('.cd_chckamt').val(chck_amt);
+					$('.noformat').val(data_amt);
 					$('.cd_part').val(data.response[0].cd_particulars);
 					$('.totdr').val(totdr)
 					$('.totcr').val(totcr);
@@ -195,6 +196,11 @@ function view_trans_cd(){
 					$(data.html).appendTo($('#edit_table > tbody:last')).hide().fadeIn(1000);
 				};
 			}
+		});
+		// Remove the comma in the check amount before saving to database
+		$('.cd_chckamt').change(function(){
+			var amt = $('.cd_chckamt').val().replace(/\,/g, "");
+			$('.noformat').val(amt);
 		});
 	    // alert(id);
 	   // window.open(site_url+"check_dis/view_trans?id="+id,'_blank');
@@ -220,5 +226,32 @@ function cd_check_print(){
 		var cn = $(this).data('cn');
 	   //alert(id);
 	   window.open(site_url+"check_dis/cd_check?id="+id+"&cn="+cn,'_blank');
+	});
+}
+
+function search_cd(){
+	$.ajax({ 
+		type: 'POST', 
+		datatype:'json',
+		url: site_url+'check_dis/search_cd', 
+		data: $('.searchCD-form').serialize(),
+		success: function (data) { 
+			if(data.success==1){
+				$('.search-table > tbody:last').empty().fadeIn(1000);
+				$(data.response).appendTo($('.search-table > tbody:last')).hide().fadeIn(1000);
+				cd_bind_print();
+				cd_check_print();
+				view_trans_cd();
+			}
+			else if(data.success==2){
+				$('.search-alert-warning').slideDown().delay(2000).slideUp();
+				$('.search-table tbody').html('');
+			}
+			else if(data.success==3){
+				for (i=0;i<=data.err.length;i++) {
+					jQuery("#"+data.err[i]).addClass('error');
+				};
+			}
+		}
 	});
 }

@@ -127,35 +127,37 @@
 					<!-- First Row -->
 					<div class="row">
 						<div class="col-md-2">
+							<input type="hidden" class="cd_id" name="u_cd[cd_id]" id="cd_id">
 							<span class="txt">Date:</span>
-							<input type="text" class="form-control cd_date">
+							<input type="text" class="form-control cd_date" id="vdate" name="u_cd[vdate]">
 						</div>
 						<div class="col-md-2">
 							<span class="txt">Voucher #:</span>
-							<input type="text" class="form-control cd_vnum">
+							<input type="text" class="form-control cd_vnum" id="vnum" name="u_cd[vnum]">
 						</div>
 						<div class="col-md-3">
 							<span class="txt">Check#:</span>
-							<input type="text" class="form-control cd_chcknum">
+							<input type="text" class="form-control cd_chcknum" id="chcknum" name="u_cd[chcknum]">
 						</div>
 						<div class="col-md-5">
 							<span class="txt">Bank:</span>
-							<input type="text" class="form-control cd_bank">
+							<input type="text" class="form-control cd_bank" id="master" name="u_cd[master]">
 						</div>
 					</div>
 					<!-- Second Row -->
 					<div class="row">
 						<div class="col-md-4">
 							<span class="txt">Payee Name:</span>
-							<input type="text" class="form-control cd_name">
+							<input type="text" class="form-control cd_name" id="payee" name="u_cd[payee]">
 						</div>
 						<div class="col-md-3">
 							<span class="txt">Check Amount:</span>
-							<input type="text" class="form-control cd_chckamt">
+							<input type="hidden" class="form-control noformat" id="chckamt" name="u_cd[chckamt]">
+							<input type="text" class="form-control cd_chckamt amount">
 						</div>
 						<div class="col-md-5">
 							<span class="txt">Particulars</span>
-							<input type="text" class="form-control cd_part">
+							<input type="text" class="form-control cd_part" id="part" name="u_cd[part]">
 						</div>
 					</div>
 					<!-- fourth Row: Adding Accounts -->
@@ -399,6 +401,24 @@
 		</div>
 	</div>
 </form>
+
+<!--Confirmation of Update Modal-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" id="update-success">
+	<div class="modal-dialog modal-s">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-9">
+						<span class="txt"> <strong>Success!</strong> Check Disbursement details has been updated.</span>
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-style2" id="btn_cd_ok" data-dismiss="modal" aria-label="Close"> OK</button>
+					</div>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
 
 
 <!-- Page content end

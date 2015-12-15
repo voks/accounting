@@ -158,7 +158,7 @@
 						<div class="col-md-2">
 							<span class="txt">Invoice Amount:</span>
 							<input type="hidden" class="form-control noformat" id="invamt" name="u_ap[invamt]">
-							<input type="text" class="form-control invamt">
+							<input type="text" class="form-control invamt amount">
 						</div>
 					</div>
 					<!-- Second Row -->
