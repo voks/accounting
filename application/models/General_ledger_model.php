@@ -16,18 +16,18 @@ class General_ledger_model extends CI_Model {
 		$has = $this->db->query("select * from tb_account_subsidiary where account_code='".$account_code."'")->num_rows();
 		if ($has>0) {
 			$sql = "
-					select * from tb_journal_trans 
-					where 
-					sub_code like '%".$sub_code."%' and
-					trans_date between '".$from_date."' and '".$to_date."'
-			   ";
+			select * from tb_journal_trans 
+			where 
+			sub_code like '%".$sub_code."%' and
+			trans_date between '".$from_date."' and '".$to_date."'
+			";
 		} else {
 			$sql = "
-					select * from tb_journal_trans 
-					where 
-					account_code like '%".$account_code."%' and
-					trans_date between '".$from_date."' and '".$to_date."'
-			   ";
+			select * from tb_journal_trans 
+			where 
+			account_code like '%".$account_code."%' and
+			trans_date between '".$from_date."' and '".$to_date."'
+			";
 		}
 		
 		
@@ -37,23 +37,43 @@ class General_ledger_model extends CI_Model {
 	}
 
 	public function get_in_ap($trans_id){
-		return $this->db->query("select * from tb_journal_ap where ap_id='".$trans_id."'");
+		return $this->db->query("
+			select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr
+			from tb_journal_ap jtb left join tb_journal_trans jtr on jtb.ap_id=jtr.trans_id
+			where jtb.ap_id='".$trans_id."' limit 1 
+			");
 	}
 
 	public function get_in_cd($trans_id){
-		return $this->db->query("select * from tb_journal_cd where cd_id='".$trans_id."'");
+		return $this->db->query("
+			select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr
+			from tb_journal_cd jtb left join tb_journal_trans jtr on jtb.cd_id=jtr.trans_id
+			where jtb.cdp_id='".$trans_id."' limit 1 
+			");
 	}
 
 	public function get_in_cr($trans_id){
-		return $this->db->query("select * from tb_journal_cr where cr_id='".$trans_id."'");
+		return $this->db->query("
+			select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr
+			from tb_journal_cr jtb left join tb_journal_trans jtr on jtb.cr_id=jtr.trans_id
+			where jtb.cr_id='".$trans_id."' limit 1 
+			");
 	}
 
 	public function get_in_sj($trans_id){
-		return $this->db->query("select * from tb_journal_sj where sj_id='".$trans_id."'");
+		return $this->db->query("
+			select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr
+			from tb_journal_sj jtb left join tb_journal_trans jtr on jtb.sj_id=jtr.trans_id
+			where jtb.sj_id='".$trans_id."' limit 1 
+			");
 	}
 
 	public function get_in_gj($trans_id){
-		return $this->db->query("select * from tb_journal_gj where gj_id='".$trans_id."'");
+		return $this->db->query("
+			select jtb.*, jtr.account_code, jtr.sub_code, jtr.account_name, jtr.trans_dr, jtr.trans_cr
+			from tb_journal_gj jtb left join tb_journal_trans jtr on jtb.gj_id=jtr.trans_id
+			where jtb.gj_id='".$trans_id."' limit 1 
+			");
 	}
 
 	// Query for searching Cash Receipts entries
@@ -70,6 +90,10 @@ class General_ledger_model extends CI_Model {
 
 		$data = $this->db->query($sql, array("$account_code","$sub_code","$from_date","$to_date"));
 		return $data;
+	}
+
+	public function search_all(){
+
 	}
 
 	public function gl_cash_total($account_code, $sub_code, $from_date,$to_date){

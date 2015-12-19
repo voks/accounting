@@ -75,8 +75,8 @@ class General_ledger extends CI_Controller {
 										<td>".$key->account_name."</td>
 										<td>".$key_ap->ap_particulars."</td>
 										<td>".$key_ap->ap_invoice_no."</td>
-										<td class='text-right'>".number_format($key_ap->total_debit, 2)."</td>
-										<td class='text-right'>".number_format($key_ap->total_credit, 2)."</td>
+										<td class='text-right'>".number_format($key_ap->trans_dr, 2)."</td>
+										<td class='text-right'>".number_format($key_ap->trans_cr, 2)."</td>
 										<td><a href='#' class='btn-style-1'><i class='fa fa-eye'></i></a></td>
 									</tr>";
 								}
@@ -90,8 +90,8 @@ class General_ledger extends CI_Controller {
 										<td>".$key->account_name."</td>
 										<td>".$key_cd->cd_particulars."</td>
 										<td>".$key_cd->cd_voucher_no."</td>
-										<td class='text-right'>".number_format($key_cd->total_debit, 2)."</td>
-										<td class='text-right'>".number_format($key_cd->total_credit,2)."</td>
+										<td class='text-right'>".number_format($key_cd->trans_dr, 2)."</td>
+										<td class='text-right'>".number_format($key_cd->trans_cr,2)."</td>
 										<td><a href='#' class='btn-style-1'><i class='fa fa-eye'></i></a></td>
 									</tr>";
 								}
@@ -105,8 +105,8 @@ class General_ledger extends CI_Controller {
 										<td>".$key->account_name."</td>
 										<td>".$key_cr->cr_particulars."</td>
 										<td>".$key_cr->cr_or_no."</td>
-										<td class='text-right'>".number_format($key_cr->total_debit, 2)."</td>
-										<td class='text-right'>".number_format($key_cr->total_credit,2)."</td>
+										<td class='text-right'>".number_format($key_cr->trans_dr, 2)."</td>
+										<td class='text-right'>".number_format($key_cr->trans_cr,2)."</td>
 										<td><a href='#' class='btn-style-1'><i class='fa fa-eye'></i></a></td>
 									</tr>";
 								}
@@ -120,8 +120,8 @@ class General_ledger extends CI_Controller {
 										<td>".$key->account_name."</td>
 										<td>".$key_cr->cr_particulars."</td>
 										<td>".$key_cr->cr_or_no."</td>
-										<td class='text-right'>".number_format($key_cr->total_debit, 2)."</td>
-										<td class='text-right'>".number_format($key_cr->total_credit,2)."</td>
+										<td class='text-right'>".number_format($key_cr->trans_dr, 2)."</td>
+										<td class='text-right'>".number_format($key_cr->trans_cr,2)."</td>
 										<td><a href='#' class='btn-style-1'><i class='fa fa-eye'></i></a></td>
 									</tr>";
 								}
@@ -135,8 +135,8 @@ class General_ledger extends CI_Controller {
 										<td>".$key->account_name."</td>
 										<td>".$key_gj->gj_particulars."</td>
 										<td>".$key_gj->gj_code."</td>
-										<td class='text-right'>".number_format($key_gj->total_debit, 2)."</td>
-										<td class='text-right'>".number_format($key_gj->total_credit,2)."</td>
+										<td class='text-right'>".number_format($key_gj->trans_dr, 2)."</td>
+										<td class='text-right'>".number_format($key_gj->trans_cr,2)."</td>
 										<td><a href='#' class='btn-style-1'><i class='fa fa-eye'></i></a></td>
 									</tr>";
 								}
@@ -150,8 +150,8 @@ class General_ledger extends CI_Controller {
 										<td>".$key->account_name."</td>
 										<td>".$key_sj->sj_particulars."</td>
 										<td>".$key_sj->sj_si_no."</td>
-										<td class='text-right'>".number_format($key_sj->total_debit, 2)."</td>
-										<td class='text-right'>".number_format($key_sj->total_credit,2)."</td>
+										<td class='text-right'>".number_format($key_sj->trans_dr, 2)."</td>
+										<td class='text-right'>".number_format($key_sj->trans_cr,2)."</td>
 										<td><a href='#' class='btn-style-1'><i class='fa fa-eye'></i></a></td>
 									</tr>";
 								}
